@@ -216,6 +216,11 @@ h2 em{font-style:normal;color:var(--cobalto)}
 .igcard .arroba .dot{color:var(--amber)}
 .igcard p{font-size:13.5px;line-height:1.55;color:var(--grafite)}
 .igcard .mini{font-family:var(--disp);font-weight:700;font-size:14px;background:var(--ink);color:var(--porcelana);padding:11px 18px;border-radius:10px;margin-top:6px}
+.igcard .previews{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%}
+.igcard .previews a{display:block;aspect-ratio:9/13;border-radius:10px;overflow:hidden;position:relative;background:var(--ink)}
+.igcard .previews img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .3s}
+.igcard .previews a:hover img{transform:scale(1.07)}
+.igcard .previews a::after{content:'▶';position:absolute;right:7px;bottom:6px;font-size:9px;color:#fff;background:rgba(14,14,18,.55);border-radius:999px;width:20px;height:20px;display:flex;align-items:center;justify-content:center}
 .vid.destaque{min-height:460px}
 .cright{display:flex;flex-direction:column;gap:20px}
 .cright .vid.mini{min-height:210px;padding:22px}
@@ -554,12 +559,18 @@ html.shot .btn.amber::after,html.shot .cmd.destaque::after,html.shot .hfoto .chi
           <span class="play">▶</span>
           <b>O Agente de IA que me manda o Relatório Comercial todo dia no WhatsApp.</b>
         </a>
-        <a class="igcard rev" href="https://instagram.com/batista.growth" target="_blank" rel="noopener">
+        <div class="igcard rev">
           <img class="wm" src="assets/simbolo-prompt.svg" alt="">
           <span class="arroba">@batista<span class="dot">.</span>growth</span>
+          <!-- Pra trocar os previews: assets/ig/reel-N.jpg + o link do reel -->
+          <div class="previews">
+            <a href="https://instagram.com/reel/Da0VxsTCGIg/" target="_blank" rel="noopener"><img loading="lazy" src="assets/ig/reel-1.jpg" alt=""></a>
+            <a href="https://instagram.com/reel/Dav5nWIgFHe/" target="_blank" rel="noopener"><img loading="lazy" src="assets/ig/reel-2.jpg" alt=""></a>
+            <a href="https://instagram.com/reel/Danus5wEmUB/" target="_blank" rel="noopener"><img loading="lazy" src="assets/ig/reel-3.jpg" alt=""></a>
+          </div>
           <p>Método, provocação e bastidor no feed, todo dia. O diagnóstico começa no direct.</p>
-          <span class="mini">Seguir no Instagram ↗</span>
-        </a>
+          <a class="mini" href="https://instagram.com/batista.growth" target="_blank" rel="noopener" style="text-decoration:none">Seguir no Instagram ↗</a>
+        </div>
       </div>
     </div>
     <div class="cmais rev"><a href="https://www.youtube.com/@batistagrowth" target="_blank" rel="noopener">Ver o canal inteiro no YouTube ↗</a></div>
