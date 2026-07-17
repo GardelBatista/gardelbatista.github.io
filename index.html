@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gardel Batista · Growth, comercial e IA aplicada</title>
+<meta name="description" content="Crescimento não é feeling. É método, clareza e decisão. Diagnóstico, sistema comercial e IA operacional para founders e donos de clínica.">
+<meta property="og:title" content="batista.growth · Growth, comercial e IA aplicada">
+<meta property="og:description" content="Crescimento não é feeling. É método, clareza e decisão.">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="apple-touch-icon-180.png">
+<style>
+/* ══════════════ FONTES ══════════════ */
+@font-face{font-family:'SpaceG';src:url('assets/fonts/space-grotesk-v22-latin-regular.ttf');font-weight:400;font-display:swap}
+@font-face{font-family:'SpaceG';src:url('assets/fonts/space-grotesk-v22-latin-500.ttf');font-weight:500;font-display:swap}
+@font-face{font-family:'SpaceG';src:url('assets/fonts/space-grotesk-v22-latin-700.ttf');font-weight:700;font-display:swap}
+@font-face{font-family:'Inter';src:url('assets/fonts/inter-v20-latin-regular.ttf');font-weight:400;font-display:swap}
+@font-face{font-family:'Inter';src:url('assets/fonts/inter-v20-latin-500.ttf');font-weight:500;font-display:swap}
+@font-face{font-family:'Inter';src:url('assets/fonts/inter-v20-latin-700.ttf');font-weight:700;font-display:swap}
+@font-face{font-family:'Plex';src:url('assets/fonts/ibm-plex-mono-v20-latin-regular.ttf');font-weight:400;font-display:swap}
+@font-face{font-family:'Plex';src:url('assets/fonts/ibm-plex-mono-v20-latin-500.ttf');font-weight:500;font-display:swap}
+@font-face{font-family:'Plex';src:url('assets/fonts/ibm-plex-mono-v20-latin-600.ttf');font-weight:600;font-display:swap}
+
+/* ══════════════ TOKENS ══════════════ */
+:root{
+  --porcelana:#F5F4F0; --branco:#FFFFFF; --ink:#0E0E12; --grafite:#565660;
+  --cobalto:#2743F5; --amber:#F0A500; --hair:rgba(14,14,18,.12);
+  --disp:'SpaceG',Arial,sans-serif; --mono:'Plex',Consolas,monospace; --body:'Inter',Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--porcelana);color:var(--ink);font-family:var(--body);overflow-x:hidden}
+::selection{background:var(--amber);color:var(--ink)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cobalto);outline-offset:3px;border-radius:4px}
+
+.kicker{font-family:var(--mono);font-weight:500;letter-spacing:.16em;font-size:13px;color:var(--cobalto);text-transform:lowercase}
+.dot{color:var(--amber)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px;position:relative}
+
+/* ══════════════ NAV ══════════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);background:rgba(245,244,240,.82);border-bottom:1px solid var(--hair);transition:transform .4s}
+nav .bar{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+nav .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+nav .logo img{height:26px}
+nav .logo b{font-family:var(--disp);font-weight:700;font-size:19px}
+nav .cta{font-family:var(--disp);font-weight:700;font-size:14px;background:var(--ink);color:var(--porcelana);padding:10px 18px;border-radius:10px;text-decoration:none;transition:transform .25s,background .25s}
+nav .cta:hover{background:var(--cobalto);transform:translateY(-1px)}
+
+/* ══════════════ SPINE (o fio-cursor) ══════════════ */
+#spine{position:absolute;top:0;left:0;pointer-events:none;z-index:1;overflow:visible}
+#spine path{fill:none;stroke:var(--amber);stroke-width:3;stroke-linecap:round}
+#spine .trilho{stroke:rgba(14,14,18,.08)}
+.node{position:relative}
+.node::before{content:'';position:absolute;width:13px;height:13px;border-radius:50%;background:var(--porcelana);border:3px solid rgba(14,14,18,.18);left:var(--nx,0);top:var(--ny,0);transform:translate(-50%,-50%);z-index:2;transition:border-color .4s,background .4s,box-shadow .4s}
+.node.lit::before{border-color:var(--amber);background:var(--amber);box-shadow:0 0 0 6px rgba(240,165,0,.18)}
+
+/* ══════════════ HERO ══════════════ */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;position:relative;padding:120px 0 80px;z-index:3}
+.hero .term{font-family:var(--mono);font-weight:500;font-size:clamp(15px,2.2vw,22px);color:var(--grafite);min-height:1.6em}
+.hero .term .cur{display:inline-block;width:.62em;height:1.15em;background:var(--amber);vertical-align:text-bottom;margin-left:3px;animation:blink 1.05s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero h1{font-family:var(--disp);font-weight:700;font-size:clamp(44px,8.6vw,110px);line-height:1.0;letter-spacing:-0.025em;margin-top:26px;max-width:12ch}
+.hero h1 .w{display:inline-block;overflow:hidden;vertical-align:bottom}
+.hero h1 .w>span{display:inline-block;transform:translateY(110%);transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.hero.on h1 .w>span{transform:translateY(0)}
+.hero h1 em{font-style:normal;color:var(--cobalto)}
+.hero p{font-size:clamp(16px,2vw,19px);line-height:1.65;color:var(--grafite);max-width:520px;margin-top:28px;opacity:0;transform:translateY(14px);transition:all .7s .5s}
+.hero.on p{opacity:1;transform:none}
+.hero .acts{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;opacity:0;transform:translateY(14px);transition:all .7s .7s}
+.hero.on .acts{opacity:1;transform:none}
+.btn{font-family:var(--disp);font-weight:700;font-size:17px;padding:17px 30px;border-radius:13px;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:transform .2s,box-shadow .2s,background .25s;will-change:transform}
+.btn.amber{background:var(--amber);color:var(--ink);box-shadow:0 8px 26px rgba(240,165,0,.35)}
+.btn.amber:hover{box-shadow:0 12px 34px rgba(240,165,0,.5)}
+.btn.ghost{border:1.5px solid rgba(14,14,18,.25);color:var(--ink)}
+.btn.ghost:hover{border-color:var(--ink)}
+.hero .scrolldica{position:absolute;bottom:26px;left:24px;font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;color:var(--grafite);text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.hero .scrolldica i{display:block;width:2px;height:34px;background:linear-gradient(var(--amber),transparent);animation:desce 1.6s ease-in-out infinite}
+@keyframes desce{0%{transform:scaleY(.2);transform-origin:top}55%{transform:scaleY(1)}100%{opacity:0}}
+
+/* ══════════════ MARQUEE ══════════════ */
+.marquee{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);overflow:hidden;padding:16px 0;background:var(--branco);position:relative;z-index:3}
+.marquee .fita{display:flex;gap:56px;white-space:nowrap;font-family:var(--mono);font-weight:500;font-size:13.5px;letter-spacing:.14em;color:var(--grafite);animation:rola 30s linear infinite;width:max-content}
+@keyframes rola{to{transform:translateX(-50%)}}
+.marquee b{color:var(--ink)}
+
+/* ══════════════ SEÇÕES ══════════════ */
+section{padding:110px 0;position:relative;z-index:3}
+.sec-head{max-width:760px}
+h2{font-family:var(--disp);font-weight:700;font-size:clamp(34px,5.4vw,58px);line-height:1.05;letter-spacing:-0.02em;margin-top:16px}
+h2 em{font-style:normal;color:var(--cobalto)}
+.lede{font-size:17px;line-height:1.7;color:var(--grafite);margin-top:20px;max-width:600px}
+.lede b{color:var(--ink)}
+.rev{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s}
+.rev.in{opacity:1;transform:none}
+
+/* ══════════════ PROBLEMA ══════════════ */
+.problema .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:54px}
+.pcard{background:var(--branco);border:1px solid var(--hair);border-radius:18px;padding:30px 28px;transition:transform .3s,box-shadow .3s}
+.pcard:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(14,14,18,.09)}
+.pcard .k{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--grafite)}
+.pcard h3{font-family:var(--disp);font-weight:700;font-size:22px;margin-top:12px;line-height:1.2}
+.pcard p{font-size:14.5px;line-height:1.6;color:var(--grafite);margin-top:12px}
+
+/* ══════════════ SERVIÇOS (terminal) ══════════════ */
+.servicos{background:var(--branco);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.cmds{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px}
+.cmd{background:var(--porcelana);border:1.5px solid var(--hair);border-radius:20px;padding:0;overflow:hidden;cursor:pointer;transition:border-color .3s,transform .3s,box-shadow .3s;text-align:left;width:100%;font-family:inherit}
+.cmd:hover{transform:translateY(-4px);border-color:rgba(14,14,18,.3);box-shadow:0 20px 44px rgba(14,14,18,.10)}
+.cmd .top{padding:26px 28px 0;display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.cmd .nome{font-family:var(--mono);font-weight:600;font-size:clamp(17px,2vw,21px);color:var(--ink)}
+.cmd .nome .p{color:var(--cobalto)}
+.cmd .nome .u{color:var(--amber)}
+.cmd .quem{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:var(--grafite);text-transform:uppercase;white-space:nowrap}
+.cmd h3{font-family:var(--disp);font-weight:700;font-size:24px;padding:12px 28px 0;line-height:1.2}
+.cmd .desc{font-size:14.5px;line-height:1.62;color:var(--grafite);padding:12px 28px 24px;max-width:430px}
+.cmd .out{background:var(--ink);padding:0 28px;max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.2,.7,.2,1),padding .4s}
+.cmd.aberto .out{max-height:300px;padding:20px 28px 24px}
+.cmd .out div{font-family:var(--mono);font-size:12.8px;line-height:2;color:#B9B8C2;opacity:0;transform:translateX(-8px);transition:all .4s}
+.cmd.aberto .out div{opacity:1;transform:none}
+.cmd .out div b{color:var(--porcelana);font-weight:500}
+.cmd .out div .ok{color:var(--amber)}
+.cmd .rodar{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--grafite);padding:0 28px 22px;display:block;text-transform:uppercase}
+.cmd.aberto .rodar{display:none}
+
+/* ══════════════ MÉTODO 45° ══════════════ */
+.metodo .passos{margin-top:70px;display:flex;flex-direction:column;gap:0}
+.passo{display:grid;grid-template-columns:110px 1fr;gap:26px;padding:34px 0;border-top:1px solid var(--hair);align-items:start}
+.passo .num{font-family:var(--mono);font-weight:600;font-size:15px;color:var(--cobalto);letter-spacing:.1em;padding-top:6px}
+.passo .num i{font-style:normal;color:var(--amber)}
+.passo h3{font-family:var(--disp);font-weight:700;font-size:clamp(22px,3vw,30px);letter-spacing:-0.01em}
+.passo p{font-size:15px;line-height:1.65;color:var(--grafite);margin-top:10px;max-width:560px}
+.passo .tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--grafite);border:1px solid var(--hair);border-radius:999px;padding:5px 12px;margin-top:14px;text-transform:uppercase}
+@media(min-width:900px){
+  .passo{transform:translateX(calc(var(--i) * 90px))}
+}
+
+/* ══════════════ IA TERMINAL ══════════════ */
+.ia{background:var(--ink);color:var(--porcelana)}
+.ia .kicker{color:var(--amber)}
+.ia h2 em{color:var(--amber)}
+.ia .lede{color:#A2A1AC}
+.ia .lede b{color:var(--porcelana)}
+.ia .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-top:20px}
+.termwin{background:#15141B;border:1px solid rgba(245,244,240,.12);border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.termwin .tbar{display:flex;align-items:center;gap:8px;padding:13px 18px;border-bottom:1px solid rgba(245,244,240,.1)}
+.termwin .tbar i{width:11px;height:11px;border-radius:50%;background:rgba(245,244,240,.16)}
+.termwin .tbar i:first-child{background:var(--amber)}
+.termwin .tbar span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:#8A8994;margin-left:8px}
+.termwin .tbody{padding:22px 22px 26px;font-family:var(--mono);font-size:13px;line-height:2.05;min-height:280px}
+.termwin .tbody div{color:#B9B8C2;white-space:nowrap;overflow:hidden}
+.termwin .tbody .g{color:#7ED07E}
+.termwin .tbody .a{color:var(--amber)}
+.termwin .tbody .c{color:#7A8CFF}
+.termwin .cur2{display:inline-block;width:8px;height:15px;background:var(--amber);vertical-align:middle;animation:blink 1.05s steps(1) infinite}
+
+/* ══════════════ QUEM ══════════════ */
+.quem .split{display:grid;grid-template-columns:440px 1fr;gap:64px;align-items:center}
+.quem .foto{position:relative}
+.quem .foto img{width:100%;border-radius:22px;display:block;border:1px solid var(--hair)}
+.quem .foto::after{content:'';position:absolute;inset:0;border-radius:22px;background:linear-gradient(200deg,transparent 55%,rgba(14,14,18,.38));pointer-events:none}
+.quem .foto .selo{position:absolute;bottom:18px;left:18px;display:flex;align-items:center;gap:9px;background:rgba(245,244,240,.92);border-radius:11px;padding:9px 14px;backdrop-filter:blur(6px)}
+.quem .foto .selo img{width:20px;border:none;border-radius:0}
+.quem .foto .selo b{font-family:var(--disp);font-weight:700;font-size:14px;color:var(--ink)}
+.quem blockquote{font-family:var(--disp);font-weight:500;font-size:clamp(19px,2.4vw,25px);line-height:1.4;letter-spacing:-0.01em;margin-top:26px}
+.quem blockquote .hl{box-shadow:inset 0 -10px 0 rgba(240,165,0,.45)}
+.quem .fatos{display:flex;gap:34px;margin-top:36px;flex-wrap:wrap}
+.quem .fato{border-left:2.5px solid var(--amber);padding-left:16px}
+.quem .fato b{font-family:var(--disp);font-weight:700;font-size:19px;display:block}
+.quem .fato span{font-size:13px;color:var(--grafite);line-height:1.45;display:block;margin-top:4px;max-width:180px}
+
+/* ══════════════ CTA FINAL ══════════════ */
+.final{background:var(--ink);color:var(--porcelana);text-align:center;padding:150px 0 130px}
+.final .kicker{color:var(--amber)}
+.final h2{font-size:clamp(40px,7vw,84px);max-width:14ch;margin:18px auto 0}
+.final p{color:#A2A1AC;font-size:17px;line-height:1.65;max-width:480px;margin:26px auto 0}
+.final .btn{margin-top:44px;font-size:19px;padding:20px 40px}
+.final .micro{font-family:var(--mono);font-size:12px;letter-spacing:.13em;color:#8A8994;margin-top:22px;text-transform:uppercase}
+
+/* ══════════════ FOOTER ══════════════ */
+footer{background:var(--ink);color:#8A8994;border-top:1px solid rgba(245,244,240,.1);padding:34px 0}
+footer .bar{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+footer .logo{display:flex;align-items:center;gap:9px}
+footer .logo img{height:20px}
+footer .logo b{font-family:var(--disp);font-weight:700;font-size:16px;color:var(--porcelana)}
+footer .fr{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase}
+footer a{text-decoration:none;transition:color .25s}
+footer a:hover{color:var(--porcelana)}
+
+/* ══════════════ MOBILE ══════════════ */
+@media(max-width:899px){
+  section{padding:76px 0}
+  .problema .grid{grid-template-columns:1fr}
+  .cmds{grid-template-columns:1fr}
+  .ia .split{grid-template-columns:1fr;gap:36px}
+  .quem .split{grid-template-columns:1fr;gap:36px}
+  .quem .foto{max-width:420px}
+  .passo{grid-template-columns:1fr;gap:8px}
+  .hero .scrolldica{display:none}
+  .termwin .tbody{min-height:220px;font-size:11.5px}
+}
+/* modo screenshot/validação: ?shot=1 congela tudo no estado final */
+html.shot .hero{min-height:auto;padding:190px 0 120px}
+html.shot .rev,html.shot .hero p,html.shot .hero .acts{opacity:1;transform:none;transition:none}
+html.shot .hero h1 .w>span{transform:none;transition:none}
+html.shot .marquee .fita{animation:none}
+html.shot .hero .term .cur{animation:none}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .rev,.hero p,.hero .acts{opacity:1;transform:none}
+  .hero h1 .w>span{transform:none}
+}
+</style>
+</head>
+<body>
+
+<svg id="spine" aria-hidden="true"><path class="trilho" d=""/><path class="fio" d=""/></svg>
+
+<nav id="nav">
+  <div class="bar">
+    <a class="logo" href="#topo"><img src="assets/simbolo-prompt.svg" alt=""><b>batista<span class="dot">.</span>growth</b></a>
+    <a class="cta" href="#contato">Roda o diagnóstico</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="topo">
+  <div class="wrap">
+    <div class="term kicker" style="font-size:inherit;color:var(--grafite);text-transform:none;letter-spacing:.06em"><span class="p" style="color:var(--cobalto)">&gt;</span> <span id="typed"></span><span class="cur" id="cursorHero"></span></div>
+    <h1 id="h1"></h1>
+    <p>Growth, comercial e <b>IA aplicada</b> dentro da sua operação. De founder de tech a dono de clínica: eu monto o sistema que vende, mede e escala, e deixo ele rodando.</p>
+    <div class="acts">
+      <a class="btn amber magnet" href="#contato">Roda o diagnóstico <span aria-hidden="true">↗</span></a>
+      <a class="btn ghost" href="#servicos">Ver os serviços</a>
+    </div>
+    <div class="node" data-node style="--nx:6px;--ny:40px"></div>
+  </div>
+  <div class="scrolldica"><i></i> a linha continua</div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="fita" id="fita">
+    <span>crescimento não é feeling<b>.</b></span><span>é método<b>.</b></span><span>é clareza<b>.</b></span><span>é decisão<b>.</b></span><span>growth · comercial · ia aplicada_</span><span>@batista.growth</span>
+    <span>crescimento não é feeling<b>.</b></span><span>é método<b>.</b></span><span>é clareza<b>.</b></span><span>é decisão<b>.</b></span><span>growth · comercial · ia aplicada_</span><span>@batista.growth</span>
+  </div>
+</div>
+
+<!-- PROBLEMA -->
+<section class="problema">
+  <div class="wrap">
+    <div class="node" data-node data-side="left" style="--nx:6px;--ny:8px"></div>
+    <div class="sec-head rev">
+      <div class="kicker">&gt; o diagnóstico mais comum_</div>
+      <h2>Tua operação não precisa de mais esforço. Precisa de <em>sistema</em><span class="dot">.</span></h2>
+      <p class="lede">Times inteiros correndo, verba queimando e o faturamento andando de lado. O problema quase nunca é o esforço. É crescer no feeling, sem processo, sem número e sem decisão.</p>
+    </div>
+    <div class="grid">
+      <div class="pcard rev"><div class="k">sintoma 1</div><h3>Lead chega e esfria.</h3><p>Sem cadência e sem dono, o follow-up morre na terceira mensagem. O CRM vira cemitério de oportunidade.</p></div>
+      <div class="pcard rev"><div class="k">sintoma 2</div><h3>Decisão no achismo.</h3><p>Ninguém sabe dizer qual canal paga a conta. Reunião de segunda vira opinião contra opinião.</p></div>
+      <div class="pcard rev"><div class="k">sintoma 3</div><h3>Tudo depende de você.</h3><p>Se o dono para, a máquina para. Crescimento que depende de heroísmo não é crescimento: é sorte com prazo.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="servicos" id="servicos">
+  <div class="wrap">
+    <div class="node" data-node data-side="right" style="--nx:calc(100% - 6px);--ny:8px"></div>
+    <div class="sec-head rev">
+      <div class="kicker">&gt; serviços · clica pra executar_</div>
+      <h2>Quatro comandos. Uma <em>máquina</em><span class="dot">.</span></h2>
+      <p class="lede">Cada serviço é um comando que eu executo com você, na ordem que a tua operação pede. Todo mundo começa pelo diagnóstico.</p>
+    </div>
+    <div class="cmds">
+      <button class="cmd rev" type="button">
+        <div class="top"><span class="nome"><span class="p">&gt;</span> diagnostico<span class="u">_</span></span><span class="quem">começa aqui</span></div>
+        <h3>O raio-x da operação<span class="dot">.</span></h3>
+        <p class="desc">Duas semanas dentro do teu funil: números, processo, time e ferramentas. Sai com o mapa dos gargalos e um plano de 90 dias priorizado.</p>
+        <div class="out">
+          <div><b>auditando funil...</b> <span class="ok">ok</span></div>
+          <div><b>entrevistando time comercial...</b> <span class="ok">ok</span></div>
+          <div><b>mapa de gargalos:</b> gerado</div>
+          <div><b>plano 90 dias:</b> priorizado e entregue <span class="ok">✓</span></div>
+        </div>
+        <span class="rodar">clica pra rodar ▸</span>
+      </button>
+      <button class="cmd rev" type="button">
+        <div class="top"><span class="nome"><span class="p">&gt;</span> sistema.comercial<span class="u">_</span></span><span class="quem">implementação</span></div>
+        <h3>O funil vira processo<span class="dot">.</span></h3>
+        <p class="desc">Desenho e implantação do teu sistema de vendas: etapas, cadências, playbooks, CRM vivo e gestão à vista. O time sabe o que fazer na segunda de manhã.</p>
+        <div class="out">
+          <div><b>pipeline redesenhado:</b> 6 etapas <span class="ok">ok</span></div>
+          <div><b>cadências ativas:</b> 4 (inbound, outbound, no-show, retomada)</div>
+          <div><b>playbook do time:</b> publicado</div>
+          <div><b>dashboard de gestão:</b> no ar <span class="ok">✓</span></div>
+        </div>
+        <span class="rodar">clica pra rodar ▸</span>
+      </button>
+      <button class="cmd rev" type="button">
+        <div class="top"><span class="nome"><span class="p">&gt;</span> ia.operacional<span class="u">_</span></span><span class="quem">agentes de verdade</span></div>
+        <h3>IA fazendo trabalho de gente<span class="dot">.</span></h3>
+        <p class="desc">Agentes na tua operação: qualificação de lead, follow-up que não esquece, relatórios prontos de manhã. Não é chatbot. É mão de obra digital medida em resultado.</p>
+        <div class="out">
+          <div><b>agente sdr:</b> qualificando leads 24/7 <span class="ok">ok</span></div>
+          <div><b>follow-up automático:</b> 0 conversas esquecidas</div>
+          <div><b>relatório diário:</b> na tua mão às 7h30</div>
+          <div><b>time liberado pra:</b> fechar <span class="ok">✓</span></div>
+        </div>
+        <span class="rodar">clica pra rodar ▸</span>
+      </button>
+      <button class="cmd rev" type="button">
+        <div class="top"><span class="nome"><span class="p">&gt;</span> conselho<span class="u">_</span></span><span class="quem">contínuo</span></div>
+        <h3>Decisão com número na mesa<span class="dot">.</span></h3>
+        <p class="desc">Acompanhamento mensal da operação: leitura dos números, correção de rota e as duas ou três decisões que destravam o próximo degrau. Pra quem já rodou os comandos acima.</p>
+        <div class="out">
+          <div><b>rotina mensal:</b> número → diagnóstico → decisão</div>
+          <div><b>acesso direto:</b> sem fila, sem cerimônia</div>
+          <div><b>meta do trimestre:</b> acompanhada de perto</div>
+          <div><b>modo:</b> par-a-par com o founder <span class="ok">✓</span></div>
+        </div>
+        <span class="rodar">clica pra rodar ▸</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTODO -->
+<section class="metodo">
+  <div class="wrap">
+    <div class="node" data-node data-side="left" style="--nx:6px;--ny:8px"></div>
+    <div class="sec-head rev">
+      <div class="kicker">&gt; o método_</div>
+      <h2>Crescimento a <em>45 graus</em><span class="dot">.</span></h2>
+      <p class="lede">Nada de hockey stick de promessa. Crescimento real é uma reta constante sustentada por método. Quatro passos, sempre nessa ordem.</p>
+    </div>
+    <div class="passos">
+      <div class="passo rev" style="--i:0"><div class="num">01<i>.</i></div><div><h3>Diagnosticar</h3><p>Duas semanas de imersão no funil, no time e nos números. Sem achismo: o mapa do que trava e do que alavanca.</p><span class="tag">semanas 1–2</span></div></div>
+      <div class="passo rev" style="--i:1"><div class="num">02<i>.</i></div><div><h3>Desenhar</h3><p>O sistema comercial da TUA operação: etapas, cadências, papéis, metas e o que a IA vai assumir. Aprovado junto, no papel, antes de construir.</p><span class="tag">semanas 3–4</span></div></div>
+      <div class="passo rev" style="--i:2"><div class="num">03<i>.</i></div><div><h3>Implantar</h3><p>Mão na massa: CRM configurado, playbooks publicados, agentes de IA no ar e time treinado dentro da rotina real.</p><span class="tag">semanas 5–10</span></div></div>
+      <div class="passo rev" style="--i:3"><div class="num">04<i>.</i></div><div><h3>Decidir e escalar</h3><p>Rotina de gestão: número na mesa toda semana, decisão tomada, rota corrigida. É aqui que a reta de 45° se sustenta.</p><span class="tag">contínuo</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- IA -->
+<section class="ia">
+  <div class="wrap">
+    <div class="node" data-node data-side="right" style="--nx:calc(100% - 6px);--ny:8px"></div>
+    <div class="split">
+      <div class="rev">
+        <div class="kicker">&gt; ia aplicada · sem hype_</div>
+        <h2>Enquanto você dorme, a operação <em>responde</em><span class="dot">.</span></h2>
+        <p class="lede">Eu não vendo IA de palco. Eu opero agentes todos os dias na minha própria empresa e nas dos clientes: <b>qualificando lead, retomando conversa parada e trazendo o número pronto de manhã.</b> O que chega em você já rodou em produção.</p>
+      </div>
+      <div class="termwin rev" aria-hidden="true">
+        <div class="tbar"><i></i><i></i><i></i><span>operacao@batista.growth</span></div>
+        <div class="tbody" id="tlog"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUEM -->
+<section class="quem">
+  <div class="wrap">
+    <div class="node" data-node data-side="left" style="--nx:6px;--ny:8px"></div>
+    <div class="split">
+      <div class="foto rev">
+        <img src="assets/gardel.png" alt="Gardel Batista">
+        <div class="selo"><img src="assets/simbolo-prompt.svg" alt=""><b>Gardel Batista</b></div>
+      </div>
+      <div class="rev">
+        <div class="kicker">&gt; quem executa_</div>
+        <h2>Operador, não <em>palestrante</em><span class="dot">.</span></h2>
+        <blockquote>"Eu rodo growth, comercial e IA <span class="hl">todos os dias</span> em operação real. O que eu te entrego não saiu de slide: saiu do campo."</blockquote>
+        <div class="fatos">
+          <div class="fato"><b>Growth em produção</b><span>operação diária em SaaS de saúde e clientes de alto ticket</span></div>
+          <div class="fato"><b>Comercial de ponta a ponta</b><span>do primeiro contato ao contrato assinado</span></div>
+          <div class="fato"><b>IA com as próprias mãos</b><span>agentes, automações e funis construídos por ele</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final" id="contato">
+  <div class="wrap">
+    <div class="node" data-node data-side="center" style="--nx:50%;--ny:-40px"></div>
+    <div class="kicker rev">&gt; o próximo comando é teu_</div>
+    <h2 class="rev">Roda o diagnóstico<span class="dot" id="cursorFinal">.</span></h2>
+    <p class="rev">Me chama, me conta em duas linhas onde a operação trava, e eu te digo com franqueza se consigo ajudar. Sem call de vendas disfarçada.</p>
+    <a class="btn amber magnet rev" href="https://ig.me/m/batista.growth" target="_blank" rel="noopener">Chamar no direct <span aria-hidden="true">↗</span></a>
+    <div class="micro rev">@batista.growth · resposta em até 1 dia útil_</div>
+  </div>
+</section>
+
+<footer>
+  <div class="bar">
+    <div class="logo"><img src="assets/simbolo-prompt-branco.svg" alt=""><b>batista<span class="dot">.</span>growth</b></div>
+    <div class="fr">crescimento não é feeling. é método, clareza e decisão.</div>
+    <div class="fr"><a href="https://instagram.com/batista.growth" target="_blank" rel="noopener">instagram</a> · <a href="https://youtube.com/@batistagrowth" target="_blank" rel="noopener">youtube</a> · <a href="mailto:contato@gardelbatista.com.br">e-mail</a></div>
+  </div>
+</footer>
+
+<script>
+const shot = new URLSearchParams(location.search).has('shot');
+if(shot) document.documentElement.classList.add('shot');
+const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches || shot;
+
+/* ── HERO: digitação ── */
+const frase = 'crescimento não é feeling.';
+const typed = document.getElementById('typed');
+const h1 = document.getElementById('h1');
+const heroWords = ['É','método,','clareza','e','<em>decisão</em>'];
+h1.innerHTML = heroWords.map(w=>`<span class="w"><span>${w}</span></span>`).join(' ') + '<span class="dot">.</span>';
+const hero = document.querySelector('.hero');
+function digita(i){
+  if(i <= frase.length){ typed.textContent = frase.slice(0,i); setTimeout(()=>digita(i+1), 34 + Math.random()*46); }
+  else { hero.classList.add('on'); }
+}
+if(reduz){ typed.textContent = frase; hero.classList.add('on'); }
+else setTimeout(()=>digita(0), 350);
+
+/* ── REVEALS ── */
+const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }),{threshold:.14});
+document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+
+/* ── SERVIÇOS: executar comando ── */
+document.querySelectorAll('.cmd').forEach(c=>{
+  c.addEventListener('click',()=>{
+    const abre = !c.classList.contains('aberto');
+    c.classList.toggle('aberto', abre);
+    if(abre) c.querySelectorAll('.out div').forEach((d,i)=>{ d.style.transitionDelay = (0.12 + i*0.14)+'s'; });
+  });
+});
+
+/* ── IA: terminal vivo ── */
+const LOG = [
+  ['g','> agente sdr','  qualificou 14 leads enquanto o time dormia'],
+  ['a','> follow-up','  32 conversas retomadas hoje'],
+  ['c','> relatório','  taxa de resposta 41% (+9pp na semana)'],
+  ['g','> pipeline','  R$ 240k em propostas ativas'],
+  ['a','> decisão sugerida','  dobrar verba no criativo 3'],
+  ['c','> status','  operação rodando. você, decidindo_'],
+];
+const tlog = document.getElementById('tlog');
+let li = 0;
+function logLinha(){
+  if(li >= LOG.length){ tlog.insertAdjacentHTML('beforeend','<div><span class="cur2"></span></div>'); return; }
+  const [cls,cmd,resto] = LOG[li];
+  const div = document.createElement('div');
+  tlog.appendChild(div);
+  const full = cmd + resto;
+  let ci = 0;
+  (function t(){
+    div.innerHTML = `<span class="${cls}">${full.slice(0, Math.min(ci, cmd.length))}</span>` + (ci>cmd.length ? full.slice(cmd.length, ci) : '');
+    ci++;
+    if(ci <= full.length) setTimeout(t, reduz?0:16);
+    else { li++; setTimeout(logLinha, reduz?0:340); }
+  })();
+}
+if(shot){
+  tlog.innerHTML = LOG.map(([cls,cmd,resto])=>`<div><span class="${cls}">${cmd}</span>${resto}</div>`).join('') + '<div><span class="cur2"></span></div>';
+  document.querySelector('.cmd').classList.add('aberto');
+  document.querySelectorAll('.rev').forEach(el=>el.classList.add('in'));
+}else{
+  const ioTerm = new IntersectionObserver(es=>{ if(es[0].isIntersecting){ logLinha(); ioTerm.disconnect(); } },{threshold:.35});
+  ioTerm.observe(document.querySelector('.termwin'));
+}
+
+/* ── SPINE: o fio-cursor que costura a página ── */
+const spine = document.getElementById('spine');
+const trilho = spine.querySelector('.trilho');
+const fio = spine.querySelector('.fio');
+let total = 0;
+function centroNo(n){
+  const r = n.getBoundingClientRect();
+  const sx = scrollX, sy = scrollY;
+  const cs = getComputedStyle(n,'::before');
+  return { x: r.left + sx + parseFloat(cs.left||0), y: r.top + sy + parseFloat(cs.top||0) };
+}
+function montaSpine(){
+  const nos = [...document.querySelectorAll('[data-node]')];
+  if(nos.length < 2) return;
+  const doc = document.documentElement;
+  spine.setAttribute('width', doc.scrollWidth);
+  spine.setAttribute('height', doc.scrollHeight);
+  spine.style.width = doc.scrollWidth+'px';
+  spine.style.height = doc.scrollHeight+'px';
+  const pts = nos.map(n=>{
+    const r = n.getBoundingClientRect();
+    // usa a posição do ::before via offset custom props aproximada: pega centro do host + offsets
+    const host = { x: r.left + scrollX, y: r.top + scrollY, w: r.width };
+    const nx = getComputedStyle(n).getPropertyValue('--nx').trim();
+    const ny = parseFloat(getComputedStyle(n).getPropertyValue('--ny')) || 0;
+    let x;
+    if(nx.includes('%') || nx.includes('100')) x = host.x + host.w - 6;
+    else if(nx.includes('50%')) x = host.x + host.w/2;
+    else x = host.x + 6;
+    if(nx.includes('calc(100% - 6px)')) x = host.x + host.w - 6;
+    if(nx === '50%') x = host.x + host.w/2;
+    return { x, y: host.y + ny, n };
+  });
+  let d = `M ${pts[0].x} ${pts[0].y}`;
+  for(let i=1;i<pts.length;i++){
+    const a = pts[i-1], b = pts[i];
+    const dx = b.x - a.x;
+    const diag = Math.abs(dx);
+    const meioY = b.y - diag; // desce reto, depois 45° até o ponto
+    if(diag > 4 && meioY > a.y){ d += ` L ${a.x} ${meioY} L ${b.x} ${b.y}`; }
+    else { d += ` L ${a.x} ${Math.max(a.y, b.y - 4)} L ${b.x} ${b.y}`; }
+  }
+  trilho.setAttribute('d', d);
+  fio.setAttribute('d', d);
+  total = fio.getTotalLength();
+  fio.style.strokeDasharray = total;
+  atualizaSpine();
+}
+function atualizaSpine(){
+  if(!total) return;
+  const alvo = scrollY + innerHeight * 0.62;
+  const nos = [...document.querySelectorAll('[data-node]')];
+  // progresso: fração do documento percorrida mapeada no comprimento do path
+  const doc = document.documentElement;
+  const inicio = nos[0].getBoundingClientRect().top + scrollY;
+  const fim = nos[nos.length-1].getBoundingClientRect().top + scrollY;
+  const p = Math.min(1, Math.max(0, (alvo - inicio) / (fim - inicio)));
+  fio.style.strokeDashoffset = total * (1 - p);
+  nos.forEach(n=>{
+    const y = n.getBoundingClientRect().top + scrollY;
+    n.classList.toggle('lit', alvo >= y);
+  });
+}
+if(!reduz){
+  addEventListener('scroll', atualizaSpine, {passive:true});
+  addEventListener('resize', ()=>{ clearTimeout(window.__rs); window.__rs = setTimeout(montaSpine, 180); });
+  addEventListener('load', ()=>setTimeout(montaSpine, 120));
+  setTimeout(montaSpine, 600);
+}else{
+  addEventListener('load', ()=>{ montaSpine(); fio.style.strokeDashoffset = 0; document.querySelectorAll('[data-node]').forEach(n=>n.classList.add('lit')); });
+}
+
+/* ── BOTÕES MAGNÉTICOS (desktop) ── */
+if(matchMedia('(pointer:fine)').matches && !reduz){
+  document.querySelectorAll('.magnet').forEach(b=>{
+    b.addEventListener('mousemove',e=>{
+      const r = b.getBoundingClientRect();
+      b.style.transform = `translate(${(e.clientX-r.left-r.width/2)*.14}px, ${(e.clientY-r.top-r.height/2)*.2}px)`;
+    });
+    b.addEventListener('mouseleave',()=>{ b.style.transform=''; });
+  });
+}
+</script>
+</body>
+</html>
