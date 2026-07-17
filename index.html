@@ -7,6 +7,15 @@
 <meta name="description" content="Crescimento não é feeling. É método, clareza e decisão. Diagnóstico, sistema comercial e IA operacional para founders e donos de clínica.">
 <meta property="og:title" content="batista.growth · Growth, comercial e IA aplicada">
 <meta property="og:description" content="Crescimento não é feeling. É método, clareza e decisão.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gardelbatista.com.br/">
+<meta property="og:image" content="https://gardelbatista.com.br/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F5F4F0">
+<link rel="canonical" href="https://gardelbatista.com.br/">
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="apple-touch-icon-180.png">
@@ -189,6 +198,15 @@ h2 em{font-style:normal;color:var(--cobalto)}
 .igcard .arroba .dot{color:var(--amber)}
 .igcard p{font-size:13.5px;line-height:1.55;color:var(--grafite)}
 .igcard .mini{font-family:var(--disp);font-weight:700;font-size:14px;background:var(--ink);color:var(--porcelana);padding:11px 18px;border-radius:10px;margin-top:6px}
+.vid.destaque{min-height:460px}
+.cright{display:flex;flex-direction:column;gap:20px}
+.cright .vid.mini{min-height:210px;padding:22px}
+.cright .vid.mini b{font-size:clamp(15px,1.6vw,18px);max-width:300px}
+.cright .vid.mini .play{width:44px;height:44px;font-size:15px}
+.cright .igcard{flex:1;min-height:0}
+.cmais{margin-top:22px;text-align:right}
+.cmais a{font-family:var(--mono);font-weight:500;font-size:12.5px;letter-spacing:.13em;color:var(--grafite);text-decoration:none;text-transform:uppercase}
+.cmais a:hover{color:var(--ink)}
 
 /* ══════════════ QUEM ══════════════ */
 .quem .split{display:grid;grid-template-columns:440px 1fr;gap:64px;align-items:center}
@@ -266,7 +284,12 @@ footer a:hover{color:var(--porcelana)}
 
   .cgrid{grid-template-columns:1fr;gap:14px;margin-top:38px}
   .vid{min-height:240px;padding:22px}
+  .vid.destaque{min-height:260px}
+  .cright{gap:14px}
+  .cright .vid.mini{min-height:180px}
+  .cright .vid.mini b{max-width:none}
   .igcard{min-height:0;padding:24px 22px}
+  .cmais{text-align:left;margin-top:16px}
 
   .quem .split{grid-template-columns:1fr;gap:32px}
   .quem .foto{max-width:100%}
@@ -460,15 +483,29 @@ html.shot .btn.amber::after,html.shot .cmd.destaque::after,html.shot .hfoto .chi
       <h2>Eu gravo o <em>processo</em><span class="dot">.</span></h2>
       <p class="lede">Funil, sistema e IA sendo construídos na tela, sem corte de mágica. O que eu vendo é o que eu faço, e você pode assistir.</p>
     </div>
+    <!-- Pra trocar os vídeos: substituir o ID (youtu.be/ID e i.ytimg.com/vi/ID/...) e o título -->
     <div class="cgrid">
-      <div id="vids" style="display:contents"></div>
-      <a class="igcard rev" href="https://instagram.com/batista.growth" target="_blank" rel="noopener">
-        <img class="wm" src="assets/simbolo-prompt.svg" alt="">
-        <span class="arroba">@batista<span class="dot">.</span>growth</span>
-        <p>Método, provocação e bastidor no feed, todo dia. O diagnóstico começa no direct.</p>
-        <span class="mini">Seguir no Instagram ↗</span>
+      <a class="vid destaque rev" href="https://youtu.be/HpnaBCnEzT0" target="_blank" rel="noopener">
+        <img loading="lazy" src="https://i.ytimg.com/vi/HpnaBCnEzT0/maxresdefault.jpg" alt="">
+        <span class="play">▶</span>
+        <b>Criei um Construtor de Propostas com IA usando a transcrição da call.</b>
+        <span class="sub kicker" style="color:#B9B8C2">&gt; youtube · mais recente_</span>
       </a>
+      <div class="cright">
+        <a class="vid mini rev" href="https://youtu.be/_mvbWAS3gfE" target="_blank" rel="noopener">
+          <img loading="lazy" src="https://i.ytimg.com/vi/_mvbWAS3gfE/hqdefault.jpg" alt="">
+          <span class="play">▶</span>
+          <b>O Agente de IA que me manda o Relatório Comercial todo dia no WhatsApp.</b>
+        </a>
+        <a class="igcard rev" href="https://instagram.com/batista.growth" target="_blank" rel="noopener">
+          <img class="wm" src="assets/simbolo-prompt.svg" alt="">
+          <span class="arroba">@batista<span class="dot">.</span>growth</span>
+          <p>Método, provocação e bastidor no feed, todo dia. O diagnóstico começa no direct.</p>
+          <span class="mini">Seguir no Instagram ↗</span>
+        </a>
+      </div>
     </div>
+    <div class="cmais rev"><a href="https://www.youtube.com/@batistagrowth" target="_blank" rel="noopener">Ver o canal inteiro no YouTube ↗</a></div>
   </div>
 </section>
 
@@ -646,16 +683,7 @@ if(!reduz){
   addEventListener('load', ()=>{ montaSpine(); fio.style.strokeDashoffset = 0; document.querySelectorAll('[data-node]').forEach(n=>n.classList.add('lit')); });
 }
 
-/* ── CONTEÚDO: vídeos do YouTube ──
-   AJUSTE AQUI: canal real + IDs dos vídeos (com IDs, viram cards com thumbnail) */
-const CANAL_YT = 'https://www.youtube.com/@batista.growth';
-const VIDEOS = []; // ex.: [{id:'dQw4w9WgXcQ', t:'Como eu montei o funil do zero'}]
-const vids = document.getElementById('vids');
-if(VIDEOS.length){
-  vids.innerHTML = VIDEOS.slice(0,2).map(v=>`<a class="vid rev in" href="https://youtu.be/${v.id}" target="_blank" rel="noopener"><img loading="lazy" src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt=""><span class="play">▶</span><b>${v.t}</b><span class="sub kicker" style="color:#B9B8C2">&gt; youtube · batista growth_</span></a>`).join('');
-}else{
-  vids.innerHTML = `<a class="vid rev in" href="${CANAL_YT}" target="_blank" rel="noopener"><span class="play">▶</span><b>Assiste eu construindo funil, sistema e IA na prática.</b><span class="sub kicker" style="color:#B9B8C2">&gt; youtube · batista growth_</span></a>`;
-}
+/* Vídeos do YouTube: hardcoded na seção #bastidores (canal @batistagrowth) */
 
 /* ── SCROLL PROGRESS (o fio no topo) ── */
 const prog = document.getElementById('progress');
