@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico · batista.growth</title>
+<meta name="description" content="6 perguntas, 2 minutos, uma leitura franca da tua operação. Sem call de vendas disfarçada.">
+<meta property="og:title" content="Roda o diagnóstico · batista.growth">
+<meta property="og:description" content="6 perguntas, 2 minutos, uma leitura franca da tua operação.">
+<meta property="og:image" content="https://gardelbatista.com.br/assets/og-image.png">
+<meta name="theme-color" content="#0E0E12">
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="../apple-touch-icon-180.png">
+<style>
+@font-face{font-family:'SpaceG';src:url('../assets/fonts/space-grotesk-v22-latin-700.ttf');font-weight:700;font-display:swap}
+@font-face{font-family:'SpaceG';src:url('../assets/fonts/space-grotesk-v22-latin-500.ttf');font-weight:500;font-display:swap}
+@font-face{font-family:'Inter';src:url('../assets/fonts/inter-v20-latin-regular.ttf');font-weight:400;font-display:swap}
+@font-face{font-family:'Inter';src:url('../assets/fonts/inter-v20-latin-500.ttf');font-weight:500;font-display:swap}
+@font-face{font-family:'Plex';src:url('../assets/fonts/ibm-plex-mono-v20-latin-regular.ttf');font-weight:400;font-display:swap}
+@font-face{font-family:'Plex';src:url('../assets/fonts/ibm-plex-mono-v20-latin-500.ttf');font-weight:500;font-display:swap}
+@font-face{font-family:'Plex';src:url('../assets/fonts/ibm-plex-mono-v20-latin-600.ttf');font-weight:600;font-display:swap}
+:root{--porcelana:#F5F4F0;--ink:#0E0E12;--panel:#15141B;--grafite:#8A8994;--cobalto:#7A8CFF;--amber:#F0A500;--hair:rgba(245,244,240,.1);
+--disp:'SpaceG',Arial,sans-serif;--mono:'Plex',Consolas,monospace;--body:'Inter',Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ink);color:var(--porcelana);font-family:var(--body);min-height:100svh;display:flex;flex-direction:column}
+::selection{background:var(--amber);color:var(--ink)}
+a{color:inherit}
+
+.top{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--hair)}
+.top .lock{display:flex;align-items:center;gap:11px;text-decoration:none}
+.top .lock img{height:26px}
+.top .lock b{font-family:var(--disp);font-weight:700;font-size:17px}
+.top .lock b i{font-style:normal;color:var(--amber)}
+.top .sair{font-family:var(--mono);font-size:11px;letter-spacing:.13em;color:var(--grafite);text-decoration:none;text-transform:uppercase}
+.top .sair:hover{color:var(--porcelana)}
+
+#prog{height:3px;background:var(--hair)}
+#prog i{display:block;height:100%;background:var(--amber);width:0;transition:width .5s cubic-bezier(.2,.7,.2,1)}
+
+.term{flex:1;width:100%;max-width:760px;margin:0 auto;padding:34px 22px 130px;display:flex;flex-direction:column;gap:18px}
+.msg{max-width:92%;opacity:0;transform:translateY(10px);transition:all .45s}
+.msg.in{opacity:1;transform:none}
+.msg .quem{font-family:var(--mono);font-weight:500;font-size:10.5px;letter-spacing:.15em;color:var(--grafite);text-transform:uppercase;margin-bottom:7px}
+.msg .quem .p{color:var(--amber)}
+.msg .bolha{background:var(--panel);border:1px solid var(--hair);border-radius:4px 16px 16px 16px;padding:15px 18px;font-size:15px;line-height:1.6}
+.msg .bolha b{color:#fff}
+.msg .bolha .cb{color:var(--cobalto)}
+.msg.eu{align-self:flex-end}
+.msg.eu .quem{text-align:right}
+.msg.eu .bolha{background:var(--amber);color:var(--ink);border:0;border-radius:16px 4px 16px 16px;font-weight:500}
+.digitando{font-family:var(--mono);font-size:13px;color:var(--grafite)}
+.digitando i{display:inline-block;width:8px;height:14px;background:var(--amber);vertical-align:middle;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+.opts{display:flex;flex-direction:column;gap:9px;opacity:0;transform:translateY(10px);transition:all .45s}
+.opts.in{opacity:1;transform:none}
+.opts button{font-family:var(--mono);font-weight:500;font-size:13.5px;text-align:left;letter-spacing:.02em;background:transparent;color:var(--porcelana);border:1.5px solid rgba(245,244,240,.22);border-radius:12px;padding:13px 16px;cursor:pointer;transition:border-color .2s,background .2s,transform .15s}
+.opts button:hover{border-color:var(--amber);background:rgba(240,165,0,.07);transform:translateX(3px)}
+.opts button .p{color:var(--amber);margin-right:8px}
+.opts .inputrow{display:flex;gap:9px}
+.opts input{flex:1;font-family:var(--mono);font-size:14px;background:var(--panel);color:var(--porcelana);border:1.5px solid rgba(245,244,240,.22);border-radius:12px;padding:13px 16px;outline:none}
+.opts input:focus{border-color:var(--amber)}
+.opts .go{font-family:var(--disp);font-weight:700;font-size:14px;background:var(--amber);color:var(--ink);border:0;border-radius:12px;padding:0 22px;cursor:pointer}
+
+.resultado{background:var(--panel);border:1px solid var(--hair);border-radius:18px;padding:24px;opacity:0;transform:translateY(12px);transition:all .5s}
+.resultado.in{opacity:1;transform:none}
+.resultado .k{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.15em;color:var(--amber);text-transform:uppercase}
+.resultado h2{font-family:var(--disp);font-weight:700;font-size:clamp(22px,4.5vw,28px);line-height:1.2;margin-top:12px}
+.resultado h2 .dot{color:var(--amber)}
+.resultado p{font-size:14.5px;line-height:1.65;color:#B9B8C2;margin-top:12px}
+.resultado .rec{margin-top:16px;font-family:var(--mono);font-size:13px;line-height:2;color:#B9B8C2}
+.resultado .rec b{color:var(--porcelana);font-weight:600}
+.resultado .rec .ok{color:var(--amber)}
+.resultado .cta{display:inline-flex;align-items:center;gap:10px;margin-top:20px;font-family:var(--disp);font-weight:700;font-size:16.5px;background:var(--amber);color:var(--ink);padding:16px 26px;border-radius:13px;text-decoration:none;box-shadow:0 8px 26px rgba(240,165,0,.3)}
+.resultado .cta:hover{box-shadow:0 12px 34px rgba(240,165,0,.45)}
+.resultado .micro{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--grafite);margin-top:14px;text-transform:uppercase}
+
+@media(max-width:760px){
+  .term{padding:26px 16px 110px}
+  .msg{max-width:100%}
+  .opts button{font-size:12.5px}
+}
+@media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <a class="lock" href="../"><img src="../assets/simbolo-prompt-branco.svg" alt=""><b>batista<i>.</i>growth</b></a>
+  <a class="sair" href="../">voltar ao site_</a>
+</div>
+<div id="prog"><i></i></div>
+
+<div class="term" id="term"></div>
+
+<script>
+/* ── CONFIG: número do WhatsApp do Gardel (só dígitos, com 55). Vazio = cai no direct do IG ── */
+const WHATS = '';
+const IG_DIRECT = 'https://ig.me/m/batista.growth';
+
+const R = {}; // respostas
+const term = document.getElementById('term');
+const prog = document.querySelector('#prog i');
+const TOTAL = 6;
+let passo = 0;
+
+function scrollFim(){ requestAnimationFrame(()=>window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})); }
+
+function bot(html, cb){
+  const t = document.createElement('div');
+  t.className = 'msg digitando'; t.innerHTML = '<span class="quem"><span class="p">&gt;</span> gardel_</span><div class="bolha"><i></i></div>';
+  term.appendChild(t); requestAnimationFrame(()=>t.classList.add('in')); scrollFim();
+  setTimeout(()=>{
+    t.classList.remove('digitando');
+    t.querySelector('.bolha').innerHTML = html;
+    scrollFim(); if(cb) cb();
+  }, 620);
+}
+function eu(txt){
+  const m = document.createElement('div');
+  m.className = 'msg eu'; m.innerHTML = '<div class="quem">você_</div><div class="bolha"></div>';
+  m.querySelector('.bolha').textContent = txt;
+  term.appendChild(m); requestAnimationFrame(()=>m.classList.add('in')); scrollFim();
+}
+function opcoes(lista, onPick){
+  const o = document.createElement('div'); o.className = 'opts';
+  lista.forEach(([label,val])=>{
+    const b = document.createElement('button');
+    b.innerHTML = '<span class="p">&gt;</span>' + label;
+    b.onclick = ()=>{ o.remove(); eu(label); onPick(val ?? label); };
+    o.appendChild(b);
+  });
+  term.appendChild(o); requestAnimationFrame(()=>o.classList.add('in')); scrollFim();
+}
+function inputTexto(placeholder, onOk){
+  const o = document.createElement('div'); o.className = 'opts';
+  o.innerHTML = '<div class="inputrow"><input type="text" placeholder="'+placeholder+'" maxlength="60"><button class="go">enviar</button></div>';
+  const inp = o.querySelector('input');
+  const enviar = ()=>{ const v = inp.value.trim(); if(!v) return; o.remove(); eu(v); onOk(v); };
+  o.querySelector('.go').onclick = enviar;
+  inp.addEventListener('keydown', e=>{ if(e.key==='Enter') enviar(); });
+  term.appendChild(o); requestAnimationFrame(()=>{o.classList.add('in'); inp.focus();}); scrollFim();
+}
+function avanca(){ passo++; prog.style.width = (passo/TOTAL*100)+'%'; }
+
+/* ── FLUXO ── */
+function q1(){
+  bot('<b>&gt; diagnostico_ iniciado.</b><br>Sem call de vendas disfarçada: <b>6 perguntas, 2 minutos</b>, e você sai com uma leitura franca do que travaria eu no teu lugar. Bora. <br><br>Primeiro: <b>qual é o teu mundo?</b>', ()=>{
+    opcoes([
+      ['founder de startup / tech','founder'],
+      ['dono ou gestor de clínica / saúde','clinica'],
+      ['outro negócio (serviço, varejo...)','outro'],
+    ], v=>{ R.perfil = v; avanca(); q2(); });
+  });
+}
+function q2(){
+  bot('Anotado. E <b>como eu te chamo?</b>', ()=>{
+    inputTexto('teu primeiro nome_', v=>{ R.nome = v.split(' ')[0]; avanca(); q3(); });
+  });
+}
+function q3(){
+  bot('Prazer, <b>'+R.nome+'</b>. Faixa de <b>faturamento mensal</b> hoje? (isso muda completamente a receita)', ()=>{
+    opcoes([
+      ['até R$ 30 mil','até 30k'],
+      ['R$ 30 a 100 mil','30-100k'],
+      ['R$ 100 a 500 mil','100-500k'],
+      ['acima de R$ 500 mil','500k+'],
+    ], v=>{ R.fat = v; avanca(); q4(); });
+  });
+}
+function q4(){
+  bot('Agora o ponto central. <b>Onde a operação trava mais hoje?</b>', ()=>{
+    opcoes([
+      ['chega pouco lead qualificado','leads'],
+      ['lead chega e esfria (follow-up falha)','followup'],
+      ['decido no achismo, sem número confiável','numeros'],
+      ['tudo depende de mim, nada roda sozinho','dependencia'],
+      ['quero IA na operação e não sei por onde começar','ia'],
+    ], v=>{ R.gargalo = v; avanca(); q5(); });
+  });
+}
+function q5(){
+  bot('E o que você <b>já tentou</b> pra resolver isso?', ()=>{
+    opcoes([
+      ['tráfego pago / agência','agência'],
+      ['contratei vendedor / SDR','vendedor'],
+      ['CRM ou ferramenta que ninguém usa','crm parado'],
+      ['nada estruturado ainda','nada ainda'],
+    ], v=>{ R.tentou = v; avanca(); q6(); });
+  });
+}
+function q6(){
+  bot('Última. <b>Urgência real</b> disso aí?', ()=>{
+    opcoes([
+      ['pra ontem, está custando caro','pra ontem'],
+      ['quero resolver nos próximos 3 meses','3 meses'],
+      ['explorando por enquanto','explorando'],
+    ], v=>{ R.urg = v; avanca(); resultado(); });
+  });
+}
+
+const LEITURA = {
+  leads:      {t:'Teu problema não é volume, é máquina de aquisição', p:'Antes de comprar mais tráfego: ICP afiado, oferta clara e canal com dono. Volume em cima de funil furado só acelera o desperdício.', rec:['diagnostico_ mapeia o funil e o ICP','sistema.comercial_ monta a máquina de aquisição','ia.operacional_ qualifica o lead que chega']},
+  followup:   {t:'Lead esfriando é receita escorrendo pelo ralo', p:'Isso é o gargalo mais barato de resolver: cadência com dono, CRM vivo e follow-up que não depende de memória humana. É exatamente o que eu opero com agente de IA na minha própria operação.', rec:['diagnostico_ audita a cadência atual','ia.operacional_ agente de follow-up que não esquece','sistema.comercial_ processo e dono pra cada etapa']},
+  numeros:    {t:'Sem número, toda reunião vira opinião contra opinião', p:'Um dashboard comercial simples, com 5 números confiáveis chegando todo dia, muda o nível das tuas decisões em 2 semanas. Eu construo isso com IA na frente dos teus dados.', rec:['diagnostico_ define os 5 números que importam','ia.operacional_ relatório diário sem ninguém digitar','conselho_ decisão quinzenal em cima do número']},
+  dependencia:{t:'Crescimento que depende de heroísmo é sorte com prazo', p:'A saída é sistema: processo documentado, dono por etapa e o repetitivo rodando em IA. Você volta pro papel de decidir, não de carregar.', rec:['diagnostico_ mapeia o que só você faz hoje','sistema.comercial_ processo com dono e meta','ia.operacional_ o repetitivo sai da tua mesa']},
+  ia:         {t:'IA sem gargalo definido vira brinquedo caro', p:'O caminho certo é o inverso do hype: achar o gargalo que mais custa, colocar IA ali primeiro, medir, expandir. Eu faço isso todos os dias na minha operação e nas dos clientes.', rec:['diagnostico_ acha o gargalo que mais paga','ia.operacional_ primeiro agente em produção','conselho_ roadmap de IA trimestre a trimestre']},
+};
+
+function resultado(){
+  const L = LEITURA[R.gargalo];
+  bot('Fechou, '+R.nome+'. Rodei tua leitura preliminar:', ()=>{
+    const r = document.createElement('div');
+    r.className = 'resultado';
+    r.innerHTML = `
+      <div class="k">&gt; leitura preliminar · ${R.perfil} · ${R.fat}_</div>
+      <h2>${L.t}<span class="dot">.</span></h2>
+      <p>${L.p}</p>
+      <div class="rec">${L.rec.map(x=>{const i=x.indexOf('_');return '<span class="ok">&gt;</span> <b>'+x.slice(0,i+1)+'</b>'+x.slice(i+1)}).join('<br>')}</div>
+      <a class="cta" id="ctaz" href="#">Continuar no meu WhatsApp <span aria-hidden="true">↗</span></a>
+      <div class="micro">a leitura completa eu faço contigo, ao vivo. resposta em até 1 dia útil_</div>`;
+    term.appendChild(r); requestAnimationFrame(()=>r.classList.add('in')); scrollFim();
+    const msg = 'Rodei o diagnóstico no site. Perfil: '+R.perfil+' · Faturamento: '+R.fat+' · Gargalo: '+R.gargalo+' · Já tentei: '+R.tentou+' · Urgência: '+R.urg+'. Sou '+R.nome+'. Bora continuar?';
+    const cta = r.querySelector('#ctaz');
+    cta.href = WHATS ? 'https://wa.me/'+WHATS+'?text='+encodeURIComponent(msg) : IG_DIRECT;
+    cta.target = '_blank'; cta.rel = 'noopener';
+  });
+}
+
+/* #demo pula pro resultado (validação/teste de copy) */
+if(location.hash === '#demo'){
+  Object.assign(R, {perfil:'clinica', nome:'Gardel', fat:'30-100k', gargalo:'followup', tentou:'crm parado', urg:'pra ontem'});
+  passo = TOTAL; prog.style.width = '100%';
+  resultado();
+}else{
+  q1();
+}
+</script>
+</body>
+</html>
