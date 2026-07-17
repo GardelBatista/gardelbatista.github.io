@@ -98,11 +98,65 @@ a{color:inherit}
 const WHATS = '';
 const IG_DIRECT = 'https://ig.me/m/batista.growth';
 
+/* ── Backend: mesmo Supabase do gardelbatista.com.br (infra espelhada do diagnóstico MyDose) ── */
+const SB_URL = 'https://vdkxffydbkuhjszmlamd.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZka3hmZnlkYmt1aGpzem1sYW1kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MjI5OTcsImV4cCI6MjA4NTI5ODk5N30.9TOXl94Vednst5RnkCXfx2sdUbQpNlzuPMGNpv8POP8';
+const ABANDONO_MIN = 5;
+
 const R = {}; // respostas
 const term = document.getElementById('term');
 const prog = document.querySelector('#prog i');
-const TOTAL = 6;
+const TOTAL = 7;
 let passo = 0;
+
+const SESSION_ID = (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2));
+const LEAD_ID = crypto.randomUUID ? crypto.randomUUID() : null;
+let leadSalvo = false, passoAtual = 'inicio';
+const DEMO = location.hash === '#demo';
+
+function sbHeaders(){ return {'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'}; }
+function logEvent(event, step){
+  if(DEMO) return;
+  try{ fetch(SB_URL+'/rest/v1/batista_diagnostico_events', {method:'POST',headers:sbHeaders(),keepalive:true,
+    body: JSON.stringify({session_id:SESSION_ID, event, step:step||passoAtual})}).catch(()=>{}); }catch(e){}
+}
+function leadPayload(incompleto){
+  return {id:LEAD_ID, nome:R.nome||null, whatsapp:R.whats||null, perfil:R.perfil||null,
+    faturamento:R.fat||null, gargalo:R.gargalo||null, tentou:R.tentou||null, urgencia:R.urg||null,
+    incompleto:!!incompleto, passo:passoAtual};
+}
+function saveLead(){
+  if(DEMO) return;
+  if(leadSalvo){ // parcial já gravado: completa no MESMO id
+    try{ fetch(SB_URL+'/rest/v1/rpc/batista_diagnostico_lead_complete', {method:'POST',headers:sbHeaders(),keepalive:true,
+      body: JSON.stringify({p_id:LEAD_ID,p_nome:R.nome||null,p_whatsapp:R.whats||null,p_perfil:R.perfil||null,
+        p_faturamento:R.fat||null,p_gargalo:R.gargalo||null,p_tentou:R.tentou||null,p_urgencia:R.urg||null})}).catch(()=>{}); }catch(e){}
+    return;
+  }
+  leadSalvo = true;
+  try{ fetch(SB_URL+'/rest/v1/batista_diagnostico_leads', {method:'POST',headers:sbHeaders(),keepalive:true,
+    body: JSON.stringify(leadPayload(false))}).catch(()=>{}); }catch(e){}
+}
+/* lead incompleto: com nome+whats dados e sem finalizar, dispara na inatividade ou na saída */
+let abandonoTimer = null;
+function armaAbandono(){
+  clearTimeout(abandonoTimer);
+  if(leadSalvo || !R.whats) return;
+  abandonoTimer = setTimeout(()=>salvaIncompleto('inatividade'), ABANDONO_MIN*60*1000);
+}
+function salvaIncompleto(motivo){
+  if(leadSalvo || !R.whats) return;
+  leadSalvo = true;
+  const url = SB_URL+'/rest/v1/batista_diagnostico_leads?apikey='+SB_KEY;
+  const body = JSON.stringify(leadPayload(true));
+  try{
+    if(navigator.sendBeacon){ navigator.sendBeacon(url, new Blob([body],{type:'application/json'})); }
+    else{ fetch(url,{method:'POST',headers:sbHeaders(),keepalive:true,body}).catch(()=>{}); }
+    logEvent('lead_incompleto', motivo);
+  }catch(e){}
+}
+addEventListener('pagehide', ()=>salvaIncompleto('saida'));
+document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='hidden') salvaIncompleto('saida'); });
 
 function scrollFim(){ requestAnimationFrame(()=>window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})); }
 
@@ -121,7 +175,9 @@ function eu(txt){
   m.className = 'msg eu'; m.innerHTML = '<div class="quem">você_</div><div class="bolha"></div>';
   m.querySelector('.bolha').textContent = txt;
   term.appendChild(m); requestAnimationFrame(()=>m.classList.add('in')); scrollFim();
+  armaAbandono();
 }
+function marcaPasso(p){ passoAtual = p; logEvent('step', p); }
 function opcoes(lista, onPick){
   const o = document.createElement('div'); o.className = 'opts';
   lista.forEach(([label,val])=>{
@@ -145,7 +201,8 @@ function avanca(){ passo++; prog.style.width = (passo/TOTAL*100)+'%'; }
 
 /* ── FLUXO ── */
 function q1(){
-  bot('<b>&gt; diagnostico_ iniciado.</b><br>Sem call de vendas disfarçada: <b>6 perguntas, 2 minutos</b>, e você sai com uma leitura franca do que travaria eu no teu lugar. Bora. <br><br>Primeiro: <b>qual é o teu mundo?</b>', ()=>{
+  marcaPasso('mundo');
+  bot('<b>&gt; diagnostico_ iniciado.</b><br>Sem call de vendas disfarçada: <b>7 perguntas, 2 minutos</b>, e você sai com uma leitura franca do que travaria eu no teu lugar. Bora. <br><br>Primeiro: <b>qual é o teu mundo?</b>', ()=>{
     opcoes([
       ['founder de startup / tech','founder'],
       ['dono ou gestor de clínica / saúde','clinica'],
@@ -154,11 +211,13 @@ function q1(){
   });
 }
 function q2(){
+  marcaPasso('nome');
   bot('Anotado. E <b>como eu te chamo?</b>', ()=>{
     inputTexto('teu primeiro nome_', v=>{ R.nome = v.split(' ')[0]; avanca(); q3(); });
   });
 }
 function q3(){
+  marcaPasso('faturamento');
   bot('Prazer, <b>'+R.nome+'</b>. Faixa de <b>faturamento mensal</b> hoje? (isso muda completamente a receita)', ()=>{
     opcoes([
       ['até R$ 30 mil','até 30k'],
@@ -169,6 +228,7 @@ function q3(){
   });
 }
 function q4(){
+  marcaPasso('gargalo');
   bot('Agora o ponto central. <b>Onde a operação trava mais hoje?</b>', ()=>{
     opcoes([
       ['chega pouco lead qualificado','leads'],
@@ -180,6 +240,7 @@ function q4(){
   });
 }
 function q5(){
+  marcaPasso('tentou');
   bot('E o que você <b>já tentou</b> pra resolver isso?', ()=>{
     opcoes([
       ['tráfego pago / agência','agência'],
@@ -190,12 +251,33 @@ function q5(){
   });
 }
 function q6(){
-  bot('Última. <b>Urgência real</b> disso aí?', ()=>{
+  marcaPasso('urgencia');
+  bot('Quase lá. <b>Urgência real</b> disso aí?', ()=>{
     opcoes([
       ['pra ontem, está custando caro','pra ontem'],
       ['quero resolver nos próximos 3 meses','3 meses'],
       ['explorando por enquanto','explorando'],
-    ], v=>{ R.urg = v; avanca(); resultado(); });
+    ], v=>{ R.urg = v; avanca(); q7(); });
+  });
+}
+function q7(){
+  marcaPasso('whatsapp');
+  bot('Última: teu <b>WhatsApp com DDD</b>, pra eu te mandar a leitura completa (e nada de spam, palavra).', ()=>{
+    const o = document.createElement('div'); o.className = 'opts';
+    o.innerHTML = '<div class="inputrow"><input type="tel" placeholder="(48) 99999-9999_" maxlength="16"><button class="go">enviar</button></div>';
+    const inp = o.querySelector('input');
+    inp.addEventListener('input', ()=>{
+      let d = inp.value.replace(/\D/g,'').slice(0,11);
+      inp.value = d.length>7 ? '('+d.slice(0,2)+') '+d.slice(2,7)+'-'+d.slice(7) : d.length>2 ? '('+d.slice(0,2)+') '+d.slice(2) : d;
+    });
+    const enviar = ()=>{
+      const d = inp.value.replace(/\D/g,'');
+      if(d.length < 10){ inp.style.borderColor = '#e5484d'; inp.placeholder = 'preciso do número com DDD_'; return; }
+      o.remove(); eu(inp.value); R.whats = '55'+d; avanca(); resultado();
+    };
+    o.querySelector('.go').onclick = enviar;
+    inp.addEventListener('keydown', e=>{ if(e.key==='Enter') enviar(); });
+    term.appendChild(o); requestAnimationFrame(()=>{o.classList.add('in'); inp.focus();}); scrollFim();
   });
 }
 
@@ -208,6 +290,9 @@ const LEITURA = {
 };
 
 function resultado(){
+  marcaPasso('resultado');
+  saveLead();
+  logEvent('lead');
   const L = LEITURA[R.gargalo];
   bot('Fechou, '+R.nome+'. Rodei tua leitura preliminar:', ()=>{
     const r = document.createElement('div');
@@ -224,15 +309,18 @@ function resultado(){
     const cta = r.querySelector('#ctaz');
     cta.href = WHATS ? 'https://wa.me/'+WHATS+'?text='+encodeURIComponent(msg) : IG_DIRECT;
     cta.target = '_blank'; cta.rel = 'noopener';
+    cta.addEventListener('click', ()=>logEvent('whats_click'));
   });
 }
 
-/* #demo pula pro resultado (validação/teste de copy) */
+/* #demo pula pro resultado SEM gravar lead (validação/teste de copy) */
 if(location.hash === '#demo'){
   Object.assign(R, {perfil:'clinica', nome:'Gardel', fat:'30-100k', gargalo:'followup', tentou:'crm parado', urg:'pra ontem'});
+  leadSalvo = true; // trava o saveLead: demo nunca grava no banco
   passo = TOTAL; prog.style.width = '100%';
   resultado();
 }else{
+  logEvent('view','inicio');
   q1();
 }
 </script>
