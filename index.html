@@ -122,6 +122,24 @@ h2 em{font-style:normal;color:var(--cobalto)}
 .pcard h3{font-family:var(--disp);font-weight:700;font-size:22px;margin-top:12px;line-height:1.2}
 .pcard p{font-size:14.5px;line-height:1.6;color:var(--grafite);margin-top:12px}
 
+/* ══════════════ PRA QUEM (dois perfis, um comando) ══════════════ */
+.perfis{background:var(--porcelana)}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:54px}
+.perfil{background:var(--branco);border:1.5px solid var(--hair);border-radius:20px;padding:34px 32px;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.perfil:hover{transform:translateY(-5px);box-shadow:0 20px 44px rgba(14,14,18,.10)}
+.perfil .cmdline{font-family:var(--mono);font-weight:500;font-size:13px;letter-spacing:.05em;color:var(--grafite);background:var(--porcelana);border:1px solid var(--hair);border-radius:10px;padding:10px 14px;display:inline-block}
+.perfil .cmdline .p{color:var(--cobalto)}
+.perfil .cmdline .flag{color:var(--ink);font-weight:600}
+.perfil h3{font-family:var(--disp);font-weight:700;font-size:clamp(22px,2.4vw,27px);line-height:1.18;margin-top:20px;max-width:420px}
+.perfil ul{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:12px;padding:0}
+.perfil li{font-size:14.5px;line-height:1.6;color:var(--grafite);padding-left:26px;position:relative}
+.perfil li::before{content:'>';position:absolute;left:0;top:0;font-family:var(--mono);font-weight:600;color:var(--amber)}
+.perfil li b{color:var(--ink)}
+.perfil .wm{position:absolute;right:-46px;bottom:-40px;width:190px;opacity:.05;pointer-events:none}
+.pconverge{margin-top:26px;text-align:center;font-family:var(--mono);font-weight:500;font-size:13.5px;letter-spacing:.1em;color:var(--grafite)}
+.pconverge a{color:var(--cobalto);text-decoration:none}
+.pconverge a:hover{text-decoration:underline}
+
 /* ══════════════ SERVIÇOS (bento Palco — o ponto focal da página) ══════════════ */
 .servicos{background:var(--branco);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);position:relative}
 .servicos::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(14,14,18,.12) 1.5px,transparent 1.5px);background-size:26px 26px;-webkit-mask-image:radial-gradient(ellipse 75% 65% at 50% 40%,#000 25%,transparent 72%);mask-image:radial-gradient(ellipse 75% 65% at 50% 40%,#000 25%,transparent 72%);pointer-events:none}
@@ -265,6 +283,10 @@ footer a:hover{color:var(--porcelana)}
   .marquee .fita{font-size:12px;gap:38px}
   .problema .grid{grid-template-columns:1fr;gap:14px;margin-top:38px}
   .pcard{padding:24px 22px}
+  .pgrid{grid-template-columns:1fr;gap:14px;margin-top:38px}
+  .perfil{padding:26px 22px}
+  .perfil .cmdline{font-size:11.5px;padding:9px 12px}
+  .pconverge{text-align:left;font-size:12px}
 
   .cmds{grid-template-columns:1fr;gap:16px;margin-top:40px}
   .cmd.destaque{grid-column:auto}
@@ -373,6 +395,41 @@ html.shot .btn.amber::after,html.shot .cmd.destaque::after,html.shot .hfoto .chi
       <div class="pcard rev"><div class="k">sintoma 2</div><h3>Decisão no achismo.</h3><p>Ninguém sabe dizer qual canal paga a conta. Reunião de segunda vira opinião contra opinião.</p></div>
       <div class="pcard rev"><div class="k">sintoma 3</div><h3>Tudo depende de você.</h3><p>Se o dono para, a máquina para. Crescimento que depende de heroísmo não é crescimento: é sorte com prazo.</p></div>
     </div>
+  </div>
+</section>
+
+<!-- PRA QUEM -->
+<section class="perfis" id="perfis">
+  <div class="wrap">
+    <div class="node" data-node style="--nx:-14px;--ny:8px"></div>
+    <div class="sec-head rev">
+      <div class="kicker">&gt; pra quem_</div>
+      <h2>Dois mundos. O mesmo <em>sistema</em><span class="dot">.</span></h2>
+      <p class="lede">A dor muda de nome, o sistema não: aquisição previsível, comercial que converte e IA operando o repetitivo. Eu falo as duas línguas.</p>
+    </div>
+    <div class="pgrid">
+      <div class="perfil rev">
+        <img class="wm" src="assets/simbolo-prompt.svg" alt="">
+        <span class="cmdline"><span class="p">&gt;</span> diagnostico <span class="flag">--perfil founder</span><span class="dot">_</span></span>
+        <h3>Startup e tech: tração previsível, não pico de lançamento.</h3>
+        <ul>
+          <li><b>Funil B2B do zero:</b> ICP, canais, cadência e CRM que o time realmente usa.</li>
+          <li><b>Motor de receita:</b> outbound e conteúdo do founder rodando juntos, com meta e dono.</li>
+          <li><b>IA nos gargalos:</b> qualificação, follow-up e o relatório do dia sem ninguém digitar.</li>
+        </ul>
+      </div>
+      <div class="perfil rev">
+        <img class="wm" src="assets/simbolo-prompt.svg" alt="">
+        <span class="cmdline"><span class="p">&gt;</span> diagnostico <span class="flag">--perfil clinica</span><span class="dot">_</span></span>
+        <h3>Saúde e clínica: agenda cheia sem depender de indicação.</h3>
+        <ul>
+          <li><b>Captação que fecha:</b> anúncio, WhatsApp e agendamento sem furo no meio do caminho.</li>
+          <li><b>Recepção comercial:</b> quem atende aprende a converter, reter e reagendar.</li>
+          <li><b>IA no atendimento:</b> resposta imediata, lembrete e recuperação de no-show.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pconverge rev">os dois começam no mesmo comando: <a href="#servicos">&gt; diagnostico_</a></div>
   </div>
 </section>
 
