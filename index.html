@@ -49,7 +49,7 @@ nav .cta{font-family:var(--disp);font-weight:700;font-size:14px;background:var(-
 nav .cta:hover{background:var(--cobalto);transform:translateY(-1px)}
 
 /* ══════════════ SPINE (o fio-cursor) ══════════════ */
-#spine{position:absolute;top:0;left:0;pointer-events:none;z-index:1;overflow:visible}
+#spine{position:absolute;top:0;left:0;pointer-events:none;z-index:10;overflow:visible}
 #spine path{fill:none;stroke:var(--amber);stroke-width:3;stroke-linecap:round}
 #spine .trilho{stroke:rgba(14,14,18,.08)}
 .node{position:relative}
@@ -177,6 +177,8 @@ h2 em{font-style:normal;color:var(--cobalto)}
 .final p{color:#A2A1AC;font-size:17px;line-height:1.65;max-width:480px;margin:26px auto 0}
 .final .btn{margin-top:44px;font-size:19px;padding:20px 40px}
 .final .micro{font-family:var(--mono);font-size:12px;letter-spacing:.13em;color:#8A8994;margin-top:22px;text-transform:uppercase}
+.final h2 .dot{animation:blink 1.05s steps(1) infinite}
+html.shot .final h2 .dot{animation:none}
 
 /* ══════════════ FOOTER ══════════════ */
 footer{background:var(--ink);color:#8A8994;border-top:1px solid rgba(245,244,240,.1);padding:34px 0}
@@ -252,7 +254,7 @@ html.shot .hero .term .cur{animation:none}
 <!-- PROBLEMA -->
 <section class="problema">
   <div class="wrap">
-    <div class="node" data-node data-side="left" style="--nx:6px;--ny:8px"></div>
+    <div class="node" data-node style="--nx:6px;--ny:8px"></div>
     <div class="sec-head rev">
       <div class="kicker">&gt; o diagnóstico mais comum_</div>
       <h2>Tua operação não precisa de mais esforço. Precisa de <em>sistema</em><span class="dot">.</span></h2>
@@ -269,7 +271,7 @@ html.shot .hero .term .cur{animation:none}
 <!-- SERVIÇOS -->
 <section class="servicos" id="servicos">
   <div class="wrap">
-    <div class="node" data-node data-side="right" style="--nx:calc(100% - 6px);--ny:8px"></div>
+    <div class="node" data-node style="--nx:6px;--ny:8px"></div>
     <div class="sec-head rev">
       <div class="kicker">&gt; serviços · clica pra executar_</div>
       <h2>Quatro comandos. Uma <em>máquina</em><span class="dot">.</span></h2>
@@ -331,7 +333,7 @@ html.shot .hero .term .cur{animation:none}
 <!-- MÉTODO -->
 <section class="metodo">
   <div class="wrap">
-    <div class="node" data-node data-side="left" style="--nx:6px;--ny:8px"></div>
+    <div class="node" data-node style="--nx:6px;--ny:8px"></div>
     <div class="sec-head rev">
       <div class="kicker">&gt; o método_</div>
       <h2>Crescimento a <em>45 graus</em><span class="dot">.</span></h2>
@@ -349,7 +351,7 @@ html.shot .hero .term .cur{animation:none}
 <!-- IA -->
 <section class="ia">
   <div class="wrap">
-    <div class="node" data-node data-side="right" style="--nx:calc(100% - 6px);--ny:8px"></div>
+    <div class="node" data-node style="--nx:6px;--ny:8px"></div>
     <div class="split">
       <div class="rev">
         <div class="kicker">&gt; ia aplicada · sem hype_</div>
@@ -367,7 +369,7 @@ html.shot .hero .term .cur{animation:none}
 <!-- QUEM -->
 <section class="quem">
   <div class="wrap">
-    <div class="node" data-node data-side="left" style="--nx:6px;--ny:8px"></div>
+    <div class="node" data-node style="--nx:6px;--ny:8px"></div>
     <div class="split">
       <div class="foto rev">
         <img src="assets/gardel.png" alt="Gardel Batista">
@@ -390,7 +392,7 @@ html.shot .hero .term .cur{animation:none}
 <!-- CTA FINAL -->
 <section class="final" id="contato">
   <div class="wrap">
-    <div class="node" data-node data-side="center" style="--nx:50%;--ny:-40px"></div>
+    <div class="node" data-node style="--nx:6px;--ny:190px"></div>
     <div class="kicker rev">&gt; o próximo comando é teu_</div>
     <h2 class="rev">Roda o diagnóstico<span class="dot" id="cursorFinal">.</span></h2>
     <p class="rev">Me chama, me conta em duas linhas onde a operação trava, e eu te digo com franqueza se consigo ajudar. Sem call de vendas disfarçada.</p>
@@ -494,26 +496,19 @@ function montaSpine(){
   spine.style.height = doc.scrollHeight+'px';
   const pts = nos.map(n=>{
     const r = n.getBoundingClientRect();
-    // usa a posição do ::before via offset custom props aproximada: pega centro do host + offsets
     const host = { x: r.left + scrollX, y: r.top + scrollY, w: r.width };
     const nx = getComputedStyle(n).getPropertyValue('--nx').trim();
     const ny = parseFloat(getComputedStyle(n).getPropertyValue('--ny')) || 0;
-    let x;
-    if(nx.includes('%') || nx.includes('100')) x = host.x + host.w - 6;
-    else if(nx.includes('50%')) x = host.x + host.w/2;
-    else x = host.x + 6;
-    if(nx.includes('calc(100% - 6px)')) x = host.x + host.w - 6;
-    if(nx === '50%') x = host.x + host.w/2;
+    const x = nx === '50%' ? host.x + host.w/2 : host.x + 6;
     return { x, y: host.y + ny, n };
   });
+  // fio: desce reto na calha esquerda; no último trecho faz o mergulho de 45° até o centro (o CTA)
   let d = `M ${pts[0].x} ${pts[0].y}`;
   for(let i=1;i<pts.length;i++){
     const a = pts[i-1], b = pts[i];
-    const dx = b.x - a.x;
-    const diag = Math.abs(dx);
-    const meioY = b.y - diag; // desce reto, depois 45° até o ponto
-    if(diag > 4 && meioY > a.y){ d += ` L ${a.x} ${meioY} L ${b.x} ${b.y}`; }
-    else { d += ` L ${a.x} ${Math.max(a.y, b.y - 4)} L ${b.x} ${b.y}`; }
+    const diag = Math.abs(b.x - a.x);
+    if(diag < 4){ d += ` L ${b.x} ${b.y}`; }
+    else { d += ` L ${a.x} ${b.y - diag} L ${b.x} ${b.y}`; }
   }
   trilho.setAttribute('d', d);
   fio.setAttribute('d', d);
