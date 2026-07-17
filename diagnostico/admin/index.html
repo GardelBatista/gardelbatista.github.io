@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leads do diagnóstico · batista.growth</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<style>
+@font-face{font-family:'SpaceG';src:url('../../assets/fonts/space-grotesk-v22-latin-700.ttf');font-weight:700;font-display:swap}
+@font-face{font-family:'Inter';src:url('../../assets/fonts/inter-v20-latin-regular.ttf');font-weight:400;font-display:swap}
+@font-face{font-family:'Inter';src:url('../../assets/fonts/inter-v20-latin-500.ttf');font-weight:500;font-display:swap}
+@font-face{font-family:'Plex';src:url('../../assets/fonts/ibm-plex-mono-v20-latin-500.ttf');font-weight:500;font-display:swap}
+:root{--porcelana:#F5F4F0;--ink:#0E0E12;--panel:#15141B;--grafite:#8A8994;--cobalto:#7A8CFF;--amber:#F0A500;--hair:rgba(245,244,240,.1);
+--disp:'SpaceG',Arial,sans-serif;--mono:'Plex',Consolas,monospace;--body:'Inter',Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ink);color:var(--porcelana);font-family:var(--body);min-height:100svh}
+a{color:inherit}
+.top{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--hair)}
+.top .lock{display:flex;align-items:center;gap:11px;text-decoration:none}
+.top .lock img{height:26px}
+.top .lock b{font-family:var(--disp);font-weight:700;font-size:17px}
+.top .lock b i{font-style:normal;color:var(--amber)}
+.top .k{font-family:var(--mono);font-size:11px;letter-spacing:.13em;color:var(--grafite);text-transform:uppercase}
+.wrap{max-width:1080px;margin:0 auto;padding:30px 22px 80px}
+h1{font-family:var(--disp);font-weight:700;font-size:clamp(24px,4vw,32px)}
+h1 .dot{color:var(--amber)}
+.login{max-width:380px;margin:80px auto;display:flex;flex-direction:column;gap:12px}
+.login input{font-family:var(--mono);font-size:15px;background:var(--panel);color:var(--porcelana);border:1.5px solid rgba(245,244,240,.22);border-radius:12px;padding:14px 16px;outline:none}
+.login input:focus{border-color:var(--amber)}
+.login button{font-family:var(--disp);font-weight:700;font-size:15px;background:var(--amber);color:var(--ink);border:0;border-radius:12px;padding:14px;cursor:pointer}
+.login .erro{font-family:var(--mono);font-size:12px;color:#e5484d;display:none}
+.filtros{display:flex;gap:8px;margin:22px 0}
+.filtros button{font-family:var(--mono);font-size:12px;letter-spacing:.08em;background:transparent;color:var(--grafite);border:1.5px solid rgba(245,244,240,.18);border-radius:999px;padding:8px 16px;cursor:pointer}
+.filtros button.on{background:var(--amber);color:var(--ink);border-color:var(--amber);font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:26px}
+.card{background:var(--panel);border:1px solid var(--hair);border-radius:14px;padding:16px 18px}
+.card .n{font-family:var(--disp);font-weight:700;font-size:30px}
+.card .n.am{color:var(--amber)}
+.card .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--grafite);text-transform:uppercase;margin-top:4px}
+.tblwrap{overflow-x:auto;border:1px solid var(--hair);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:900px}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--grafite);text-transform:uppercase;text-align:left;padding:12px 14px;border-bottom:1px solid var(--hair);background:var(--panel)}
+td{padding:12px 14px;border-bottom:1px solid var(--hair);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td .nome{font-weight:500}
+td .data{font-family:var(--mono);font-size:11px;color:var(--grafite)}
+.badge{font-family:var(--mono);font-size:10px;letter-spacing:.08em;padding:4px 9px;border-radius:999px;text-transform:uppercase;white-space:nowrap}
+.badge.ok{background:rgba(240,165,0,.15);color:var(--amber)}
+.badge.inc{background:rgba(229,72,77,.15);color:#ff8b8e}
+.wa{font-family:var(--mono);font-size:12px;color:var(--cobalto);text-decoration:none;white-space:nowrap}
+.wa:hover{text-decoration:underline}
+.vazio{padding:50px;text-align:center;font-family:var(--mono);font-size:13px;color:var(--grafite)}
+#painel{display:none}
+</style>
+</head>
+<body>
+<div class="top">
+  <a class="lock" href="../../"><img src="../../assets/simbolo-prompt-branco.svg" alt=""><b>batista<i>.</i>growth</b></a>
+  <span class="k">leads do diagnóstico_</span>
+</div>
+
+<div class="login" id="login">
+  <h1>Painel de leads<span class="dot">.</span></h1>
+  <input type="password" id="senha" placeholder="senha do painel_">
+  <div class="erro" id="erro">senha incorreta_</div>
+  <button id="entrar">Entrar</button>
+</div>
+
+<div class="wrap" id="painel">
+  <h1>Leads do diagnóstico<span class="dot">.</span></h1>
+  <div class="filtros">
+    <button data-d="7">7 dias</button>
+    <button data-d="30" class="on">30 dias</button>
+    <button data-d="0">tudo</button>
+  </div>
+  <div class="cards" id="cards"></div>
+  <div class="tblwrap"><table>
+    <thead><tr><th>quando</th><th>lead</th><th>perfil</th><th>faturamento</th><th>gargalo</th><th>já tentou</th><th>urgência</th><th>status</th></tr></thead>
+    <tbody id="tbody"></tbody>
+  </table></div>
+</div>
+
+<script>
+const SB_URL = 'https://vdkxffydbkuhjszmlamd.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZka3hmZnlkYmt1aGpzem1sYW1kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MjI5OTcsImV4cCI6MjA4NTI5ODk5N30.9TOXl94Vednst5RnkCXfx2sdUbQpNlzuPMGNpv8POP8';
+let SENHA = sessionStorage.getItem('batista-diag-admin') || '';
+let DIAS = 30;
+
+async function rpc(fn, args){
+  const r = await fetch(SB_URL+'/rest/v1/rpc/'+fn, {method:'POST',
+    headers:{'Content-Type':'application/json',apikey:SB_KEY,Authorization:'Bearer '+SB_KEY},
+    body: JSON.stringify(args)});
+  return r.json();
+}
+const GARGALO = {leads:'poucos leads', followup:'follow-up falha', numeros:'sem números', dependencia:'depende dele', ia:'quer IA'};
+
+async function carrega(){
+  const [leads, met] = await Promise.all([
+    rpc('batista_diagnostico_admin_leads', {p_senha:SENHA, p_dias:DIAS}),
+    rpc('batista_diagnostico_admin_metricas', {p_senha:SENHA, p_dias:DIAS})
+  ]);
+  if(leads === null){ sair(); return; }
+  document.getElementById('cards').innerHTML = `
+    <div class="card"><div class="n">${met.visitas}</div><div class="l">visitas</div></div>
+    <div class="card"><div class="n am">${met.leads}</div><div class="l">leads completos</div></div>
+    <div class="card"><div class="n">${met.incompletos}</div><div class="l">incompletos</div></div>
+    <div class="card"><div class="n">${met.whats_clicks}</div><div class="l">cliques whatsapp</div></div>
+    <div class="card"><div class="n">${met.visitas ? Math.round((met.leads+met.incompletos)/met.visitas*100)+'%' : '0%'}</div><div class="l">conversão em lead</div></div>`;
+  const tb = document.getElementById('tbody');
+  if(!leads.length){ tb.innerHTML = '<tr><td colspan="8"><div class="vazio">nenhum lead no período_ (o diagnóstico ainda não foi divulgado?)</div></td></tr>'; return; }
+  tb.innerHTML = leads.map(l=>{
+    const d = new Date(l.created_at);
+    const dt = d.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'})+' '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+    const wa = l.whatsapp ? `<a class="wa" href="https://wa.me/${l.whatsapp}?text=${encodeURIComponent('Oi '+(l.nome||'')+', aqui é o Gardel. Vi que você rodou o diagnóstico no meu site. Bora conversar?')}" target="_blank" rel="noopener">${l.whatsapp.replace(/^55/,'')} ↗</a>` : '<span class="data">sem contato</span>';
+    return `<tr>
+      <td><div class="data">${dt}</div></td>
+      <td><div class="nome">${l.nome||'(sem nome)'}</div>${wa}</td>
+      <td>${l.perfil||''}</td>
+      <td>${l.faturamento||''}</td>
+      <td>${GARGALO[l.gargalo]||l.gargalo||''}</td>
+      <td>${l.tentou||''}</td>
+      <td>${l.urgencia||''}</td>
+      <td><span class="badge ${l.incompleto?'inc':'ok'}">${l.incompleto?'parou em: '+(l.passo||'?'):'completo'}</span></td>
+    </tr>`;
+  }).join('');
+}
+function entra(){
+  const s = document.getElementById('senha').value.trim();
+  if(!s) return;
+  rpc('batista_diagnostico_admin_ok', {p_senha:s}).then(ok=>{
+    if(ok){ SENHA = s; sessionStorage.setItem('batista-diag-admin', s);
+      document.getElementById('login').style.display='none';
+      document.getElementById('painel').style.display='block'; carrega();
+    } else { document.getElementById('erro').style.display='block'; }
+  });
+}
+function sair(){ sessionStorage.removeItem('batista-diag-admin'); location.reload(); }
+document.getElementById('entrar').onclick = entra;
+document.getElementById('senha').addEventListener('keydown', e=>{ if(e.key==='Enter') entra(); });
+document.querySelectorAll('.filtros button').forEach(b=>b.onclick = ()=>{
+  document.querySelectorAll('.filtros button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); DIAS = +b.dataset.d; carrega();
+});
+if(SENHA){ document.getElementById('login').style.display='none'; document.getElementById('painel').style.display='block'; carrega(); }
+</script>
+</body>
+</html>
