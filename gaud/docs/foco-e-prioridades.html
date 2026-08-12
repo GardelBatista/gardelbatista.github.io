@@ -7,60 +7,80 @@
 <title>Foco e prioridades · Gaud</title>
 <style>
 @font-face{font-family:'Space Grotesk';src:url('../assets/fonts/space-grotesk-v22-latin-700.ttf');font-weight:700;font-display:swap}
+@font-face{font-family:'Space Grotesk';src:url('../assets/fonts/space-grotesk-v22-latin-500.ttf');font-weight:500;font-display:swap}
 @font-face{font-family:'Inter';src:url('../assets/fonts/inter-v20-latin-regular.ttf');font-weight:400;font-display:swap}
 @font-face{font-family:'Inter';src:url('../assets/fonts/inter-v20-latin-500.ttf');font-weight:500;font-display:swap}
 @font-face{font-family:'Inter';src:url('../assets/fonts/inter-v20-latin-700.ttf');font-weight:700;font-display:swap}
 @font-face{font-family:'IBM Plex Mono';src:url('../assets/fonts/ibm-plex-mono-v20-latin-regular.ttf');font-weight:400;font-display:swap}
 @font-face{font-family:'IBM Plex Mono';src:url('../assets/fonts/ibm-plex-mono-v20-latin-600.ttf');font-weight:600;font-display:swap}
-:root{--porcelana:#F5F4F0;--branco:#FFF;--ink:#0E0E12;--grafite:#565660;--cobalto:#2743F5;--amber:#F0A500;--linha:#E2E0DA;
+:root{--porcelana:#F5F4F0;--branco:#FFF;--ink:#0E0E12;--grafite:#565660;--cobalto:#2743F5;--amber:#F0A500;--linha:#E2E0DA;--linha2:#EFEDE8;
 --disp:'Space Grotesk',system-ui,sans-serif;--corpo:'Inter',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace}
 *{box-sizing:border-box}
 body{margin:0;background:var(--porcelana);color:var(--ink);font-family:var(--corpo);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
-.wrap{max-width:920px;margin:0 auto;padding:0 24px}
-header{padding:52px 0 30px;border-bottom:1px solid var(--linha)}
+.wrap{max-width:940px;margin:0 auto;padding:0 24px}
+header{padding:50px 0 28px;border-bottom:1px solid var(--linha)}
 .kick{font-family:var(--mono);font-size:12px;color:var(--cobalto);letter-spacing:.06em}
-h1{font-family:var(--disp);font-weight:700;font-size:clamp(29px,4.2vw,46px);line-height:1.05;margin:13px 0 0;letter-spacing:-.025em}
+h1{font-family:var(--disp);font-weight:700;font-size:clamp(28px,4vw,44px);line-height:1.05;margin:13px 0 0;letter-spacing:-.025em}
 h1 .dot{color:var(--amber)}
-.sub{color:var(--grafite);max-width:70ch;margin:15px 0 0}
-section{padding:38px 0;border-bottom:1px solid #EFEDE8}
+.sub{color:var(--grafite);max-width:72ch;margin:14px 0 0}
+nav.idx{position:sticky;top:0;z-index:9;background:rgba(245,244,240,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--linha);margin-bottom:6px}
+nav.idx .wrap{display:flex;gap:2px;overflow-x:auto}
+nav.idx a{font-family:var(--mono);font-size:12px;color:var(--grafite);text-decoration:none;padding:13px 11px;white-space:nowrap;border-bottom:2px solid transparent}
+nav.idx a:hover{color:var(--ink);border-bottom-color:var(--amber)}
+section{padding:36px 0;border-bottom:1px solid var(--linha2);scroll-margin-top:48px}
 section:last-of-type{border-bottom:0}
-h2{font-family:var(--disp);font-size:23px;margin:0 0 14px;letter-spacing:-.015em}
+h2{font-family:var(--disp);font-size:23px;margin:0 0 6px;letter-spacing:-.015em}
+h3{font-family:var(--disp);font-size:16.5px;margin:24px 0 8px}
+.lead{color:var(--grafite);font-size:14.5px;margin:0 0 18px;max-width:78ch}
 p{margin:0 0 12px;max-width:78ch}
-.par{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:6px 0 4px}
-.par > div{border:1px solid var(--linha);background:var(--branco);border-radius:10px;padding:19px 21px}
+ul{margin:0 0 12px;padding-left:20px;max-width:78ch}li{margin-bottom:6px}
+b{font-weight:600}
+.par{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:6px 0}
+.par>div{border:1px solid var(--linha);background:var(--branco);border-radius:10px;padding:19px 21px}
 .par .r{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--cobalto);margin-bottom:7px}
-.par .v{font-family:var(--disp);font-weight:700;font-size:24px;line-height:1.2;letter-spacing:-.02em}
+.par .v{font-family:var(--disp);font-weight:700;font-size:23px;line-height:1.22;letter-spacing:-.02em}
 .par .o{font-size:13.5px;color:var(--grafite);margin-top:7px}
-.par > div.alvo{background:var(--ink)}
-.par > div.alvo .v{color:var(--porcelana)}
-.par > div.alvo .r{color:var(--amber)}
-.par > div.alvo .o{color:#A5A39D}
-.n{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:11px;margin:8px 0}
-.n > div{border:1px solid var(--linha);background:var(--branco);border-radius:9px;padding:13px 15px}
+.par>div.alvo{background:var(--ink)}.par>div.alvo .v{color:var(--porcelana)}.par>div.alvo .r{color:var(--amber)}.par>div.alvo .o{color:#A5A39D}
+.n{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:11px;margin:8px 0}
+.n>div{border:1px solid var(--linha);background:var(--branco);border-radius:9px;padding:13px 15px}
 .n .v{font-family:var(--disp);font-weight:700;font-size:21px;letter-spacing:-.02em}
 .n .r{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--grafite);margin-top:5px;line-height:1.4}
-.n > div.mal .v{color:#C1121F}
-.item{background:var(--branco);border:1px solid var(--linha);border-left:3px solid var(--amber);border-radius:9px;padding:16px 19px;margin-bottom:11px}
-.item h3{font-family:var(--disp);font-size:16.5px;margin:0 0 6px}
-.item p{font-size:14px;margin:0}
-.pri{display:flex;gap:14px;align-items:flex-start;background:var(--branco);border:1px solid var(--linha);border-radius:9px;padding:16px 19px;margin-bottom:11px}
-.pri .num{font-family:var(--disp);font-weight:700;font-size:20px;color:var(--porcelana);background:var(--ink);width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex:none}
-.pri h3{font-family:var(--disp);font-size:16.5px;margin:0 0 5px}
-.pri p{font-size:14px;margin:0 0 6px}
+.n>div.mal .v{color:#C1121F}
+.item{background:var(--branco);border:1px solid var(--linha);border-left:3px solid var(--amber);border-radius:9px;padding:15px 18px;margin-bottom:10px}
+.item h4{font-family:var(--disp);font-size:16px;margin:0 0 5px}
+.item p{font-size:13.8px;margin:0}
+.pri{display:flex;gap:14px;align-items:flex-start;background:var(--branco);border:1px solid var(--linha);border-radius:9px;padding:15px 18px;margin-bottom:10px}
+.pri .num{font-family:var(--disp);font-weight:700;font-size:19px;color:var(--porcelana);background:var(--ink);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex:none}
+.pri h4{font-family:var(--disp);font-size:16px;margin:0 0 4px}
+.pri p{font-size:13.8px;margin:0 0 5px}
 .pri .pq{font-family:var(--mono);font-size:11.5px;color:var(--grafite)}
 .pri .pq b{color:var(--ink);font-weight:500}
-table{width:100%;border-collapse:collapse;background:var(--branco);font-size:13.5px;margin-top:6px}
-th{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;text-align:left;padding:10px 12px;border-bottom:2px solid var(--ink)}
-td{padding:10px 12px;border-bottom:1px solid #EFEDE8;vertical-align:top}
-.q{font-family:var(--mono);font-size:10.5px;font-weight:600;text-transform:uppercase;padding:2px 6px;border-radius:3px;white-space:nowrap}
-.q.b{background:#E6E9FE;color:var(--cobalto)}
-.q.g{background:#FBF0D6;color:#7A5400}
-.q.d{background:#E5E3DC;color:var(--ink)}
-.palco{background:var(--ink);color:#C4C2BC;border-radius:10px;padding:20px 22px;margin:18px 0}
+table{width:100%;border-collapse:collapse;background:var(--branco);font-size:13.3px;margin:8px 0 4px}
+th{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;text-align:left;padding:9px 11px;border-bottom:2px solid var(--ink)}
+td{padding:9px 11px;border-bottom:1px solid var(--linha2);vertical-align:top}
+.tw{overflow-x:auto}
+.tag{font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;padding:2px 6px;border-radius:3px;white-space:nowrap}
+.tag.b{background:#E6E9FE;color:var(--cobalto)}.tag.g{background:#FBF0D6;color:#7A5400}.tag.d{background:#E5E3DC;color:var(--ink)}
+.msg{background:var(--branco);border:1px solid var(--linha);border-radius:10px;padding:16px 18px;margin-bottom:11px}
+.msg .rot{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.msg.nao .rot{color:#C1121F}.msg.sim .rot{color:#0E7A5F}
+.msg pre{font-family:var(--corpo);font-size:14px;white-space:pre-wrap;margin:0;padding:12px 14px;border-radius:8px;line-height:1.55}
+.msg.nao pre{background:#FBEFEF;color:#7A2020}.msg.sim pre{background:#EDF6F2;color:#14503C}
+.msg .obs{font-size:13px;color:var(--grafite);margin:9px 0 0}
+.palco{background:var(--ink);color:#C4C2BC;border-radius:10px;padding:19px 21px;margin:16px 0}
 .palco b{color:var(--porcelana)}
-footer{padding:24px 0 60px;font-family:var(--mono);font-size:11.5px;color:var(--grafite);border-top:1px solid var(--linha)}
-footer b{color:var(--ink);font-weight:500}
-.cur{color:var(--amber)}
+/* próximos passos marcáveis */
+.prog{display:flex;align-items:center;gap:12px;margin:4px 0 16px;font-family:var(--mono);font-size:12px;color:var(--grafite)}
+.prog .bar{flex:1;height:6px;background:var(--linha);border-radius:99px;overflow:hidden}
+.prog .bar i{display:block;height:100%;width:0;background:var(--amber);transition:width .3s}
+.passo{display:flex;gap:13px;align-items:flex-start;background:var(--branco);border:1px solid var(--linha);border-radius:9px;padding:14px 16px;margin-bottom:9px}
+.passo input{margin-top:3px;width:17px;height:17px;flex:none;accent-color:var(--cobalto);cursor:pointer}
+.passo .txt b{display:block;font-size:14.5px;margin-bottom:3px}
+.passo .txt p{font-size:13.3px;color:var(--grafite);margin:0}
+.passo.ok{background:#FBFAF7;border-color:#CFCCC3}
+.passo.ok .txt b{text-decoration:line-through;color:var(--grafite)}
+footer{padding:22px 0 60px;font-family:var(--mono);font-size:11.5px;color:var(--grafite);border-top:1px solid var(--linha)}
+footer b{color:var(--ink);font-weight:500}.cur{color:var(--amber)}
 @media(max-width:640px){.par{grid-template-columns:1fr}}
 </style>
 </head>
@@ -69,23 +89,35 @@ footer b{color:var(--ink);font-weight:500}
 <header><div class="wrap">
   <div class="kick">&gt; consultoria_comercial // reuniao_01 · 11 de agosto</div>
   <h1>O foco, a meta e o que trava o caminho<span class="dot">.</span></h1>
-  <p class="sub">O que ficou da primeira sessão: onde a operação está hoje, onde precisa chegar, o que está segurando e em que ordem atacar. Tudo que aparece aqui saiu do que vocês mesmos trouxeram na reunião.</p>
+  <p class="sub">Tudo que ficou da primeira sessão: onde a operação está, onde precisa chegar, o que segura, o que dá para automatizar e o que fazer primeiro. Cada ponto aqui saiu do que vocês mesmos trouxeram na reunião.</p>
 </div></header>
+
+<nav class="idx"><div class="wrap">
+  <a href="#foco">Foco e meta</a>
+  <a href="#hoje">Onde estão</a>
+  <a href="#trava">O que trava</a>
+  <a href="#tempo">Tempo de resposta</a>
+  <a href="#mensagens">As mensagens</a>
+  <a href="#doc">Documentação</a>
+  <a href="#auto">Automações</a>
+  <a href="#captacao">Captação</a>
+  <a href="#ordem">Ordem de ataque</a>
+  <a href="#passos">Próximos passos</a>
+  <a href="#riscos">Riscos</a>
+</div></nav>
 
 <div class="wrap">
 
-<section>
+<section id="foco">
   <h2>O foco e a meta</h2>
   <div class="par">
     <div><div class="r">o foco dos próximos 30 dias</div><div class="v">Parar de perder lead antes da conversa</div><div class="o">Cerca de 70% dos leads morrem entre a entrada e o agendamento. Nenhuma verba nova resolve isso: o que resolve é primeira mensagem, tempo de resposta e retomada.</div></div>
     <div class="alvo"><div class="r">a meta</div><div class="v">R$ 60 mil por mês, rumo a R$ 100 mil</div><div class="o">R$ 60 mil é o que fecha a conta da operação. Os R$ 100 mil no fim do ano dependem de a máquina existir antes de escalar.</div></div>
   </div>
-  <div class="palco">
-    <p style="margin:0"><b>O caminho mais curto não é mais lead.</b> Com os mesmos 344 leads de julho, dobrar a taxa de agendamento de 9% para 18% entrega mais que qualquer aumento de verba. É por isso que o investimento em mídia fica parado até o funil ficar confiável.</p>
-  </div>
+  <div class="palco"><p style="margin:0"><b>O caminho mais curto não é mais lead.</b> Com os mesmos 344 leads de julho, dobrar a taxa de agendamento de 9% para 18% entrega mais que qualquer aumento de verba. É por isso que o investimento em mídia fica parado até o funil ficar confiável.</p></div>
 </section>
 
-<section>
+<section id="hoje">
   <h2>Onde vocês estão hoje</h2>
   <div class="n">
     <div><div class="v">R$ 35 mil</div><div class="r">faturamento médio</div></div>
@@ -96,44 +128,144 @@ footer b{color:var(--ink);font-weight:500}
     <div><div class="v">17</div><div class="r">vendas em julho</div></div>
     <div class="mal"><div class="v">1h40</div><div class="r">tempo médio até o 1º contato</div></div>
     <div class="mal"><div class="v">5.000+</div><div class="r">leads na base sem contato</div></div>
+    <div><div class="v">4</div><div class="r">campanhas ativas</div></div>
+    <div class="mal"><div class="v">90%+</div><div class="r">entram sem qualificação</div></div>
   </div>
   <p style="margin-top:14px">Julho merece atenção: foi o melhor faturamento recente <b>e</b> a pior taxa de agendamento desde dezembro. O mês bom não veio de máquina funcionando, veio de upsell e de vendas acima do ticket médio. Lido sem cuidado, um mês assim faz o time repetir o que não foi a causa.</p>
 </section>
 
-<section>
+<section id="trava">
   <h2>O que está travando</h2>
-  <div class="item"><h3>1. O lead morre antes de virar conversa</h3><p>Não é objeção nem preço: é gente que não responde, não vê a mensagem e não atende ligação. Todo o resto do funil está sendo alimentado por uma fração do que se paga para entrar.</p></div>
-  <div class="item"><h3>2. A primeira mensagem não é tratada como ativo</h3><p>Não se sabe qual mensagem sai primeiro, se vai áudio ou texto, nem com que qualidade. Ou o contato é padronizado, ou é radicalmente personalizado: o meio-termo improvisado não converte e ainda impede aprender.</p></div>
-  <div class="item"><h3>3. Tempo de resposta sem régua confiável</h3><p>Existem casos de 4 e 7 horas dentro do horário comercial, e a medição anterior não se sustentava. O problema é duplo: a demora real e o número que não dá para defender.</p></div>
-  <div class="item"><h3>4. Retomada só quando aperta</h3><p>Sem cadência, sem indicador, sem registro. Junto disso, mais de 5.000 leads na base sem nenhuma comunicação. É o estoque mais barato de oportunidade que a empresa tem, e está parado.</p></div>
-  <div class="item"><h3>5. O formulário pede o que não usa</h3><p>Coleta faturamento e número de funcionários, que quase não são usados, e não coleta o nome da loja, que é o que permitiria achar a empresa por outro caminho quando a pessoa não responde.</p></div>
-  <div class="item"><h3>6. O CRM é pago e não é usado como CRM</h3><p>Os indicadores vivem em planilha preenchida à mão, com conferência e reconferência, e não há documentação de call nos negócios. Sem histórico no card, toda retomada recomeça do zero.</p></div>
-  <div class="item"><h3>7. Zero prospecção ativa e zero enriquecimento</h3><p>Quando o lead não responde, a tentativa acaba. Não se procura o Instagram da loja, o telefone fixo, o decisor. E não existe outbound para compensar um mês fraco de mídia.</p></div>
+  <div class="item"><h4>1. O lead morre antes de virar conversa</h4><p>Não é objeção nem preço: é gente que não responde, não vê a mensagem e não atende ligação. A cadência atual são duas ligações e uma mensagem, e depois o lead fica parado até alguém lembrar dele.</p></div>
+  <div class="item"><h4>2. A primeira mensagem não é tratada como ativo</h4><p>Não se sabe qual mensagem sai primeiro, se vai áudio ou texto, nem com que qualidade. Sem padrão não há o que medir, e sem medir não há como melhorar.</p></div>
+  <div class="item"><h4>3. Tempo de resposta sem régua confiável</h4><p>Casos de 4 e 7 horas dentro do horário comercial, e uma medição anterior que não se sustentava. Detalhe na seção seguinte.</p></div>
+  <div class="item"><h4>4. Retomada só quando aperta</h4><p>Sem cadência, sem indicador, sem registro. Mais de 5.000 leads na base sem nenhuma comunicação, nem por e-mail.</p></div>
+  <div class="item"><h4>5. O formulário pede o que não usa</h4><p>Coleta faturamento e número de funcionários, que quase não entram na conversa, e não coleta o nome da loja, que só aparece no segundo ou terceiro follow-up. Sem o nome da empresa, não dá para procurar o decisor por outro caminho.</p></div>
+  <div class="item"><h4>6. O CRM é pago e não é usado como CRM</h4><p>Os indicadores vivem em planilha preenchida à mão, com conferência e reconferência, e nenhum negócio tem documentação da conversa.</p></div>
+  <div class="item"><h4>7. Zero prospecção ativa e zero enriquecimento</h4><p>Quando o lead não responde, a tentativa acaba. Ninguém procura o Instagram da loja, o telefone fixo ou o sócio. E não existe outbound para compensar um mês fraco de mídia.</p></div>
 </section>
 
-<section>
+<section id="tempo">
+  <h2>Tempo de resposta: o que medir e como</h2>
+  <p class="lead">Este é o indicador que mais muda conversão sem custar nada, e hoje ele não é confiável em nenhuma das duas pontas: nem no número, nem na qualidade do que é enviado.</p>
+
+  <h3>O que aconteceu com o número</h3>
+  <p>A primeira medição apontou <b>11 horas</b> de média. Ao abrir lead a lead, ninguém conseguiu confirmar isso. Depois se descobriu a causa: a leitura <b>não contava áudio como mensagem</b>, então o relógio só parava quando saía um texto. Corrigido o critério, agosto ficou em <b>1h40 de média</b> nos 17 leads que entraram em horário comercial, com melhor caso de 6 minutos e ainda assim casos de 4 e 7 horas.</p>
+
+  <h3>A régua que precisa ser escrita</h3>
+  <p>Antes de cobrar o time, é preciso definir o que conta. Três decisões:</p>
+  <ul>
+    <li><b>O que marca o início:</b> a criação do negócio no CRM ou a chegada da mensagem no WhatsApp.</li>
+    <li><b>O que marca o fim:</b> a primeira interação humana de verdade, seja texto, áudio ou ligação atendida. Atividade automática não conta.</li>
+    <li><b>Qual janela conta:</b> só horário comercial, sem fim de semana, e o que entra fora do horário começa a contar na abertura do dia seguinte.</li>
+  </ul>
+  <p>Com isso escrito, o número passa a ser defensável e vira meta: <b>primeira resposta em minutos</b>, não em horas. Na experiência do próprio Felipe, em operação anterior, acima de cinco minutos já era motivo de conversa no comercial.</p>
+
+  <h3>Duas hipóteses a validar antes de mudar horário</h3>
+  <ul>
+    <li><b>Pico de balcão no fim da tarde.</b> É percepção, não dado. Se confirmar, o melhor horário para ligar não é o mais óbvio, e a cadência muda.</li>
+    <li><b>Capacidade, não esforço.</b> O Lucas recebe, responde, liga, retoma e ainda deveria enriquecer dados. Vale medir a carga real antes de concluir que a demora é falta de empenho.</li>
+  </ul>
+</section>
+
+<section id="mensagens">
+  <h2>As mensagens: primeira, segunda e retomada</h2>
+  <p class="lead">Se a ligação não está funcionando e a mensagem também não, o problema pode não ser o canal: é o que está escrito nele. Três mensagens definem quase todo o resultado do topo do funil.</p>
+
+  <h3>A primeira mensagem</h3>
+  <div class="msg nao">
+    <div class="rot">como não começar</div>
+    <pre>Oi, tudo bem? Eu sou o Lucas, da Gaud, sistema para autopeças...</pre>
+    <p class="obs">A pessoa lê isso na prévia da notificação e não abre. A primeira linha foi gasta com apresentação, que é a parte que menos interessa a ela naquele segundo.</p>
+  </div>
+  <div class="msg sim">
+    <div class="rot">como começar</div>
+    <pre>Vi que você pediu informação sobre controle de estoque agora há pouco.
+Antes de te ligar: o problema hoje é nota fiscal, estoque ou faturamento?</pre>
+    <p class="obs">Abre com o motivo dela, não com você. Os três primeiros segundos de um vídeo são o gancho; a primeira linha da mensagem cumpre o mesmo papel.</p>
+  </div>
+  <ul>
+    <li><b>Nunca áudio na primeira mensagem.</b> Uma parte do público simplesmente não escuta, e mandar texto depois já é a segunda tentativa gasta.</li>
+    <li><b>Ou padrão, ou personalização de verdade.</b> Padrão permite medir; personalização real (olhar o site, a cidade, o Instagram da loja) tem aceitação muito maior. O meio-termo improvisado não faz nem uma coisa nem outra.</li>
+    <li><b>Se o problema for a digitação</b>, existe ditado por voz que transcreve enquanto se fala, por cerca de R$ 30 por mês. Resolve velocidade sem cair no áudio.</li>
+  </ul>
+
+  <h3>A segunda mensagem, depois da ligação recusada</h3>
+  <p>Quando a ligação é pelo WhatsApp e a pessoa <b>desliga</b>, isso é informação: ela está com o telefone na mão. A mensagem que vai logo depois é decisiva e precisa reconhecer o momento, não repetir a apresentação.</p>
+  <div class="msg sim">
+    <div class="rot">exemplo</div>
+    <pre>Vi que você está corrido agora. Te mando em uma linha o que eu ia falar:
+dá para reduzir o erro de estoque sem trocar seu sistema hoje. Faz sentido
+eu te chamar amanhã de manhã ou prefere que eu mande por escrito?</pre>
+  </div>
+
+  <h3>A mensagem de retomada</h3>
+  <p>Retomada não é "passando para saber se ainda tem interesse". O que funciona é chegar com um <b>ângulo novo</b>, e isso exige saber o que foi conversado antes, que é justamente o que a documentação de call resolve. Referência real: uma retomada com pitch de gestor recuperou um lead frio e virou a maior venda do mês, R$ 22 mil no ano.</p>
+</section>
+
+<section id="doc">
+  <h2>A documentação que não está sendo feita</h2>
+  <p class="lead">Hoje as reuniões são gravadas e transcritas pelo Google, mas a transcrição fica no Drive e <b>nunca chega ao negócio no CRM</b>. Quem for retomar, passar o bastão ou preparar a próxima conversa começa do zero.</p>
+
+  <h3>Como resolver, em três estágios</h3>
+  <div class="tw"><table>
+    <tr><th style="width:16%">Estágio</th><th style="width:34%">O que fazer</th><th>Custo e retorno</th></tr>
+    <tr><td><b>1. Manual</b></td><td>Ao fim de cada reunião, jogar a transcrição em uma IA com um prompt fixo e colar o resultado na nota do negócio.</td><td>Cinco minutos por call. É assim que se descobre <b>qual</b> formato de documentação serve, antes de automatizar o formato errado.</td></tr>
+    <tr><td><b>2. Histórico</b></td><td>Baixar as transcrições antigas do Drive e casar cada uma com o negócio certo. A primeira linha do arquivo traz o e-mail do participante, e esse e-mail está no lead.</td><td>Roda de uma vez, demora algumas horas de processamento. Destrava retomada com contexto em toda a base já trabalhada.</td></tr>
+    <tr><td><b>3. Automático</b></td><td>A ferramenta de transcrição dispara para um fluxo (n8n), que gera a documentação, a preparação da próxima call e a mensagem de follow-up já escrita, e grava tudo no negócio.</td><td>Uma vez montado, custa zero por reunião. É exatamente o que roda hoje na operação do Batista.</td></tr>
+  </table></div>
+  <p><b>Regra:</b> não jogar a transcrição crua no CRM. O que serve é o resumo estruturado: contexto da empresa, dor declarada, objeções, próximo passo combinado e prazo.</p>
+</section>
+
+<section id="auto">
+  <h2>O que dá para automatizar</h2>
+  <p class="lead">Ordem importa: automatizar processo que ainda não existe é multiplicar bagunça. Tudo abaixo só entra depois que a versão manual estiver rodando por algumas semanas.</p>
+  <div class="tw"><table>
+    <tr><th style="width:24%">Automação</th><th style="width:40%">O que resolve</th><th>Pré-requisito</th></tr>
+    <tr><td><b>Documentação de call</b></td><td>Todo negócio com histórico, sem ninguém digitar. Gera também a preparação da próxima conversa e o follow-up pronto para enviar.</td><td>Formato da documentação definido na mão antes.</td></tr>
+    <tr><td><b>Enriquecimento de lead</b></td><td>A partir do nome da loja, encontrar Instagram, telefone fixo e o decisor. Vira contato por outro canal quando o WhatsApp não responde.</td><td>Nome da loja no formulário.</td></tr>
+    <tr><td><b>Retomada em lote</b></td><td>Ler a documentação de cada negócio parado e gerar a mensagem de retomada com o ângulo certo, um por um, em minutos.</td><td>Documentação existindo nos negócios.</td></tr>
+    <tr><td><b>Indicadores sem planilha</b></td><td>O funil sai direto do CRM para um painel. Acaba a conferência e a reconferência, e o número deixa de ser digitado.</td><td>Definição escrita de cada etapa.</td></tr>
+    <tr><td><b>Atendimento centralizado</b></td><td>Todo WhatsApp comercial passando por uma ferramenta, com histórico e tempo de resposta medidos automaticamente, em vez do celular de cada um.</td><td>Decidir a ferramenta e usar número oficial.</td></tr>
+    <tr><td><b>Nutrição da base parada</b></td><td>Comunicação recorrente com os 5.000 leads que hoje não recebem nada, por e-mail ou por lista.</td><td>Base higienizada e uma oferta ou conteúdo por mês.</td></tr>
+  </table></div>
+  <p>Ferramentas citadas na reunião para a parte de enriquecimento e conversa com o CRM: Firecrawl, Apify e o protocolo MCP conectando a IA direto ao CRM. Nenhuma delas resolve nada sozinha: o que resolve é a regra de negócio por trás.</p>
+</section>
+
+<section id="captacao">
+  <h2>Captação: o que testar nas campanhas</h2>
+  <ul>
+    <li><b>Incluir o nome da loja</b> nos três formulários nativos. É o campo que destrava enriquecimento, prospecção e reconhecimento da empresa.</li>
+    <li><b>Tirar faturamento e número de funcionários</b> enquanto não forem usados na conversa. Campo a mais encarece o lead e não entrega nada. Só volta quando a informação for devolvida ao lead como argumento, do tipo "com esse faturamento, publicar as peças online tende a somar 10% a 15%".</li>
+    <li><b>Testar um quiz conversacional</b> no lugar do formulário puro, entregando valor antes de pedir o dado: qual das três dores dói mais (faturar mais, nota fiscal, erro de estoque). Aumenta a taxa de resposta porque a pessoa já entendeu por que deve responder.</li>
+    <li><b>Testar em uma campanha só</b>, medir por duas semanas contra as outras três, e só então generalizar. Mexer nas quatro ao mesmo tempo apaga a leitura.</li>
+    <li><b>Atenção ao custo:</b> mais perguntas costumam encarecer o lead. A pergunta certa é se o lead fica mais barato de converter, não mais barato de comprar.</li>
+  </ul>
+</section>
+
+<section id="ordem">
   <h2>A ordem de ataque</h2>
-  <p>Critério: o que devolve resultado dentro do mês, com o time que já existe, sem depender de ferramenta nova nem de verba nova.</p>
-  <div class="pri"><div class="num">1</div><div><h3>A primeira mensagem e o tempo até ela</h3><p>Padronizar o primeiro contato (texto, com gancho, nunca áudio) e cravar uma régua de resposta em minutos, não em horas.</p><div class="pq"><b>Por quê:</b> é onde está a maior perda, e mexe na conversão sem gastar um real a mais.</div></div></div>
-  <div class="pri"><div class="num">2</div><div><h3>Retomada diária, com lista priorizada</h3><p>Um bloco fixo por dia, começando pelos quentes: quem agendou e não apareceu, quem sumiu depois da reunião. Cinco por dia já são cem contatos por mês que hoje não acontecem.</p><div class="pq"><b>Por quê:</b> é receita que já foi paga. Maior retorno por esforço da lista.</div></div></div>
-  <div class="pri"><div class="num">3</div><div><h3>Um número de funil confiável, sem planilha</h3><p>Definir por escrito o que conta como lead, contato, agendamento e venda, e tirar a apuração da mão.</p><div class="pq"><b>Por quê:</b> sem isso nenhuma das outras prioridades pode ser avaliada, e devolve horas do time.</div></div></div>
-  <div class="pri"><div class="num">4</div><div><h3>Nome da loja no formulário</h3><p>Entra o nome da autopeça, saem faturamento e número de funcionários enquanto não forem usados.</p><div class="pq"><b>Por quê:</b> custo perto de zero e destrava atacar quem não responde por outro canal.</div></div></div>
-  <div class="pri"><div class="num">5</div><div><h3>Documentação de call em todo negócio</h3><p>Manual primeiro, com formato definido. Automatiza depois, quando a rotina existir.</p><div class="pq"><b>Por quê:</b> é o insumo da retomada boa e da passagem de bastão.</div></div></div>
+  <p class="lead">Critério: o que devolve resultado dentro do mês, com o time que já existe, sem depender de ferramenta nova nem de verba nova.</p>
+  <div class="pri"><div class="num">1</div><div><h4>A primeira mensagem e o tempo até ela</h4><p>Padronizar o primeiro contato e cravar a régua de resposta em minutos.</p><div class="pq"><b>Por quê:</b> é onde está a maior perda, e mexe na conversão sem gastar um real a mais.</div></div></div>
+  <div class="pri"><div class="num">2</div><div><h4>Retomada diária, com lista priorizada</h4><p>Bloco fixo por dia, começando pelos quentes: quem agendou e não apareceu, quem sumiu depois da reunião.</p><div class="pq"><b>Por quê:</b> é receita que já foi paga. Cinco por dia são cem contatos por mês que hoje não acontecem.</div></div></div>
+  <div class="pri"><div class="num">3</div><div><h4>Documentação de call em todo negócio</h4><p>Manual primeiro, com formato definido. Depois o histórico, depois a automação.</p><div class="pq"><b>Por quê:</b> é o insumo da retomada boa, da passagem de bastão e de qualquer automação futura.</div></div></div>
+  <div class="pri"><div class="num">4</div><div><h4>Um número de funil confiável, sem planilha</h4><p>Definir por escrito o que conta como lead, contato, agendamento e venda, e tirar a apuração da mão.</p><div class="pq"><b>Por quê:</b> sem isso nenhuma das outras prioridades pode ser avaliada, e devolve horas do time.</div></div></div>
+  <div class="pri"><div class="num">5</div><div><h4>Nome da loja no formulário</h4><p>Entra o nome da autopeça, saem os campos que não são usados.</p><div class="pq"><b>Por quê:</b> custo perto de zero e é pré-requisito de enriquecimento e prospecção.</div></div></div>
+  <div class="pri"><div class="num">6</div><div><h4>Prospecção ativa com cerco</h4><p>Escolher quem vale o esforço e ir por vários canais até falar com o decisor.</p><div class="pq"><b>Por quê:</b> alto retorno, mas depende do passo 5 e de o inbound não estar vazando.</div></div></div>
 </section>
 
-<section>
+<section id="passos">
   <h2>Próximos passos</h2>
-  <table>
-    <tr><th style="width:12%">Quem</th><th style="width:38%">O quê</th><th>Detalhe</th></tr>
-    <tr><td><span class="q g">Gaud</span></td><td>Enviar acesso à planilha de indicadores</td><td>É a base da primeira análise.</td></tr>
-    <tr><td><span class="q g">Gaud</span></td><td>Criar usuário no CRM para o Gardel</td><td>Para olhar os leads por dentro e definir a régua de tempo de primeiro contato.</td></tr>
-    <tr><td><span class="q b">Batista</span></td><td>Analisar os indicadores e devolver plano de ação</td><td>Primeira devolutiva com a leitura do funil.</td></tr>
-    <tr><td><span class="q g">Gaud</span></td><td>Ajustar os formulários das campanhas</td><td>Incluir o nome da loja, remover o que não é usado.</td></tr>
-    <tr><td><span class="q d">Os dois</span></td><td>Auditar a primeira mensagem</td><td>Qual é o texto, se vai áudio, em quanto tempo sai. Depois, testar variações.</td></tr>
-    <tr><td><span class="q d">Os dois</span></td><td>Estruturar a retomada</td><td>Canais, mensagens, frequência diária e priorização por temperatura.</td></tr>
-    <tr><td><span class="q g">Gaud</span></td><td>Baixar as transcrições e ligar aos negócios</td><td>O e-mail da primeira linha do arquivo casa com o lead. Definir antes o formato da documentação.</td></tr>
-    <tr><td><span class="q d">Os dois</span></td><td>Desenhar a prospecção ativa</td><td>Seleção de quem vale o cerco, abordagem personalizada, múltiplos canais. Não é volume, é escolha.</td></tr>
-  </table>
+  <p class="lead">Marque conforme for concluindo. Fica salvo neste navegador e serve de pauta da próxima sessão.</p>
+  <div class="prog"><span id="pct">0 de 0</span><div class="bar"><i id="bar"></i></div></div>
+  <div id="lista"></div>
+</section>
+
+<section id="riscos">
+  <h2>Riscos e prazos</h2>
+  <div class="item"><h4>Verba nova antes do funil arrumado</h4><p>Existe uma proposta de gestão de tráfego com investimento mínimo mensal em mídia. Enquanto a conversão estiver em 9% e o tempo de resposta em horas, cada real a mais amplifica a perda. A decisão é esperar a leitura do funil, o que leva semanas, não meses.</p></div>
+  <div class="item"><h4>WhatsApp não oficial</h4><p>As APIs não oficiais devem ser cortadas a partir de outubro. Qualquer automação de mensagem construída sobre elas nasce com data de validade. O caminho seguro é número oficial, mesmo custando mais por mensagem.</p></div>
+  <div class="item"><h4>Trocar o CRM no meio da arrumação</h4><p>A economia mensal é real e a discussão é legítima, mas migração no meio de um funil furado troca um problema conhecido por um desconhecido. A dor hoje é de adoção e de registro, não de ferramenta.</p></div>
 </section>
 
 </div>
@@ -142,5 +274,47 @@ footer b{color:var(--ink);font-weight:500}
   <b>batista.growth</b> <span class="cur">_</span><br>
   Crescimento não é feeling. É método, clareza e decisão.
 </div></footer>
+
+<script>
+/* Próximos passos: quem faz, o que é, e o estado salvo no navegador. */
+const PASSOS = [
+  ['gaud','Enviar acesso à planilha de indicadores','É a base da primeira análise do funil.'],
+  ['gaud','Criar usuário no CRM para o Gardel','Para olhar os negócios por dentro e fechar a régua de tempo de primeiro contato.'],
+  ['batista','Analisar os indicadores e devolver o plano de ação','Primeira devolutiva com a leitura do funil.'],
+  ['dois','Escrever a régua do tempo de resposta','O que marca início e fim, e qual janela conta. Sem isso o número não é defensável.'],
+  ['dois','Levantar a primeira mensagem que sai hoje','Qual é o texto, se vai áudio, em quanto tempo sai. Vale ler as últimas vinte conversas.'],
+  ['dois','Escrever duas versões da primeira mensagem e testar','Uma padrão e uma personalizada, duas semanas cada, medindo taxa de resposta.'],
+  ['gaud','Definir o bloco diário de retomada','Horário fixo, cinco por dia, começando pelos quentes.'],
+  ['dois','Definir o formato da documentação de call','O que precisa constar na nota do negócio. Antes de qualquer automação.'],
+  ['gaud','Documentar as calls na mão por duas semanas','É o teste do formato e já melhora a retomada imediatamente.'],
+  ['gaud','Baixar as transcrições do Drive','Para casar com os negócios pelo e-mail e recuperar o histórico.'],
+  ['gaud','Incluir o nome da loja nos formulários','E remover faturamento e número de funcionários enquanto não forem usados.'],
+  ['batista','Passar a referência do quiz conversacional','Para o teste de captação com entrega de valor antes do dado.'],
+  ['dois','Escolher como centralizar o WhatsApp comercial','Com número oficial, por causa do corte das APIs não oficiais.'],
+  ['dois','Desenhar a prospecção ativa','Quem vale o cerco, com que abordagem e por quais canais.'],
+];
+const ROT = {gaud:['Gaud','g'], batista:['Batista','b'], dois:['Os dois','d']};
+const CHAVE = 'gaud-passos-v1';
+let estado = {};
+try{ estado = JSON.parse(localStorage.getItem(CHAVE) || '{}'); }catch(e){ estado = {}; }
+
+function pinta(){
+  const feitos = PASSOS.filter((_,i) => estado['p'+i]).length;
+  document.getElementById('pct').textContent = feitos + ' de ' + PASSOS.length + ' concluídos';
+  document.getElementById('bar').style.width = (PASSOS.length ? feitos/PASSOS.length*100 : 0) + '%';
+}
+document.getElementById('lista').innerHTML = PASSOS.map(([quem,titulo,det],i) => `
+  <label class="passo ${estado['p'+i]?'ok':''}" id="ps${i}">
+    <input type="checkbox" data-i="${i}" ${estado['p'+i]?'checked':''}>
+    <span class="txt"><b>${titulo}</b><p><span class="tag ${ROT[quem][1]}">${ROT[quem][0]}</span> ${det}</p></span>
+  </label>`).join('');
+document.querySelectorAll('.passo input').forEach(c => c.addEventListener('change', () => {
+  estado['p'+c.dataset.i] = c.checked;
+  document.getElementById('ps'+c.dataset.i).classList.toggle('ok', c.checked);
+  localStorage.setItem(CHAVE, JSON.stringify(estado));
+  pinta();
+}));
+pinta();
+</script>
 </body>
 </html>
