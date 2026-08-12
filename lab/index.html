@@ -696,11 +696,14 @@ const PROFS = ['Todos','Médico(a)','Nutricionista','Psicólogo(a)','Educador f�
    O mesmo app serve o acervo do Gardel e a área de cada cliente. Quem manda é a
    pasta: /levebatista/ => 'gardel' (público) · /gaud/ => 'gaud' (cliente).
    Cliente novo = criar o ambiente no admin e copiar esta pasta com o novo nome. */
+const PARTES = location.pathname.split('/').filter(Boolean).map(x => x.replace(/\.html$/,''));
+const MODO_ADMIN = PARTES[PARTES.length-1] === 'admin';        // /<ambiente>/admin = porta do Batista
 const AMBIENTE = (function(){
-  const p = location.pathname.split('/').filter(Boolean);
-  const dir = p.length ? p[p.length-1].replace(/\.html$/,'') : '';
+  const p = MODO_ADMIN ? PARTES.slice(0,-1) : PARTES;
+  const dir = p.length ? p[p.length-1] : '';
   return (!dir || dir === 'lab' || dir === 'index') ? 'gardel' : dir;
 })();
+const RAIZ_AMB = '/' + (AMBIENTE === 'gardel' ? 'lab' : AMBIENTE) + '/';   // onde moram os documentos
 let AMB = null;   // { nome, tipo, schoolOn, foco, meta, bemVindo }
 
 /* ===== ESTADO (fonte: Supabase lp · tabelas lab_items / lab_announcements / lab_banner) =====
@@ -1018,6 +1021,33 @@ async function portaDoAmbiente(){
   let porta = null;
   try{ const {data} = await sb.rpc('lab_ambiente_porta',{p_slug:AMBIENTE}); porta = data; }catch(e){}
   if(!porta || porta.tipo !== 'cliente') return false;
+  if(MODO_ADMIN){                       // esta é a porta do Batista: login de conta, sem senha de cliente
+    document.querySelectorAll('.lab-suffix').forEach(e => { e.textContent = porta.nome; });
+    const gh0 = document.querySelector('.gate-hero h1');
+    if(gh0) gh0.innerHTML = 'Painel de <span class="grad-text">' + porta.nome + '</span>.';
+    const gp0 = document.querySelector('.gate-hero p');
+    if(gp0) gp0.textContent = 'Entre com sua conta para publicar e editar o material deste cliente.';
+    const ey0 = document.querySelector('.eyebrow');
+    if(ey0) ey0.innerHTML = '<span class="dot"></span>Administração';
+    // porta do Batista: sem cadastro, sem preview, sem promessa de acervo
+    ['authSwitchText','authSwitch'].forEach(id => { const e = document.getElementById(id); if(e) e.style.display = 'none'; });
+    document.querySelectorAll('.peek, .legal').forEach(e => { e.style.display = 'none'; });
+    const feats2 = [
+      ['Publicar material','Sobe documento, análise ou painel para o cliente.'],
+      ['Editar no ar','Muda foco, meta e material sem depender de deploy.'],
+      ['Ver o que o cliente vê','A área abre igualzinho, com o que está publicado.']
+    ];
+    document.querySelectorAll('.gate-feat .f').forEach((el,i) => {
+      if(!feats2[i]) return;
+      const b = el.querySelector('.ft b'), sp = el.querySelector('.ft span:last-child');
+      if(b) b.textContent = feats2[i][0];
+      if(sp) sp.textContent = feats2[i][1];
+    });
+    const gf0 = document.querySelector('.gate-foot');
+    if(gf0) gf0.textContent = porta.nome + ' · painel do Batista';
+    mostraLoginAdmin();
+    return true;
+  }
   const f = document.getElementById('signupForm'); if(f) f.style.display = 'none';
   const pc = document.getElementById('portaCliente'); if(pc) pc.style.display = '';
   const tit = document.getElementById('pcTitulo'); if(tit) tit.textContent = porta.nome;
@@ -1351,7 +1381,7 @@ function abreMaterial(t){
   const host=document.getElementById('docHost');
   const sh=host.attachShadow({mode:'open'});
   sh.innerHTML='<div style="font:14px system-ui;color:#565660;padding:40px 0">carregando o material…</div>';
-  fetch(t.link).then(r=>r.text()).then(html=>{
+  fetch(/^https?:\/\//i.test(t.link) ? t.link : RAIZ_AMB + t.link).then(r=>r.text()).then(html=>{
     const dom=new DOMParser().parseFromString(html,'text/html');
     sh.innerHTML='';
     const base=document.createElement('style');
