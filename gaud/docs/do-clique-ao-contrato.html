@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Do Clique ao Contrato</title>
+
+<meta name="robots" content="noindex, nofollow">
+<style>
+@font-face{font-family:'Space Grotesk';src:url('../assets/fonts/space-grotesk-v22-latin-700.ttf');font-weight:700;font-display:swap}
+@font-face{font-family:'Space Grotesk';src:url('../assets/fonts/space-grotesk-v22-latin-500.ttf');font-weight:500;font-display:swap}
+@font-face{font-family:'Inter';src:url('../assets/fonts/inter-v20-latin-regular.ttf');font-weight:400;font-display:swap}
+@font-face{font-family:'Inter';src:url('../assets/fonts/inter-v20-latin-500.ttf');font-weight:500;font-display:swap}
+@font-face{font-family:'Inter';src:url('../assets/fonts/inter-v20-latin-700.ttf');font-weight:700;font-display:swap}
+@font-face{font-family:'IBM Plex Mono';src:url('../assets/fonts/ibm-plex-mono-v20-latin-regular.ttf');font-weight:400;font-display:swap}
+@font-face{font-family:'IBM Plex Mono';src:url('../assets/fonts/ibm-plex-mono-v20-latin-500.ttf');font-weight:500;font-display:swap}
+@font-face{font-family:'IBM Plex Mono';src:url('../assets/fonts/ibm-plex-mono-v20-latin-600.ttf');font-weight:600;font-display:swap}
+
+  :root{
+    --porcelana:#F5F4F0;--branco:#FFFFFF;--ink:#0E0E12;--grafite:#565660;
+    --cobalto:#2743F5;--amber:#F0A500;--linha:#E2E0DA;--linha2:#EFEDE8;
+    --display:"Space Grotesk",system-ui,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+    --corpo:"Inter",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--porcelana);color:var(--ink);font-family:var(--corpo);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+
+  header.top{padding:60px 0 34px;border-bottom:1px solid var(--linha)}
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--cobalto)}
+  h1{font-family:var(--display);font-weight:700;font-size:clamp(32px,4.6vw,56px);line-height:1.03;margin:14px 0 0;letter-spacing:-.025em}
+  h1 .pill{background:var(--cobalto);color:#fff;padding:0 .16em;border-radius:5px}
+  h1 .dot{color:var(--amber)}
+  .lead{max-width:74ch;color:var(--grafite);font-size:17px;margin:18px 0 0}
+  .lead b{color:var(--ink);font-weight:500}
+  .selo{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;font-family:var(--mono);font-size:11.5px}
+  .selo span{border:1px solid var(--linha);background:var(--branco);padding:6px 10px;border-radius:5px;color:var(--grafite)}
+  .selo span b{color:var(--ink);font-weight:500}
+
+  .cols{display:grid;grid-template-columns:220px 1fr;gap:44px;padding:38px 0 100px;align-items:start}
+  nav.idx{position:sticky;top:24px}
+  nav.idx a{display:block;text-decoration:none;color:var(--grafite);font-family:var(--mono);font-size:12px;padding:7px 0;border-bottom:1px solid var(--linha)}
+  nav.idx a:hover{color:var(--cobalto)}
+  nav.idx a i{color:var(--cobalto);font-style:normal;margin-right:7px}
+
+  section{margin-bottom:56px;scroll-margin-top:20px}
+  .sh{display:flex;align-items:baseline;gap:12px;margin-bottom:8px}
+  .snum{font-family:var(--mono);font-size:12px;color:var(--cobalto);font-weight:600}
+  h2{font-family:var(--display);font-weight:700;font-size:27px;margin:0;letter-spacing:-.015em}
+  h3{font-family:var(--display);font-weight:700;font-size:18px;margin:30px 0 10px}
+  h4{font-family:var(--mono);font-weight:600;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--cobalto);margin:24px 0 8px}
+  p{margin:0 0 12px;max-width:82ch}
+  ul,ol{margin:0 0 14px;padding-left:20px;max-width:82ch}
+  li{margin-bottom:7px}
+  code{font-family:var(--mono);font-size:.88em;background:#EDEBE5;padding:1px 5px;border-radius:3px;color:var(--ink)}
+  b,strong{font-weight:600}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:13.5px;background:var(--branco)}
+  th{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;text-align:left;padding:10px 12px;border-bottom:2px solid var(--ink);color:var(--ink);font-weight:600}
+  td{padding:10px 12px;border-bottom:1px solid var(--linha2);vertical-align:top}
+  tr:last-child td{border-bottom:1px solid var(--linha)}
+  td b{font-weight:600}
+  td code{font-size:12px;background:#F0EEE9}
+  .tbl-wrap{overflow-x:auto}
+
+  .box{border:1px solid var(--linha);background:var(--branco);border-radius:8px;padding:18px 20px;margin:18px 0}
+  .box h5{font-family:var(--display);font-size:16px;margin:0 0 8px}
+  .box p:last-child,.box ul:last-child{margin-bottom:0}
+  .box.alerta{border-left:3px solid var(--amber)}
+  .box.info{border-left:3px solid var(--cobalto)}
+  .box.palco{background:var(--ink);color:#C9C7C0;border-color:var(--ink)}
+  .box.palco h5{color:var(--porcelana)}
+  .box.palco h5 .dot{color:var(--amber)}
+  .box.palco b{color:var(--porcelana)}
+  .box.palco code{background:#22222A;color:#E7E5DF}
+
+  .fluxo{background:var(--branco);border:1px solid var(--linha);border-radius:8px;padding:22px;margin:18px 0;overflow-x:auto}
+  .fluxo pre{font-family:var(--mono);font-size:12.5px;line-height:1.75;margin:0;color:var(--ink);white-space:pre}
+  .fluxo .c{color:var(--cobalto)}
+  .fluxo .a{color:#8A6100}
+  .fluxo .g{color:var(--grafite)}
+
+  .passo{border-left:2px solid var(--linha);padding:0 0 4px 22px;margin-left:8px;position:relative}
+  .passo>.p{margin-bottom:26px;position:relative}
+  .passo>.p::before{content:attr(data-n);position:absolute;left:-33px;top:1px;width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--porcelana);font-family:var(--mono);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center}
+  .passo>.p>b{display:block;font-family:var(--display);font-size:16.5px;font-weight:700;margin-bottom:5px}
+  .passo>.p p{margin-bottom:8px}
+
+  .req{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin:16px 0}
+  .req div{background:var(--branco);border:1px solid var(--linha);border-radius:7px;padding:13px 15px}
+  .req b{display:block;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--cobalto);margin-bottom:5px}
+  .req span{font-size:13.5px;color:var(--grafite)}
+
+  .marca{display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;border-radius:3px;background:#E6E9FE;color:var(--cobalto)}
+  .marca.al{background:#FBF0D6;color:#7A5400}
+
+  footer{border-top:1px solid var(--linha);padding:28px 0 70px;font-family:var(--mono);font-size:12px;color:var(--grafite)}
+  footer b{color:var(--ink);font-weight:500}
+  .cursor{color:var(--amber)}
+
+  @media (max-width:900px){
+    .cols{grid-template-columns:1fr;gap:22px}
+    nav.idx{position:static;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:0 16px}
+  }
+  @media print{
+    nav.idx{display:none}
+    .cols{grid-template-columns:1fr}
+    body{background:#fff;font-size:11.5pt}
+    section{break-inside:auto}
+    table,.box,.fluxo{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="kicker">&gt; arquitetura_de_metricas // consultoria comercial</div>
+    <h1>Do clique ao contrato: como cada número é <span class="pill">construído</span><span class="dot">.</span></h1>
+    <p class="lead">Este documento descreve a arquitetura, o catálogo de métricas e as regras de negócio dos dois painéis que rodam hoje em produção: um de <b>aquisição</b> (mídia paga cruzada com o funil) e um de <b>comercial</b> (CRM normalizado em banco próprio). Não é uma lista de KPIs bonitos. É o passo a passo de como capturar cada dado, onde cada regra vive e quais armadilhas mudam o número sem ninguém perceber.</p>
+    <div class="selo">
+      <span><b>Trilho A</b> · Meta Marketing API</span>
+      <span><b>Trilho B</b> · CRM · n8n · Supabase</span>
+      <span><b>28</b> métricas catalogadas</span>
+      <span><b>12</b> regras de negócio</span>
+      <span>Agosto de 2026</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap cols">
+<nav class="idx">
+  <a href="#s1"><i>01</i>O princípio</a>
+  <a href="#s2"><i>02</i>Arquitetura</a>
+  <a href="#s3"><i>03</i>Métricas de mídia</a>
+  <a href="#s4"><i>04</i>Métricas de funil</a>
+  <a href="#s5"><i>05</i>O cruzamento</a>
+  <a href="#s6"><i>06</i>Regras de negócio</a>
+  <a href="#s7"><i>07</i>Construir o trilho A</a>
+  <a href="#s8"><i>08</i>Construir o trilho B</a>
+  <a href="#s9"><i>09</i>Pré-requisitos</a>
+  <a href="#s10"><i>10</i>Armadilhas</a>
+  <a href="#s11"><i>11</i>Anti-padrões</a>
+  <a href="#s12"><i>12</i>Ordem de implantação</a>
+</nav>
+
+<main>
+
+<!-- 01 -->
+<section id="s1">
+  <div class="sh"><span class="snum">01</span><h2>O princípio que sustenta os dois painéis</h2></div>
+  <p>Um painel comercial só vale alguma coisa se responder três perguntas sem discussão: <b>quanto entrou</b>, <b>quanto custou</b> e <b>quanto virou contrato</b>. A dificuldade nunca é desenhar o gráfico. É garantir que o número embaixo do gráfico signifique sempre a mesma coisa.</p>
+  <p>Por isso a arquitetura obedece a quatro decisões que não se remexem:</p>
+  <div class="box info">
+    <h5>As quatro decisões estruturais</h5>
+    <ul>
+      <li><b>O front não decide regra comercial.</b> O que é venda, o que é reunião, o que é lead é definido no banco, em views e funções versionadas. A tela só lê e exibe. Se a regra vive no JavaScript, cada tela conta de um jeito.</li>
+      <li><b>Dado externo é copiado para dentro.</b> API de terceiro (Meta, gateway, CRM) é consultada uma vez e guardada. Período fechado congela, período corrente tem validade curta. Ninguém depende de uma API alheia para abrir um painel.</li>
+      <li><b>O CRM continua sendo o CRM.</b> O banco analítico é uma cópia normalizada, não um substituto. O time comercial não muda de ferramenta para o painel existir.</li>
+      <li><b>O nome é o contrato.</b> Nomenclatura de campanha, nome de etapa e nome de evento são a chave de junção entre sistemas que não se conhecem. Nome bagunçado quebra o painel inteiro, e nenhum código conserta isso depois.</li>
+    </ul>
+  </div>
+  <p>O resultado prático: cada card do painel tem uma fonte única, uma fórmula escrita e um responsável pela definição. Quando alguém pergunta "de onde veio esse 4,15?", a resposta leva menos de dez segundos.</p>
+</section>
+
+<!-- 02 -->
+<section id="s2">
+  <div class="sh"><span class="snum">02</span><h2>A arquitetura em dois trilhos</h2></div>
+  <p>São dois pipelines independentes, com naturezas diferentes, que só se encontram no cruzamento final (seção 05). Tratar os dois como se fossem um é o erro mais comum.</p>
+
+  <h3>Trilho A: mídia paga</h3>
+  <p>Natureza: dado agregado, imutável depois de alguns dias, caro de consultar, vive fora de casa.</p>
+  <div class="fluxo"><pre><span class="c">Meta Marketing API</span> (Graph, insights)
+        |
+        |  leitura autenticada por usuário de sistema (permissão ads_read)
+        v
+<span class="c">Função serverless</span>  ->  normaliza campos, deduplica eventos, converte moeda
+        |
+        |  grava o resultado
+        v
+<span class="a">Tabela de cache</span>  ->  mês fechado: congelado  ·  mês corrente: 30 min  ·  botão força
+        |
+        v
+<span class="c">Painel</span> (cards de investimento, CPM, CTR, conversão da LP, tabela por anúncio)</pre></div>
+
+  <h3>Trilho B: funil comercial</h3>
+  <p>Natureza: dado transacional, muda o tempo todo, precisa de histórico de movimentação, é a fonte da verdade da receita.</p>
+  <div class="fluxo"><pre><span class="c">CRM</span> (negócios, etapas, valores, campos personalizados, histórico de movimentação)
+        |
+        |  webhook por evento (tempo real)  +  poller de recuperação (janela móvel)
+        v
+<span class="c">Orquestrador</span> (n8n)  ->  normaliza etapa, calcula o desfecho, controla cota e retry
+        |
+        v
+<span class="a">Banco analítico</span> (Postgres/Supabase)
+        |    tabelas base: negócios · eventos de etapa · mapeamentos · estado de sincronização
+        |    camada de fatos: views que carimbam "isto é venda", "isto é reunião"
+        |    camada de leitura: funções com parâmetros de período e recorte
+        v
+<span class="c">Painel</span> (KPIs, funil, receita, canais, vendedores, perdas, forecast)</pre></div>
+
+  <div class="box alerta">
+    <h5>Por que o orquestrador existe</h5>
+    <p>Poderia ser um script chamando a API do CRM. Não é, por três motivos que aparecem em produção: <b>cota</b> (a API do CRM tem teto diário e precisa de retry com espera exponencial), <b>histórico</b> (o estado atual do negócio não conta quando ele passou por cada etapa, isso exige uma chamada extra por negócio) e <b>gap silencioso</b> (webhook falha sem avisar; sem um poller varrendo o que mudou, o número fica errado e ninguém percebe).</p>
+  </div>
+
+  <h4>Camadas do banco analítico, e por que são três</h4>
+  <div class="tbl-wrap"><table>
+    <tr><th>Camada</th><th>O que é</th><th>Por que separada</th></tr>
+    <tr><td><b>Base</b></td><td>Espelho normalizado do CRM: um registro por negócio, um por evento de mudança de etapa</td><td>É o único lugar que a ingestão escreve. Reprocessar não perde dado.</td></tr>
+    <tr><td><b>Fatos</b></td><td>Views que aplicam a regra: <code>é_venda_real</code>, <code>é_evento_de_reunião</code>, <code>é_no_show</code>, receita atribuída</td><td>A regra fica em um lugar só. Mudou a definição de venda, muda aqui e todo painel acompanha.</td></tr>
+    <tr><td><b>Leitura</b></td><td>Funções parametrizadas (período, recorte, dimensão) que devolvem o painel pronto</td><td>O front manda período e filtro, recebe número. Não faz conta, não interpreta.</td></tr>
+  </table></div>
+</section>
+
+<!-- 03 -->
+<section id="s3">
+  <div class="sh"><span class="snum">03</span><h2>Catálogo: métricas de mídia</h2></div>
+  <p>Todas vêm do endpoint de <i>insights</i> da API de anúncios, em três níveis: conta (totais do período), campanha (base do custo por canal) e anúncio (a tabela criativo a criativo). Pedir os três níveis separados é intencional: o nível conta responde em uma chamada, enquanto varrer os anúncios da conta inteira levaria minutos.</p>
+  <div class="tbl-wrap"><table>
+    <tr><th style="width:19%">Métrica</th><th style="width:30%">Definição</th><th style="width:26%">Como se captura</th><th>Cuidado</th></tr>
+    <tr><td><b>Investimento</b></td><td>Gasto no período</td><td>campo <code>spend</code></td><td>Vem na moeda da conta. Se a conta é em dólar e a receita em real, o cruzamento exige câmbio (ver 06.11).</td></tr>
+    <tr><td><b>Impressões</b></td><td>Quantas vezes o anúncio apareceu</td><td><code>impressions</code></td><td>Não é gente. É exibição.</td></tr>
+    <tr><td><b>Alcance</b></td><td>Pessoas únicas atingidas</td><td><code>reach</code></td><td>Não soma entre períodos nem entre contas (a mesma pessoa é contada uma vez em cada).</td></tr>
+    <tr><td><b>Frequência</b></td><td>Vezes que a mesma pessoa viu</td><td>impressões ÷ alcance</td><td>Acima de 3 em público pequeno, é sinal de saturação, não de alcance.</td></tr>
+    <tr><td><b>CPM</b></td><td>Custo por mil impressões</td><td><code>cpm</code></td><td>Mede o preço do leilão, não a qualidade do anúncio.</td></tr>
+    <tr><td><b>CTR único do link</b> <span class="marca">crítico</span></td><td>De cada 100 pessoas alcançadas, quantas clicaram no link</td><td><code>unique_link_clicks_ctr</code></td><td><b>Não usar o campo <code>ctr</code> puro.</b> Ele conta qualquer clique (curtir, comentar, expandir) sobre impressões e vem sempre bem mais alto que o número que o gestor lê no gerenciador.</td></tr>
+    <tr><td><b>Cliques únicos no link</b></td><td>Pessoas distintas que clicaram</td><td><code>unique_actions</code> → tipo <code>link_click</code></td><td>Base do CTR único e do custo por clique.</td></tr>
+    <tr><td><b>Custo por clique</b></td><td>Preço de levar uma pessoa ao site</td><td>investimento ÷ cliques únicos</td><td>sem armadilha conhecida</td></tr>
+    <tr><td><b>Page views da LP</b></td><td>Carregamentos completos da página de destino</td><td><code>actions</code> → <code>landing_page_view</code></td><td>É sempre menor que cliques. A diferença é gente que desistiu no carregamento (site lento mata verba aqui).</td></tr>
+    <tr><td><b>Leads (pixel)</b></td><td>Conversões registradas pelo pixel</td><td><code>actions</code> → <code>lead</code>, com alternativa <code>offsite_conversion.fb_pixel_lead</code></td><td><b>Nunca somar os tipos.</b> A API devolve o mesmo evento agregado, em versão omni e em versão pixel. Somar dobra os leads e triplica as compras. Ver 06.09.</td></tr>
+    <tr><td><b>Conversão da LP</b></td><td>De cada 100 que abriram a página, quantos viraram lead</td><td>leads ÷ page views</td><td>Os dois lados na mesma janela e mesma atribuição. Misturar lead do CRM com page view da mídia inventa uma taxa que não existe.</td></tr>
+    <tr><td><b>CPL</b></td><td>Custo por lead do pixel</td><td>investimento ÷ leads</td><td>É o CPL da plataforma, não do CRM. Os dois divergem, e a divergência é informação (ver 06.10).</td></tr>
+  </table></div>
+  <div class="box info">
+    <h5>Por que o cache existe</h5>
+    <p>Consultar a API a cada carregamento deixa o painel lento, frágil e refém de cota. A regra implantada: <b>período fechado congela permanentemente</b> depois de três dias de carência (tempo de a janela de atribuição assentar) e <b>período corrente vale trinta minutos</b>, com um botão que força a atualização. A consequência precisa ser aceita conscientemente: reprocessar um mês antigo faria a plataforma recalcular com a atribuição de hoje, e números já reportados ao time mudariam. Nesse projeto a decisão foi <b>manter congelado</b>: histórico estável vale mais que histórico exato.</p>
+  </div>
+</section>
+
+<!-- 04 -->
+<section id="s4">
+  <div class="sh"><span class="snum">04</span><h2>Catálogo: métricas de funil</h2></div>
+  <p>Vêm do banco analítico alimentado pelo CRM. Todas respeitam um recorte de período, uma direção de funil (entrada por demanda ou por prospecção) e, opcionalmente, canal, vendedor ou pré-vendedor.</p>
+  <div class="tbl-wrap"><table>
+    <tr><th style="width:19%">Métrica</th><th style="width:34%">Definição operacional</th><th>Origem e regra</th></tr>
+    <tr><td><b>MQL (Leads)</b></td><td>Negócios criados no período</td><td>Contagem por data de criação. <b>Exclui recuperação e pós-venda</b>: só entrada nova (demanda + prospecção). Ver 06.04.</td></tr>
+    <tr><td><b>SQL (Agendados)</b></td><td>Reuniões agendadas</td><td>Evento de entrada nas etapas do grupo "reunião agendada" ou "confirmada". Vem do histórico de movimentação, não do estado atual.</td></tr>
+    <tr><td><b>OPP (Realizados)</b></td><td>Reuniões que aconteceram</td><td>Evento de entrada em "call realizada" ou "reunião realizada". É a métrica que separa agenda cheia de agenda produtiva.</td></tr>
+    <tr><td><b>No-show</b></td><td>Agendou e não apareceu</td><td>Evento de entrada na etapa de no-show. Cruzado com agendados, dá a taxa de comparecimento.</td></tr>
+    <tr><td><b>Oportunidades</b></td><td>Negócios que chegaram a proposta ou negociação</td><td>Por data do evento de entrada nas etapas comerciais (proposta, negociação, previsão).</td></tr>
+    <tr><td><b>Clientes (Vendas)</b></td><td>Contratos fechados</td><td>Definição fechada em 06.01. Ganho no funil de pré-venda <b>não</b> é venda.</td></tr>
+    <tr><td><b>Faturamento (TCV)</b></td><td>Valor total contratado no período</td><td>Soma do valor dos negócios ganhos. <b>É contrato, não caixa.</b> Receita realizada exige a fonte do financeiro, que é outro sistema.</td></tr>
+    <tr><td><b>Ticket médio</b></td><td>Faturamento ÷ clientes</td><td>Calculado no backend, junto com as vendas, para não divergir de tela para tela.</td></tr>
+    <tr><td><b>Perdas</b></td><td>Negócios marcados como perdidos</td><td>Agrupadas por motivo normalizado. O motivo cru do CRM costuma ter dezenas de variações da mesma coisa.</td></tr>
+    <tr><td><b>Forecast</b></td><td>Negócios abertos em etapa de previsão, com valor</td><td>Também expõe abertos sem próxima atividade e abertos com atividade vencida: são os dois sintomas de pipeline abandonado.</td></tr>
+    <tr><td><b>Taxas de conversão</b></td><td>lead→agendado, lead→realizado, realizado→venda, lead→venda</td><td>Calculadas no backend por dimensão, para que o breakdown por canal e o KPI global nunca se contradigam.</td></tr>
+  </table></div>
+
+  <h4>Normalização de etapas: o passo que torna tudo comparável</h4>
+  <p>Cada funil do CRM tem nomes próprios de etapa, e eles mudam com o tempo. O painel nunca lê o nome cru: lê um <b>grupo normalizado</b>, mapeado em tabela. No projeto de referência os grupos são:</p>
+  <p><code>lead_recebido</code> · <code>primeiro_contato</code> · <code>segundo_contato</code> · <code>reuniao_agendada</code> · <code>reuniao_confirmada</code> · <code>call_realizada</code> · <code>reuniao_realizada</code> · <code>no_show</code> · <code>proposta_enviada</code> · <code>negociacao_ativa</code> · <code>forecast</code></p>
+  <p>Renomear uma etapa no CRM passa a ser inofensivo: mexe-se em uma linha do mapeamento. Criar uma etapa nova, porém, exige atualizar o mapeamento na mão. Enquanto ninguém faz isso, ela entra como "não informado" e some do relatório.</p>
+</section>
+
+<!-- 05 -->
+<section id="s5">
+  <div class="sh"><span class="snum">05</span><h2>O cruzamento: onde mídia encontra receita</h2></div>
+  <p>Esta é a parte que a maioria dos painéis não tem, e é a que responde a pergunta que o dono faz. Investimento está no anunciante; venda está no CRM. Os dois não têm chave comum, e sim uma convenção.</p>
+
+  <h4>A chave de junção</h4>
+  <p>O <b>nome da campanha</b> é traduzido para <b>canal</b> por uma função de correspondência, e o canal existe também no CRM como campo do negócio. Feito isso, gasto e resultado sentam na mesma linha.</p>
+  <div class="fluxo"><pre>nome da campanha na plataforma          canal          campo canal no CRM
+<span class="g">------------------------------------------------------------------------</span>
+"...CALCULADORA..."            ->    Calculadora    ->  Leads Magnets - Calculadora
+"...WORKSHOP..."               ->    Workshop       ->  Workshop
+"...DIAGNOSTICO..."            ->    Diagnóstico    ->  Diagnóstico
+"...[LAB]..."                  ->    Lab            ->  Plataforma de conteúdo
+"...[COM]..."                  ->    Comunidade     ->  Criou Comunidade
+<span class="g">a ordem das regras importa: um nome pode conter dois marcadores</span></pre></div>
+
+  <h4>A escada de custo</h4>
+  <div class="tbl-wrap"><table>
+    <tr><th style="width:16%">Coluna</th><th style="width:32%">Fórmula</th><th>Para que serve</th></tr>
+    <tr><td><b>Custo MQL</b></td><td>gasto do canal ÷ leads do canal</td><td>Preço de fazer alguém levantar a mão.</td></tr>
+    <tr><td><b>Custo SQL</b></td><td>gasto do canal ÷ reuniões agendadas</td><td>Onde canal barato começa a ficar caro: lead de R$ 5 que não agenda custa mais que lead de R$ 20 que agenda.</td></tr>
+    <tr><td><b>Custo OPP</b></td><td>gasto do canal ÷ reuniões realizadas</td><td>Separa o canal que enche a agenda do canal que enche a agenda de gente que aparece.</td></tr>
+    <tr><td><b>CPA</b></td><td>gasto do canal ÷ clientes fechados</td><td>O número final: quanto de mídia custou cada contrato. Canal sem cliente mostra traço, nunca zero.</td></tr>
+    <tr><td><b>ROAS (TCV)</b></td><td>faturamento contratado ÷ (gasto × câmbio)</td><td>Retorno sobre mídia. Explicitar TCV é obrigatório: é contrato, não dinheiro em conta.</td></tr>
+  </table></div>
+
+  <div class="box alerta">
+    <h5>Duas provas obrigatórias na tela</h5>
+    <ul>
+      <li><b>Reconciliação:</b> a soma do gasto dos canais tem que fechar com o total da conta no mesmo período. A linha "total" mostra isso explicitamente. Sem essa conferência, uma campanha fora da convenção de nomes some da tabela e ninguém nota.</li>
+      <li><b>Canal que queima verba sem lead:</b> se há gasto e nenhum lead no CRM, a linha aparece do mesmo jeito, marcada. O erro clássico é filtrar por "canais que têm lead" e esconder justamente o dinheiro que está indo embora.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 06 -->
+<section id="s6">
+  <div class="sh"><span class="snum">06</span><h2>As regras de negócio que mudam o número</h2></div>
+  <p>Cada uma destas regras foi escrita depois de uma divergência real entre o painel e o que o time acreditava. São elas que fazem o número ser defensável em reunião.</p>
+
+  <div class="tbl-wrap"><table>
+    <tr><th style="width:4%">#</th><th style="width:24%">Regra</th><th>Definição e motivo</th></tr>
+    <tr><td>01</td><td><b>O que é venda real</b></td><td>Negócio <b>ganho</b> + desfecho <b>contrato fechado</b> + pertencente às áreas de <b>vendas ou recuperação</b>. As três condições juntas. Qualquer relaxamento infla receita.</td></tr>
+    <tr><td>02</td><td><b>Ganho de pré-venda não é venda</b> <span class="marca">crítico</span></td><td>Quando o pré-vendedor marca a reunião, ele "ganha" o card dele e passa adiante. Isso é <b>handoff</b>, e conta como reunião realizada, nunca como contrato. Contar esse ganho como venda foi o erro que mais distorceu relatório antes da normalização.</td></tr>
+    <tr><td>03</td><td><b>Pós-venda fora da receita nova</b></td><td>Negócios de onboarding e sucesso do cliente não entram em venda nova nem em receita nova. Se entram, o mês parece ótimo e o comercial parece produtivo sem ter vendido nada.</td></tr>
+    <tr><td>04</td><td><b>O que conta como lead</b></td><td>Só entrada nova: demanda inbound + prospecção ativa. <b>Recuperação e pós-venda ficam fora</b>, senão a base de cálculo de todas as taxas de conversão fica inflada e a conversão despenca artificialmente.</td></tr>
+    <tr><td>05</td><td><b>Evento × safra</b> <span class="marca">crítico</span></td><td>Duas leituras legítimas e incompatíveis do mesmo funil. <b>Por evento no período</b>: tudo que aconteceu em agosto, mesmo de lead que entrou em maio (leitura de operação, é a que bate com a agenda). <b>Por safra de entrada</b>: dos leads que entraram em agosto, quantos avançaram (leitura de qualidade do lead, é a que mede canal). O painel expõe as duas com um seletor, e todo card diz qual está usando. Misturar as duas na mesma tela gera discussão infinita.</td></tr>
+    <tr><td>06</td><td><b>Reunião vem do histórico</b></td><td>Reunião agendada e realizada são contadas por <b>evento de mudança de etapa</b>, não pelo estado atual do negócio. Um negócio que já foi vendido não está mais na etapa de reunião, mas a reunião aconteceu e precisa continuar contando.</td></tr>
+    <tr><td>07</td><td><b>Um lead pode virar dois cards</b></td><td>Quando existe funil de pré-venda separado do funil de vendas, a mesma pessoa gera dois registros. A contagem sempre precisa declarar: <b>X negócios, Y pessoas distintas</b>. Sem isso, o relatório de topo de funil vira ficção.</td></tr>
+    <tr><td>08</td><td><b>Fuso horário</b></td><td>Todo recorte de período é calculado no fuso local de operação, com deslocamento explícito, e nunca em UTC. Diferença de três horas joga o resultado da última noite do mês para o mês seguinte.</td></tr>
+    <tr><td>09</td><td><b>Deduplicação de eventos da plataforma de mídia</b> <span class="marca">crítico</span></td><td>A API devolve a mesma conversão sob vários rótulos (agregado, omni, pixel). A regra é pegar o <b>primeiro rótulo presente numa ordem de preferência</b>, nunca somar. No mês auditado, somar mostrava 1.352 leads onde havia 676, e 3 compras onde havia 1.</td></tr>
+    <tr><td>10</td><td><b>Lead do pixel ≠ lead do CRM</b></td><td>São duas contagens diferentes por natureza: a plataforma conta conversão atribuída à janela dela; o CRM conta registro criado. Divergência de 10% a 20% é normal. Divergência de 300% é rastreamento quebrado. O painel mostra os dois lados, e a diferença é diagnóstico.</td></tr>
+    <tr><td>11</td><td><b>Moeda e câmbio</b></td><td>Conta de anúncio em dólar e receita em real exigem regra: mês fechado usa a <b>média do câmbio do mês</b>; mês corrente usa o câmbio do dia. Sem isso, o ROAS se mexe sozinho quando o dólar oscila.</td></tr>
+    <tr><td>12</td><td><b>Mês parcial compara com janela igual</b></td><td>No dia 11, a comparação é com os <b>mesmos 11 dias</b> do mês anterior, nunca com o mês cheio. A comparação ingênua faz todo início de mês parecer catástrofe.</td></tr>
+  </table></div>
+
+  <div class="box palco">
+    <h5>A regra sobre mudar regra<span class="dot">.</span></h5>
+    <p>Qualquer alteração em definição de <b>receita</b> ou de <b>reunião</b> exige uma <b>matriz antes e depois</b>, métrica por métrica, apresentada antes de aplicar. Número que se mexe sem aviso destrói a confiança no painel inteiro, e a confiança não volta com explicação técnica.</p>
+  </div>
+</section>
+
+<!-- 07 -->
+<section id="s7">
+  <div class="sh"><span class="snum">07</span><h2>Passo a passo: construir o trilho de mídia</h2></div>
+  <p>Tempo real de implantação, com os acessos já em mãos: de dois a quatro dias. Sem os acessos, o gargalo é sempre burocrático, nunca técnico.</p>
+
+  <div class="passo">
+    <div class="p" data-n="1"><b>Mapear a estrutura de contas</b>
+      <p>Identificar qual portfólio de negócio é <b>dono</b> da conta de anúncios e qual vai <b>consumir</b> os dados. Quase sempre são diferentes, e é isso que trava o acesso. A conta precisa ser compartilhada do portfólio dono para o portfólio consumidor com permissão de leitura de desempenho.</p>
+    </div>
+    <div class="p" data-n="2"><b>Criar um usuário de sistema, não usar conta pessoal</b>
+      <p>Token de pessoa expira, quebra quando a pessoa troca a senha e morre quando ela sai da empresa. Usuário de sistema é permanente e auditável. A permissão necessária é apenas de <b>leitura de anúncios</b>. Depois de criado, é preciso <b>atribuir a conta de anúncios ao usuário de sistema</b> explicitamente: sem esse segundo movimento, a API responde que o dono não concedeu permissão.</p>
+    </div>
+    <div class="p" data-n="3"><b>Guardar o token como segredo do servidor</b>
+      <p>O token nunca vai para o código do site nem para variável de front. Ele vive como segredo da função serverless. O front chama a função autenticado com a sessão do próprio usuário; a função é quem fala com a plataforma.</p>
+    </div>
+    <div class="p" data-n="4"><b>Escrever a função de leitura com três modos</b>
+      <p><b>Nível conta</b> para os cards do topo (uma chamada, resposta imediata). <b>Nível campanha</b> para o custo por canal. <b>Nível anúncio</b> para a tabela criativo a criativo, que devolve apenas quem teve entrega no período, em vez de varrer o catálogo inteiro.</p>
+      <p>É aqui que entram as duas regras que mais mudam número: pedir o campo de <b>CTR único do link</b> (e não o CTR bruto) e aplicar a <b>deduplicação de tipos de evento</b>.</p>
+    </div>
+    <div class="p" data-n="5"><b>Implantar o cache antes de ligar o painel</b>
+      <p>Tabela com chave igual à consulta normalizada, marcação de congelado, carimbo de atualização. Regra: fechado congela, corrente expira em trinta minutos, parâmetro de atualização forçada fura o cache. <b>A gravação precisa ser concluída antes de responder</b>: gravar em segundo plano perde a corrida para a leitura seguinte e o cache nunca esquenta.</p>
+    </div>
+    <div class="p" data-n="6"><b>Padronizar a nomenclatura de campanha antes de subir anúncio novo</b>
+      <p>Padrão curto, sem acento e sem espaço, com fase, objetivo, tema e mês. Campanha já publicada não se renomeia, porque o nome é a chave de junção do histórico. Vale também exigir parâmetros de origem nas URLs e proibir encurtador, que apaga a query string.</p>
+    </div>
+    <div class="p" data-n="7"><b>Fechar a reconciliação</b>
+      <p>Conferir que a soma dos canais bate com o total da conta no mesmo período. Só depois disso a tabela de custo por canal vira número de decisão.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 08 -->
+<section id="s8">
+  <div class="sh"><span class="snum">08</span><h2>Passo a passo: construir o trilho comercial</h2></div>
+  <p>É o trilho mais longo, entre duas e quatro semanas, e o que dá mais retorno. A ordem abaixo é a ordem em que os problemas aparecem.</p>
+
+  <div class="passo">
+    <div class="p" data-n="1"><b>Inventariar o CRM antes de escrever qualquer linha</b>
+      <p>Listar funis, etapas, campos personalizados, donos e status. Documentar o que <b>deveria</b> significar cada etapa e comparar com o que o time realmente faz. Nesta fase quase sempre se descobre que uma etapa é movida por dois critérios diferentes dependendo do vendedor. Isso é problema de processo, e nenhum painel resolve.</p>
+    </div>
+    <div class="p" data-n="2"><b>Definir por escrito as regras de contagem</b>
+      <p>O que é venda, o que é reunião realizada, o que conta como lead, o que fica de fora. Aprovado por quem responde pelo número, antes do código. Se essa etapa for pulada, o painel nasce e a primeira reunião de resultado vira discussão sobre a definição.</p>
+    </div>
+    <div class="p" data-n="3"><b>Modelar as tabelas base</b>
+      <p>Uma para o estado atual dos negócios, uma para os eventos de mudança de etapa, uma de mapeamento etapa→grupo, e as tabelas de controle de sincronização (cursor, cota diária, fila de retry). As de controle parecem burocracia e são o que permite recuperar um apagão sem refazer tudo.</p>
+    </div>
+    <div class="p" data-n="4"><b>Ingestão em duas camadas: webhook e poller</b>
+      <p><b>Webhook</b> para tempo real: cada evento no CRM dispara a atualização daquele negócio. <b>Poller</b> com janela móvel para segurança: a cada poucos minutos, varre tudo que foi atualizado nos últimos dias e reconcilia.</p>
+      <p>O poller não é redundância opcional. Webhook cai, operação em lote não dispara evento por registro, e o resultado é um buraco silencioso no mês. No projeto de referência, onze contratos ganhos ficaram fora do painel exatamente assim.</p>
+    </div>
+    <div class="p" data-n="5"><b>Reconstruir o histórico de movimentação</b>
+      <p>O estado atual não conta quando o negócio passou por cada etapa. É preciso puxar o histórico registro a registro, o que é a operação mais cara do pipeline. Fazer em lotes pequenos, com espera entre chamadas, teto diário de requisições e fila de retry priorizada. No projeto de referência foram cerca de 15 mil eventos reconstruídos.</p>
+    </div>
+    <div class="p" data-n="6"><b>Criar a camada de fatos</b>
+      <p>Views que carimbam cada registro: é venda real, é evento de reunião agendada, é evento de reunião realizada, é no-show, é etapa comercial. E uma view combinada que responde, por negócio, <b>até onde ele chegou</b>, que é o que permite ler o funil por safra.</p>
+    </div>
+    <div class="p" data-n="7"><b>Expor funções de leitura parametrizadas</b>
+      <p>Uma para KPIs, uma para o funil, uma para quebra por dimensão (canal, vendedor, pré-vendedor, produto). Todas aceitam período, direção do funil e filtros. Duas exigências não negociáveis: rodar em <b>menos de um segundo</b> e tratar período vazio de forma explícita, porque data nula em comparação SQL retorna zero <b>com sucesso</b>, e um painel zerado sem erro é pior que um painel quebrado.</p>
+    </div>
+    <div class="p" data-n="8"><b>Front burro, e proposital</b>
+      <p>A tela manda período e filtros, recebe números prontos, formata e desenha. Zero regra comercial. O ganho aparece na manutenção: mudar a definição de venda é uma alteração no banco, não uma caça a cálculos espalhados por quinze componentes.</p>
+    </div>
+    <div class="p" data-n="9"><b>Metas na mesma tela do realizado</b>
+      <p>Meta cadastrada por métrica, período e recorte, editável por quem é dono do número, gravada no mesmo lugar de onde o painel lê. Com mês em curso, a barra mostra <b>ritmo</b>: quanto já deveria ter entrado a esta altura do mês, não só o total do fim.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 09 -->
+<section id="s9">
+  <div class="sh"><span class="snum">09</span><h2>Pré-requisitos: o que precisa existir antes</h2></div>
+  <p>Nada aqui é opcional. Cada item ausente vira um número que o painel não consegue mostrar.</p>
+  <div class="req">
+    <div><b>Acesso de leitura à plataforma de mídia</b><span>Usuário de sistema com permissão de leitura de anúncios e o identificador da conta.</span></div>
+    <div><b>Acesso de leitura ao CRM</b><span>Chave de API com permissão de leitura de negócios, etapas e histórico de movimentação.</span></div>
+    <div><b>Nomenclatura de campanha</b><span>Padrão escrito e adotado. É a chave de junção entre gasto e receita.</span></div>
+    <div><b>Campo de origem obrigatório</b><span>Todo negócio criado precisa nascer com o canal preenchido, por automação e não por disciplina.</span></div>
+    <div><b>Etapas com critério objetivo</b><span>O que faz um negócio sair de cada etapa, decidido e igual para todo o time.</span></div>
+    <div><b>Valor no negócio</b><span>Sem valor preenchido não existe receita, ticket nem ROAS. Negócio ganho sem valor precisa ser exceção monitorada.</span></div>
+    <div><b>Motivo de perda padronizado</b><span>Lista curta e fechada. Campo livre não vira relatório.</span></div>
+    <div><b>Um dono do número</b><span>Quem aprova as definições e responde quando o painel discorda da percepção.</span></div>
+  </div>
+  <div class="box alerta">
+    <h5>O teste que revela se a base está pronta</h5>
+    <p>Peça a exportação dos negócios dos últimos doze meses com data de criação, etapa, valor, origem, responsável e motivo de perda. Se a origem estiver vazia em mais de um terço, o painel de aquisição não tem como nascer: primeiro se conserta a entrada do dado, depois se constrói a leitura. Medir errado com precisão é pior que não medir.</p>
+  </div>
+</section>
+
+<!-- 10 -->
+<section id="s10">
+  <div class="sh"><span class="snum">10</span><h2>Armadilhas, e o que cada uma custou</h2></div>
+  <div class="tbl-wrap"><table>
+    <tr><th style="width:26%">Armadilha</th><th style="width:37%">Como se manifesta</th><th>Como se protege</th></tr>
+    <tr><td><b>Somar tipos de evento da mídia</b></td><td>Leads dobrados, compras triplicadas, e o painel parecendo melhor que a realidade</td><td>Ordem de preferência de rótulos, nunca soma. Conferir contra o gerenciador no primeiro mês.</td></tr>
+    <tr><td><b>CTR bruto no lugar do CTR do link</b></td><td>Número sempre acima do que o gestor vê, e desconfiança geral no painel</td><td>Usar o campo de cliques únicos no link. Rotular o card com a definição.</td></tr>
+    <tr><td><b>Período nulo em consulta SQL</b></td><td>Painel zerado <b>com sucesso</b>, sem erro nenhum na tela</td><td>Tratar "todo o período" como intervalo explícito e amplo, jamais como nulo.</td></tr>
+    <tr><td><b>Consulta lenta caindo em cálculo alternativo</b></td><td>O painel mostra um número diferente do oficial e ninguém entende por quê</td><td>Teto de tempo por consulta, medição real de plano de execução, e alerta quando o caminho alternativo é usado.</td></tr>
+    <tr><td><b>Webhook sem poller</b></td><td>Buraco silencioso: onze contratos ganhos fora do relatório do mês</td><td>Poller com janela móvel, sempre ligado, além do webhook.</td></tr>
+    <tr><td><b>Sincronizador que "completa" e dorme</b></td><td>Roda a cada trinta segundos, não faz nada, e o estado congela por semanas sem erro</td><td>Estado rolante, sem marcação permanente de concluído. Monitorar o carimbo da última execução útil.</td></tr>
+    <tr><td><b>Etapa nova no CRM</b></td><td>Entra como "não informado" e desaparece do relatório</td><td>Mapeamento revisado sempre que o funil muda, nos dois lugares onde o dado é gravado.</td></tr>
+    <tr><td><b>Trocar a leitura e esvaziar o card</b> <span class="marca al">grave</span></td><td>Métrica melhorada, versão do servidor antiga, e o time abrindo o painel sem número nenhum</td><td>Todo card <b>degrada</b>: cai na leitura anterior com o rótulo trocado e marcado como provisório. Nunca vira traço, nunca vira zero. Zero em gráfico desenha uma queda que nunca existiu.</td></tr>
+    <tr><td><b>Publicar front e servidor em momentos diferentes</b></td><td>Front novo com servidor velho: erro de autorização em produção</td><td>Publicar os dois juntos, e conferir a versão que está no ar pelo conteúdo, não pela expectativa.</td></tr>
+  </table></div>
+</section>
+
+<!-- 11 -->
+<section id="s11">
+  <div class="sh"><span class="snum">11</span><h2>Anti-padrões</h2></div>
+  <ul>
+    <li><b>Regra comercial no front.</b> Cada tela passa a contar de um jeito e a discussão migra do resultado para a metodologia.</li>
+    <li><b>Consultar a API externa a cada carregamento.</b> Lento, frágil, refém de cota, e o histórico muda sozinho.</li>
+    <li><b>Um painel por pergunta.</b> Cinco painéis que não se falam produzem cinco versões do mesmo mês.</li>
+    <li><b>Métrica sem dono.</b> Se ninguém aprova a definição, ninguém defende o número.</li>
+    <li><b>Esconder a linha ruim.</b> Canal com gasto e sem venda precisa aparecer com mais destaque, não menos.</li>
+    <li><b>Trocar a fonte de um relatório que já circulou.</b> Os números se mexem embaixo de quem já leu. Se for necessário, avisar antes e explicar o que mudou.</li>
+    <li><b>Mostrar caixa e contrato com o mesmo rótulo.</b> São dois números legítimos e diferentes. Cada um com seu nome.</li>
+  </ul>
+</section>
+
+<!-- 12 -->
+<section id="s12">
+  <div class="sh"><span class="snum">12</span><h2>Ordem de implantação sugerida</h2></div>
+  <p>Sequência por retorno sobre esforço, não por facilidade técnica. Cada fase entrega valor sozinha.</p>
+  <div class="tbl-wrap"><table>
+    <tr><th style="width:8%">Fase</th><th style="width:30%">Entrega</th><th style="width:16%">Esforço</th><th>Destrava</th></tr>
+    <tr><td><b>0</b></td><td>Acessos, inventário do CRM e definições escritas</td><td>3 a 5 dias</td><td>Tudo. É a fase que costuma ser pulada e depois refeita.</td></tr>
+    <tr><td><b>1</b></td><td>Origem obrigatória no negócio + nomenclatura de campanha</td><td>2 a 4 dias</td><td>Maior retorno isolado do projeto: sem isso, não existe custo por canal.</td></tr>
+    <tr><td><b>2</b></td><td>Ingestão CRM → banco (webhook + poller) e tabelas base</td><td>1 a 2 semanas</td><td>Fim da planilha manual.</td></tr>
+    <tr><td><b>3</b></td><td>Histórico de movimentação reconstruído</td><td>3 a 5 dias corridos</td><td>Reuniões, no-show e funil de verdade.</td></tr>
+    <tr><td><b>4</b></td><td>Camada de fatos + funções de leitura</td><td>1 semana</td><td>Números defensáveis e iguais em qualquer tela.</td></tr>
+    <tr><td><b>5</b></td><td>Painel comercial (KPIs, funil, canais, perdas, forecast)</td><td>1 a 2 semanas</td><td>Rotina de gestão semanal.</td></tr>
+    <tr><td><b>6</b></td><td>Trilho de mídia + cache</td><td>2 a 4 dias</td><td>Investimento, CPM, CTR, conversão da página.</td></tr>
+    <tr><td><b>7</b></td><td>Cruzamento: custo por etapa, CPA, ROAS por canal</td><td>3 a 5 dias</td><td>A decisão de verba deixa de ser opinião.</td></tr>
+    <tr><td><b>8</b></td><td>Metas e ritmo na mesma tela</td><td>2 a 3 dias</td><td>Previsibilidade e conversa de meta com lastro.</td></tr>
+  </table></div>
+
+  <div class="box palco">
+    <h5>O que isso muda na prática<span class="dot">.</span></h5>
+    <p>Antes: a pergunta "quanto custou esse cliente?" era respondida por estimativa, e a decisão de verba era feeling. Depois: gasto, lead, reunião, contrato e receita sentam na mesma linha, por canal, por mês, com a soma conferida contra a fonte. A conversa deixa de ser sobre quanto se gasta e passa a ser sobre <b>qual canal merece o próximo real</b>.</p>
+  </div>
+</section>
+
+</main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <b>batista.growth</b> <span class="cursor">_</span><br>
+    Crescimento não é feeling. É método, clareza e decisão.<br>
+    Documento de arquitetura e metodologia. Credenciais, identificadores de conta e endereços de ambiente foram omitidos de propósito.
+  </div>
+</footer>
+
+</body>
+</html>
