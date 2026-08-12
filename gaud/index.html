@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- servido em gardelbatista.com.br/levebatista/ — base fixa pra os assets relativos resolverem mesmo sem a barra final -->
+<!-- servido em gardelbatista.com.br/lab/ — base fixa pra os assets relativos resolverem mesmo sem a barra final -->
 <base href="/gaud/">
 <title>Leve · batista.growth</title>
 <!-- Meta Pixel Code -->
@@ -550,7 +550,7 @@ footer.appf{border-top:1px solid var(--border);margin-top:40px;padding:26px 0;co
           <div class="f"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7h-9M14 17H5M17 3a4 4 0 0 0 0 8 4 4 0 0 0 0-8zM7 13a4 4 0 0 0 0 8 4 4 0 0 0 0-8z"/></svg></span><span class="ft"><b>Filtrado pro seu momento</b><span>Só o que cabe no seu momento.</span></span></div>
         </div>
       </div>
-      <div class="gate-foot">batista.growth Leve · gardelbatista.com.br/levebatista · @batista.growth</div>
+      <div class="gate-foot">batista.growth Leve · gardelbatista.com.br/lab · @batista.growth</div>
     </div>
 
     <div class="gate-right">
@@ -997,7 +997,7 @@ const PROFS = ['Todos','Médico(a)','Nutricionista','Psicólogo(a)','Educador f�
 const AMBIENTE = (function(){
   const p = location.pathname.split('/').filter(Boolean);
   const dir = p.length ? p[p.length-1].replace(/\.html$/,'') : '';
-  return (!dir || dir === 'levebatista' || dir === 'index') ? 'gardel' : dir;
+  return (!dir || dir === 'lab' || dir === 'index') ? 'gardel' : dir;
 })();
 let AMB = null;   // { nome, tipo, schoolOn, foco, meta, bemVindo }
 
