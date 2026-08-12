@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Central da consultoria · Gaud</title>
+<link rel="icon" href="assets/favicon.ico">
+<style>
+@font-face{font-family:'SpaceG';src:url('assets/fonts/space-grotesk-v22-latin-700.ttf');font-weight:700;font-display:swap}
+@font-face{font-family:'SpaceG';src:url('assets/fonts/space-grotesk-v22-latin-500.ttf');font-weight:500;font-display:swap}
+@font-face{font-family:'Inter';src:url('assets/fonts/inter-v20-latin-regular.ttf');font-weight:400;font-display:swap}
+@font-face{font-family:'Inter';src:url('assets/fonts/inter-v20-latin-500.ttf');font-weight:500;font-display:swap}
+@font-face{font-family:'Plex';src:url('assets/fonts/ibm-plex-mono-v20-latin-regular.ttf');font-weight:400;font-display:swap}
+@font-face{font-family:'Plex';src:url('assets/fonts/ibm-plex-mono-v20-latin-500.ttf');font-weight:500;font-display:swap}
+@font-face{font-family:'Plex';src:url('assets/fonts/ibm-plex-mono-v20-latin-600.ttf');font-weight:600;font-display:swap}
+
+:root{
+  --porcelana:#F5F4F0;--branco:#FFF;--ink:#0E0E12;--panel:#15141B;
+  --grafite:#565660;--cobalto:#2743F5;--cobalto-claro:#7A8CFF;--amber:#F0A500;
+  --linha:#E2E0DA;
+  --disp:'SpaceG',system-ui,sans-serif;--body:'Inter',system-ui,sans-serif;--mono:'Plex',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--body);background:var(--porcelana);color:var(--ink);min-height:100svh;-webkit-font-smoothing:antialiased}
+::selection{background:var(--amber);color:var(--ink)}
+button{font:inherit;cursor:pointer}
+a{color:inherit}
+
+/* ---------- porta (Palco) ---------- */
+#porta{background:var(--ink);color:var(--porcelana);min-height:100svh;display:flex;align-items:center;justify-content:center;padding:24px}
+#porta .cx{width:100%;max-width:380px}
+#porta .marca{font-family:var(--disp);font-weight:700;font-size:22px;letter-spacing:-.02em}
+#porta .marca i{font-style:normal;color:var(--amber)}
+#porta .kick{font-family:var(--mono);font-size:12px;color:var(--cobalto-claro);margin:22px 0 6px}
+#porta h1{font-family:var(--disp);font-weight:700;font-size:29px;line-height:1.12;margin:0 0 8px;letter-spacing:-.02em}
+#porta h1 i{font-style:normal;color:var(--amber)}
+#porta p{color:#918F99;font-size:14px;margin:0 0 22px;line-height:1.55}
+#porta input{width:100%;font-family:var(--mono);font-size:15px;background:var(--panel);color:var(--porcelana);border:1.5px solid rgba(245,244,240,.22);border-radius:12px;padding:14px 16px;outline:none}
+#porta input:focus{border-color:var(--amber)}
+#porta button{width:100%;margin-top:10px;font-family:var(--disp);font-weight:700;font-size:15px;background:var(--amber);color:var(--ink);border:0;border-radius:12px;padding:14px;transition:opacity .2s}
+#porta button:hover{opacity:.9}
+#porta button:disabled{opacity:.5;cursor:default}
+#porta .erro{font-family:var(--mono);font-size:12px;color:#E5484D;margin-top:10px;min-height:16px}
+#porta .rodape{font-family:var(--mono);font-size:11px;color:#605F69;margin-top:28px}
+
+/* ---------- sala ---------- */
+#sala{display:none}
+.topo{background:var(--ink);color:var(--porcelana);padding:26px 0 30px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.topo .linha{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.topo .marca{font-family:var(--disp);font-weight:700;font-size:16px}
+.topo .marca i{font-style:normal;color:var(--amber)}
+.topo .sair{font-family:var(--mono);font-size:12px;color:#8A8994;background:none;border:0;padding:4px}
+.topo .sair:hover{color:var(--porcelana)}
+.topo .kick{font-family:var(--mono);font-size:12px;color:var(--cobalto-claro);margin:22px 0 6px}
+.topo h1{font-family:var(--disp);font-weight:700;font-size:clamp(26px,4vw,38px);line-height:1.08;margin:0;letter-spacing:-.022em}
+.topo h1 i{font-style:normal;color:var(--amber)}
+.topo .bem{color:#918F99;font-size:14.5px;max-width:62ch;margin:12px 0 0;line-height:1.55}
+
+.abas{border-bottom:1px solid var(--linha);background:var(--porcelana);position:sticky;top:0;z-index:5}
+.abas .wrap{display:flex;gap:4px}
+.abas button{font-family:var(--mono);font-size:12.5px;color:var(--grafite);background:none;border:0;border-bottom:2px solid transparent;padding:14px 12px;margin-bottom:-1px}
+.abas button.on{color:var(--ink);border-bottom-color:var(--amber)}
+.abas button:hover{color:var(--ink)}
+
+main{padding:34px 0 90px}
+.grupo{margin-bottom:38px}
+.grupo>h2{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--cobalto);margin:0 0 4px}
+.grupo>p.sub{font-size:13.5px;color:var(--grafite);margin:0 0 16px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:10px;padding:18px 19px;display:flex;flex-direction:column;gap:9px;transition:border-color .18s,transform .18s}
+.card.viva:hover{border-color:var(--ink);transform:translateY(-2px)}
+.card .cima{display:flex;align-items:center;gap:8px}
+.card .tipo{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--cobalto);background:#E9EBFE;padding:3px 7px;border-radius:4px}
+.card .data{font-family:var(--mono);font-size:11px;color:var(--grafite);margin-left:auto}
+.card h3{font-family:var(--disp);font-weight:700;font-size:18px;line-height:1.22;margin:0;letter-spacing:-.012em}
+.card p{font-size:13.5px;color:var(--grafite);margin:0;line-height:1.55;flex:1}
+.card .abrir{align-self:flex-start;font-family:var(--mono);font-size:12px;font-weight:500;background:var(--ink);color:var(--porcelana);border:0;border-radius:6px;padding:9px 14px;text-decoration:none;display:inline-block;margin-top:2px}
+.card .abrir:hover{background:var(--cobalto)}
+.card.espera{background:transparent;border-style:dashed}
+.card.espera h3{color:var(--grafite)}
+.card .selo{font-family:var(--mono);font-size:11px;color:var(--grafite);margin-top:2px}
+.card .selo b{color:var(--ink);font-weight:500}
+
+.vazio{border:1px dashed var(--linha);border-radius:10px;padding:34px 22px;text-align:center;color:var(--grafite);font-size:14px}
+.vazio b{display:block;font-family:var(--disp);font-size:17px;color:var(--ink);margin-bottom:6px}
+
+.trilha .item{background:var(--branco);border:1px solid var(--linha);border-radius:10px;padding:16px 18px;margin-bottom:10px;display:flex;gap:16px;align-items:flex-start}
+.trilha .sem{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--porcelana);background:var(--ink);border-radius:5px;padding:5px 8px;white-space:nowrap}
+.trilha h3{font-family:var(--disp);font-size:16px;margin:0 0 3px}
+.trilha .fonte{font-family:var(--mono);font-size:11.5px;color:var(--cobalto);margin-bottom:5px}
+.trilha p{font-size:13.5px;color:var(--grafite);margin:0}
+.trilha .corpo{flex:1;min-width:0}
+.trilha a.ir{font-family:var(--mono);font-size:12px;margin-left:auto;white-space:nowrap;text-decoration:none;border:1px solid var(--linha);border-radius:6px;padding:7px 11px}
+.trilha a.ir:hover{border-color:var(--ink)}
+/* vídeo: thumbnail do YouTube, que abre no player oficial em aba nova */
+.trilha .thumb{position:relative;width:150px;flex:none;border-radius:7px;overflow:hidden;display:block;background:var(--ink);aspect-ratio:16/9}
+.trilha .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.trilha .thumb .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.trilha .thumb .play i{width:0;height:0;border-left:15px solid var(--porcelana);border-top:10px solid transparent;border-bottom:10px solid transparent;filter:drop-shadow(0 1px 3px rgba(0,0,0,.6));margin-left:3px}
+.trilha .thumb:hover .play i{border-left-color:var(--amber)}
+@media (max-width:600px){.trilha .item{flex-wrap:wrap}.trilha .thumb{width:100%}}
+
+footer{border-top:1px solid var(--linha);padding:24px 0 60px;font-family:var(--mono);font-size:11.5px;color:var(--grafite)}
+footer b{color:var(--ink);font-weight:500}
+footer .cur{color:var(--amber)}
+
+@media (max-width:600px){.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- porta -->
+<div id="porta">
+  <div class="cx">
+    <div class="marca">batista<i>.</i>growth</div>
+    <div class="kick">&gt; central_da_consultoria</div>
+    <h1>Tudo que a gente produzir fica aqui<i>.</i></h1>
+    <p>Área restrita do cliente. Documentos, análises e painéis do processo, sempre na versão mais recente.</p>
+    <input type="password" id="senha" placeholder="senha de acesso_" autocomplete="current-password">
+    <button id="entrar">Entrar</button>
+    <div class="erro" id="erro"></div>
+    <div class="rodape">Não tem a senha? Fale com o Gardel.</div>
+  </div>
+</div>
+
+<!-- sala -->
+<div id="sala">
+  <div class="topo">
+    <div class="wrap">
+      <div class="linha">
+        <div class="marca">batista<i>.</i>growth</div>
+        <button class="sair" id="sair">sair_</button>
+      </div>
+      <div class="kick">&gt; consultoria_comercial</div>
+      <h1 id="nomeCliente">—</h1>
+      <p class="bem" id="bemVindo"></p>
+    </div>
+  </div>
+
+  <div class="abas"><div class="wrap" id="abas"></div></div>
+
+  <main class="wrap" id="conteudo"></main>
+
+  <footer><div class="wrap">
+    <b>batista.growth</b> <span class="cur">_</span><br>
+    Crescimento não é feeling. É método, clareza e decisão.
+  </div></footer>
+</div>
+
+<script>
+/* Central da consultoria. Para abrir a área de outro cliente, copiar esta pasta
+   e trocar só o SLUG: o restante (tabelas, RPCs, layout) já é multi-cliente. */
+const SLUG = 'gaud';
+
+const SB  = 'https://vdkxffydbkuhjszmlamd.supabase.co';
+const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZka3hmZnlkYmt1aGpzem1sYW1kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MjI5OTcsImV4cCI6MjA4NTI5ODk5N30.9TOXl94Vednst5RnkCXfx2sdUbQpNlzuPMGNpv8POP8';
+const CHAVE_SESSAO = 'batista-central-' + SLUG;
+
+const $ = id => document.getElementById(id);
+let SENHA = sessionStorage.getItem(CHAVE_SESSAO) || localStorage.getItem(CHAVE_SESSAO) || '';
+let AREA = null, aba = 'entregaveis';
+
+function rpc(fn, body){
+  return fetch(SB + '/rest/v1/rpc/' + fn, {
+    method:'POST',
+    headers:{'Content-Type':'application/json', apikey:KEY, Authorization:'Bearer ' + KEY},
+    body: JSON.stringify(body)
+  }).then(r => r.ok ? r.json() : null);
+}
+
+/* ---------- entrada ---------- */
+function entrar(){
+  const s = $('senha').value.trim();
+  if(!s) return;
+  $('entrar').disabled = true; $('erro').textContent = '';
+  rpc('batista_cliente_area', {p_slug:SLUG, p_senha:s}).then(area => {
+    $('entrar').disabled = false;
+    if(!area){ $('erro').textContent = 'senha incorreta_'; $('senha').select(); return; }
+    SENHA = s;
+    localStorage.setItem(CHAVE_SESSAO, s);
+    abre(area);
+    rpc('batista_cliente_log', {p_slug:SLUG, p_senha:s, p_evento:'entrou', p_ref:null});
+  });
+}
+$('entrar').addEventListener('click', entrar);
+$('senha').addEventListener('keydown', e => { if(e.key === 'Enter') entrar(); });
+$('sair').addEventListener('click', () => {
+  localStorage.removeItem(CHAVE_SESSAO);
+  location.reload();
+});
+
+/* ---------- render ---------- */
+const ROTULO_TIPO = {documento:'documento', painel:'painel', roteiro:'roteiro', planilha:'planilha', video:'vídeo', link:'link'};
+const esc = t => (t == null ? '' : String(t)).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function dataBR(d){
+  if(!d) return '';
+  const [a,m,dia] = d.split('-');
+  return dia + '/' + m + '/' + a.slice(2);
+}
+
+/* aceita youtu.be/ID, youtube.com/watch?v=ID, /embed/ID e /shorts/ID */
+function idYoutube(url){
+  if(!url) return null;
+  const m = String(url).match(/(?:youtu\.be\/|v=|\/embed\/|\/shorts\/)([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+
+/* registra que o cliente abriu o material (serve de sinal para a consultoria) */
+function ligaCliques(){
+  document.querySelectorAll('[data-abriu]').forEach(a => a.addEventListener('click', () => {
+    rpc('batista_cliente_log', {p_slug:SLUG, p_senha:SENHA, p_evento:'abriu', p_ref:a.dataset.abriu});
+  }));
+}
+
+function abre(area){
+  AREA = area;
+  $('porta').style.display = 'none';
+  $('sala').style.display = 'block';
+  $('nomeCliente').textContent = area.nome;
+  $('bemVindo').textContent = area.bemVindo || '';
+  desenhaAbas();
+  desenha();
+}
+
+function desenhaAbas(){
+  const abas = [['entregaveis', 'Entregáveis']];
+  if(AREA.mostrarTrilha) abas.push(['trilha', 'Trilha de estudo']);
+  $('abas').innerHTML = abas.map(([id, rot]) =>
+    `<button data-aba="${id}" class="${aba === id ? 'on' : ''}">${rot}</button>`).join('');
+  $('abas').querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    aba = b.dataset.aba; desenhaAbas(); desenha();
+  }));
+}
+
+function cardEntregavel(e){
+  const viva = e.status === 'entregue' && e.url;
+  return `<div class="card ${viva ? 'viva' : 'espera'}">
+    <div class="cima">
+      <span class="tipo">${esc(ROTULO_TIPO[e.tipo] || e.tipo)}</span>
+      <span class="data">${dataBR(e.data)}</span>
+    </div>
+    <h3>${esc(e.titulo)}</h3>
+    <p>${esc(e.descricao || '')}</p>
+    ${viva
+      ? `<a class="abrir" href="${esc(e.url)}" target="_blank" rel="noopener" data-abriu="${esc(e.id)}">Abrir</a>`
+      : `<div class="selo">${e.status === 'producao' ? '<b>Em produção</b> · sai nesta rodada' : '<b>Previsto</b> · entra depois da imersão'}</div>`}
+  </div>`;
+}
+
+function desenha(){
+  const box = $('conteudo');
+
+  if(aba === 'trilha'){
+    const t = AREA.trilha || [];
+    box.innerHTML = !t.length
+      ? `<div class="vazio"><b>A trilha ainda não foi montada</b>Aqui vão entrar os canais de referência, os cursos indicados e o cronograma de estudo.</div>`
+      : `<div class="grupo trilha">
+           <h2>Trilha de estudo</h2>
+           <p class="sub">Referências escolhidas para este momento do negócio. Não é curso obrigatório: é o que acelera a execução do que está no plano.</p>
+           ${t.map(i => {
+             const yt = idYoutube(i.url);
+             return `<div class="item">
+               ${i.semana ? `<span class="sem">semana ${i.semana}</span>` : ''}
+               ${yt ? `<a class="thumb" href="${esc(i.url)}" target="_blank" rel="noopener" data-abriu="${esc(i.id)}">
+                   <img src="https://i.ytimg.com/vi/${yt}/hqdefault.jpg" alt="" loading="lazy">
+                   <span class="play"><i></i></span>
+                 </a>` : ''}
+               <div class="corpo">
+                 <h3>${esc(i.titulo)}</h3>
+                 ${i.fonte ? `<div class="fonte">${esc(i.fonte)}</div>` : ''}
+                 ${i.porque ? `<p>${esc(i.porque)}</p>` : ''}
+               </div>
+               ${i.url && !yt ? `<a class="ir" href="${esc(i.url)}" target="_blank" rel="noopener" data-abriu="${esc(i.id)}">abrir</a>` : ''}
+               ${yt ? `<a class="ir" href="${esc(i.url)}" target="_blank" rel="noopener" data-abriu="${esc(i.id)}">assistir</a>` : ''}
+             </div>`;
+           }).join('')}
+         </div>`;
+    ligaCliques();
+    return;
+  }
+
+  const todos = AREA.entregaveis || [];
+  const grupos = [
+    ['entregue', 'Disponível agora', 'Material pronto. Abre em aba nova e fica sempre na versão mais recente.'],
+    ['producao', 'Em produção', 'Está sendo feito nesta rodada.'],
+    ['previsto', 'Previsto', 'Entra conforme o processo avança.'],
+  ];
+
+  const html = grupos.map(([st, titulo, sub]) => {
+    const lista = todos.filter(e => e.status === st);
+    if(!lista.length) return '';
+    return `<div class="grupo">
+      <h2>${titulo}</h2><p class="sub">${sub}</p>
+      <div class="cards">${lista.map(cardEntregavel).join('')}</div>
+    </div>`;
+  }).join('');
+
+  box.innerHTML = html || `<div class="vazio"><b>Ainda não tem material publicado</b>Assim que a primeira entrega sair, ela aparece aqui.</div>`;
+  ligaCliques();
+}
+
+/* sessão guardada: entra direto, mas revalida no banco */
+if(SENHA){
+  rpc('batista_cliente_area', {p_slug:SLUG, p_senha:SENHA}).then(area => {
+    if(area){ abre(area); } else { localStorage.removeItem(CHAVE_SESSAO); }
+  });
+}
+</script>
+</body>
+</html>
