@@ -65,6 +65,16 @@ button{font-family:inherit;cursor:pointer}
 .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
 /* lockup batista.growth Leve: logo branco (fundo navy) + "Lab" em Americana BT itálico com o gradiente */
 .logo{display:flex;align-items:center;gap:9px}
+
+.amb-head{background:var(--ink);color:var(--porcelana);border-radius:var(--radius);padding:24px 26px;margin:8px 0 26px}
+.amb-head .kick{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.06em;color:#8C9BFF}
+.amb-head h2{font-family:var(--font-display);font-weight:700;font-size:26px;margin:10px 0 0;letter-spacing:-.02em;color:var(--porcelana)}
+.amb-head .bem{color:#A5A39D;font-size:14px;margin:9px 0 0;max-width:70ch}
+.amb-fm{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.amb-fm > div{background:rgba(245,244,240,.06);border:1px solid rgba(245,244,240,.12);border-radius:12px;padding:15px 17px}
+.amb-fm .r{font-family:var(--font-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--amber);margin-bottom:6px}
+.amb-fm p{margin:0;font-size:14px;color:var(--porcelana);line-height:1.5}
+@media(max-width:700px){.amb-fm{grid-template-columns:1fr}}
 .brand-logo{height:19px;width:auto;display:block}
 .lab-suffix{font-family:var(--font-display);font-weight:400;font-style:italic;font-size:23px;letter-spacing:-.01em;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:3px}
 .logo .mark{width:32px;height:32px;border-radius:9px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:17px;box-shadow:0 4px 12px -3px rgba(198,79,202,.30)}
@@ -844,7 +854,7 @@ footer.appf{border-top:1px solid var(--border);margin-top:40px;padding:26px 0;co
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
   const SB_URL = "https://vdkxffydbkuhjszmlamd.supabase.co";
-  const SB_KEY = "sb_publishable_JSyVKG9M7219uUJtNUGjZg_FoofFoNo";
+  const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZka3hmZnlkYmt1aGpzem1sYW1kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MjI5OTcsImV4cCI6MjA4NTI5ODk5N30.9TOXl94Vednst5RnkCXfx2sdUbQpNlzuPMGNpv8POP8";
   const sb = window.supabase.createClient(SB_URL, SB_KEY);
 </script>
 
@@ -979,14 +989,22 @@ let LEAD = null, activeFilter='Todos', searchQ='';
 /* ---- profissões p/ filtro ---- */
 const PROFS = ['Todos','Médico(a)','Nutricionista','Psicólogo(a)','Educador físico / Personal','Fisioterapeuta','Clínica / Gestor(a)'];
 
+
+/* ===== AMBIENTE =====
+   O mesmo app serve o acervo do Gardel e a área de cada cliente. Quem manda é a
+   pasta: /levebatista/ => 'gardel' (público) · /gaud/ => 'gaud' (cliente).
+   Cliente novo = criar o ambiente no admin e copiar esta pasta com o novo nome. */
+const AMBIENTE = (function(){
+  const p = location.pathname.split('/').filter(Boolean);
+  const dir = p.length ? p[p.length-1].replace(/\.html$/,'') : '';
+  return (!dir || dir === 'levebatista' || dir === 'index') ? 'gardel' : dir;
+})();
+let AMB = null;   // { nome, tipo, schoolOn, foco, meta, bemVindo }
+
 /* ===== ESTADO (fonte: Supabase lp · tabelas leve_items / leve_announcements / leve_banner) =====
    Tudo que o admin edita grava no banco e aparece pra todo lead, de qualquer lugar.
    TUTORIAIS/ANN/BANNER de exemplo já foram semeados no banco (servem de "restaurar exemplos"). */
-const DEFAULT_BANNER = {
-  on:true, emoji:'🎟️', titulo:'Workshop Consultório Escalável · ao vivo',
-  desc:'Os próximos R$10 mil do seu consultório, sem abrir um horário novo na agenda. Toda quarta, 19h30. Ao vivo e gratuito.',
-  cta:'Quero participar', link:'https://lp.mydoseapp.com/workshop'
-};
+const DEFAULT_BANNER = {on:false, titulo:'', desc:'', cta:'', link:''};
 let ITEMS  = [];                  // acervo (leve_items) — cada item carrega _id (uuid), slug e _sort
 let ANN    = [];                  // avisos (leve_announcements) — cada um carrega _id e _sort
 let BANNER = {...DEFAULT_BANNER};
@@ -1005,12 +1023,14 @@ async function freshData(slug){
 // carrega o conteúdo público do Supabase (todos veem; o admin também edita)
 async function dbLoadContent(){
   try{
+    try{ const {data:amb} = await sb.rpc('leve_ambiente',{p_slug:AMBIENTE}); AMB = amb || null; }catch(e){ AMB = null; }
     const [ri, ra, rb] = await Promise.all([
-      sb.from('leve_items').select('*').order('sort_order',{ascending:true}),
-      sb.from('leve_announcements').select('*').order('sort_order',{ascending:true}),
+      sb.from('leve_items').select('*').eq('ambiente',AMBIENTE).order('sort_order',{ascending:true}),
+      sb.from('leve_announcements').select('*').eq('ambiente',AMBIENTE).order('sort_order',{ascending:true}),
       sb.from('leve_banner').select('data').eq('id',1).maybeSingle()
     ]);
     ITEMS  = (ri.data||[]).map(r=>({ ...r.data, slug:r.slug, _id:r.id, _sort:r.sort_order }));
+    try{ renderAmbiente(); }catch(e){}
     ANN    = (ra.data||[]).map(r=>({ ...r.data, _id:r.id, _sort:r.sort_order }));
     BANNER = (rb.data && rb.data.data) ? rb.data.data : {...DEFAULT_BANNER};
   }catch(e){ /* mantém o que já estiver carregado */ }
@@ -1059,7 +1079,7 @@ function renderDestaques(){
     <article class="tcard ${IS_ADMIN&&t.oculto?'is-hidden':''}" style="animation-delay:${i*45}ms" onclick="openBySlug('${t.slug}')">
       <div class="cap" style="${t.capaImg?`background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.5)),url('${t.capaImg}');background-size:cover;background-position:center`:`background:${CAPAS[t.capa]||CAPAS['grad-roxo']}`}">
         ${t.capaImg?'':`<span class="cap-motif"></span><span class="cap-glyph">${glyphFor(t)}</span>`}
-        ${t.ferramentas[0]?`<span class="cap-tool"><span class="d" style="background:${t.ferramentas[0].cor}"></span>${t.ferramentas[0].nome}</span>`:''}
+        ${(t.ferramentas||[])[0]?`<span class="cap-tool"><span class="d" style="background:${(t.ferramentas||[])[0].cor}"></span>${(t.ferramentas||[])[0].nome}</span>`:''}
         <span class="feat">★ Destaque</span>
         ${t.novo?'<span class="new">Novo</span>':''}
         <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
@@ -1479,7 +1499,7 @@ function renderGrid(){
     <article class="tcard ${IS_ADMIN&&t.oculto?'is-hidden':''}" style="animation-delay:${i*45}ms" onclick="openBySlug('${t.slug}')">
       <div class="cap" style="${t.capaImg?`background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.5)),url('${t.capaImg}');background-size:cover;background-position:center`:`background:${CAPAS[t.capa]||CAPAS['grad-roxo']}`}">
         ${t.capaImg?'':`<span class="cap-motif"></span><span class="cap-glyph">${glyphFor(t)}</span>`}
-        ${t.ferramentas[0]?`<span class="cap-tool"><span class="d" style="background:${t.ferramentas[0].cor}"></span>${t.ferramentas[0].nome}</span>`:''}
+        ${(t.ferramentas||[])[0]?`<span class="cap-tool"><span class="d" style="background:${(t.ferramentas||[])[0].cor}"></span>${(t.ferramentas||[])[0].nome}</span>`:''}
         ${t.featured?'<span class="feat">★ Destaque</span>':''}
         ${t.novo?'<span class="new">Novo</span>':''}
         <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
@@ -1574,6 +1594,28 @@ function galleryBlock(t){
   return null;
 }
 /* monta só as seções que o conteúdo tem (IA/prompt são opcionais) e renumera */
+
+/* área de cliente abre pelo combinado: foco e meta antes do material */
+function renderAmbiente(){
+  const top = document.getElementById('libTop');
+  if(!top || !AMB || AMB.tipo !== 'cliente'){ return; }
+  top.innerHTML = `<div class="amb-head">
+      <div class="kick">&gt; consultoria_comercial</div>
+      <h2>${escapeHtml(AMB.nome||'')}</h2>
+      ${AMB.bemVindo ? `<p class="bem">${escapeHtml(AMB.bemVindo)}</p>` : ''}
+      ${(AMB.foco||AMB.meta) ? `<div class="amb-fm">
+        ${AMB.foco ? `<div><div class="r">o foco agora</div><p>${escapeHtml(AMB.foco)}</p></div>` : ''}
+        ${AMB.meta ? `<div><div class="r">a meta</div><p>${escapeHtml(AMB.meta)}</p></div>` : ''}
+      </div>` : ''}
+    </div>`;
+  const hs = document.querySelectorAll('.lib-head h2'); const h = hs[hs.length-1];
+  if(h) h.innerHTML = 'Materiais da <span class="grad-text">consultoria</span>';
+  const fl = document.getElementById('filters');
+  if(fl) fl.style.display = 'none';
+  const sn = document.getElementById('schoolNav');
+  if(sn && !AMB.schoolOn) sn.style.display = 'none';
+}
+
 function detailSections(t){
   const blocks=[];
   if(t.ferramentas&&t.ferramentas.length){
@@ -1800,7 +1842,7 @@ async function saveTutorial(){
     const slug='u-'+Date.now().toString(36);
     const minSort=ITEMS.reduce((m,x)=>Math.min(m, x._sort??0), 0);
     const obj=Object.assign({slug, featured:false}, data);
-    const { error } = await sb.from('leve_items').insert({ slug, data:obj, sort_order:minSort-1 });  // entra no topo
+    const { error } = await sb.from('leve_items').insert({ slug, data:obj, sort_order:minSort-1, ambiente:AMBIENTE });  // entra no topo
     if(error){ toast('Não publicou: '+error.message); return; }
     toast('Tutorial publicado ✓ · já está no acervo');
   }

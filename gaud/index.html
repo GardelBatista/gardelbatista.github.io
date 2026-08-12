@@ -1,314 +1,2131 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<title>Central da consultoria · Gaud</title>
-<link rel="icon" href="assets/favicon.ico">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- servido em gardelbatista.com.br/levebatista/ — base fixa pra os assets relativos resolverem mesmo sem a barra final -->
+<base href="/gaud/">
+<title>Leve · batista.growth</title>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1228236605291265');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1228236605291265&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <style>
-@font-face{font-family:'SpaceG';src:url('assets/fonts/space-grotesk-v22-latin-700.ttf');font-weight:700;font-display:swap}
-@font-face{font-family:'SpaceG';src:url('assets/fonts/space-grotesk-v22-latin-500.ttf');font-weight:500;font-display:swap}
+@font-face{font-family:'Space Grotesk';src:url('assets/fonts/space-grotesk-v22-latin-700.ttf');font-weight:700;font-display:swap}
+@font-face{font-family:'Space Grotesk';src:url('assets/fonts/space-grotesk-v22-latin-500.ttf');font-weight:500;font-display:swap}
 @font-face{font-family:'Inter';src:url('assets/fonts/inter-v20-latin-regular.ttf');font-weight:400;font-display:swap}
 @font-face{font-family:'Inter';src:url('assets/fonts/inter-v20-latin-500.ttf');font-weight:500;font-display:swap}
-@font-face{font-family:'Plex';src:url('assets/fonts/ibm-plex-mono-v20-latin-regular.ttf');font-weight:400;font-display:swap}
-@font-face{font-family:'Plex';src:url('assets/fonts/ibm-plex-mono-v20-latin-500.ttf');font-weight:500;font-display:swap}
-@font-face{font-family:'Plex';src:url('assets/fonts/ibm-plex-mono-v20-latin-600.ttf');font-weight:600;font-display:swap}
-
+@font-face{font-family:'Inter';src:url('assets/fonts/inter-v20-latin-700.ttf');font-weight:700;font-display:swap}
+@font-face{font-family:'IBM Plex Mono';src:url('assets/fonts/ibm-plex-mono-v20-latin-regular.ttf');font-weight:400;font-display:swap}
+@font-face{font-family:'IBM Plex Mono';src:url('assets/fonts/ibm-plex-mono-v20-latin-500.ttf');font-weight:500;font-display:swap}
+@font-face{font-family:'IBM Plex Mono';src:url('assets/fonts/ibm-plex-mono-v20-latin-600.ttf');font-weight:600;font-display:swap}
+</style>
+<style>
 :root{
-  --porcelana:#F5F4F0;--branco:#FFF;--ink:#0E0E12;--panel:#15141B;
-  --grafite:#565660;--cobalto:#2743F5;--cobalto-claro:#7A8CFF;--amber:#F0A500;
-  --linha:#E2E0DA;
-  --disp:'SpaceG',system-ui,sans-serif;--body:'Inter',system-ui,sans-serif;--mono:'Plex',ui-monospace,monospace;
+  /* tokens do batista.growth (base: direcao-b/brandbook) */
+  --purple:#2743F5;--purple-deep:#1B2FB0;--purple-press:#14228A;
+  --pink:#2743F5;--orange:#F0A500;
+  --purple-soft:#E6E9FE;--pink-soft:#E6E9FE;--orange-soft:#FBF0D6;
+  --ink:#0E0E12;--ink-2:#2A2A33;--muted:#565660;
+  --bg:#F5F4F0;--surface:#F5F4F0;--surface-2:#EFEDE8;
+  --border:rgba(14,14,18,.10);--border-strong:rgba(14,14,18,.22);
+  --navy:#0E0E12;
+  --amber:#F0A500;--porcelana:#F5F4F0;
+  --radius:14px;--radius-sm:9px;--radius-pill:999px;
+  --shadow-sm:0 1px 2px rgba(14,14,18,.05),0 1px 3px rgba(14,14,18,.05);
+  --shadow:0 8px 24px -8px rgba(14,14,18,.12),0 2px 6px rgba(14,14,18,.05);
+  --shadow-lg:0 24px 60px -20px rgba(14,14,18,.28),0 8px 24px -12px rgba(14,14,18,.12);
+  /* a marca não usa gradiente: mantido como cor sólida para não quebrar background-clip */
+  --grad:linear-gradient(100deg,#2743F5 0%,#2743F5 100%);
+  --font-display:'Space Grotesk',system-ui,sans-serif;
+  --font-body:'Inter',system-ui,sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,monospace;
 }
-*{box-sizing:border-box}
-body{margin:0;font-family:var(--body);background:var(--porcelana);color:var(--ink);min-height:100svh;-webkit-font-smoothing:antialiased}
-::selection{background:var(--amber);color:var(--ink)}
-button{font:inherit;cursor:pointer}
-a{color:inherit}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--font-display);color:var(--ink);line-height:1.12;letter-spacing:-.01em;font-weight:400}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.grad-text{font-style:italic;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.muted{color:var(--muted)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+/* lockup batista.growth Leve: logo branco (fundo navy) + "Lab" em Americana BT itálico com o gradiente */
+.logo{display:flex;align-items:center;gap:9px}
 
-/* ---------- porta (Palco) ---------- */
-#porta{background:var(--ink);color:var(--porcelana);min-height:100svh;display:flex;align-items:center;justify-content:center;padding:24px}
-#porta .cx{width:100%;max-width:380px}
-#porta .marca{font-family:var(--disp);font-weight:700;font-size:22px;letter-spacing:-.02em}
-#porta .marca i{font-style:normal;color:var(--amber)}
-#porta .kick{font-family:var(--mono);font-size:12px;color:var(--cobalto-claro);margin:22px 0 6px}
-#porta h1{font-family:var(--disp);font-weight:700;font-size:29px;line-height:1.12;margin:0 0 8px;letter-spacing:-.02em}
-#porta h1 i{font-style:normal;color:var(--amber)}
-#porta p{color:#918F99;font-size:14px;margin:0 0 22px;line-height:1.55}
-#porta input{width:100%;font-family:var(--mono);font-size:15px;background:var(--panel);color:var(--porcelana);border:1.5px solid rgba(245,244,240,.22);border-radius:12px;padding:14px 16px;outline:none}
-#porta input:focus{border-color:var(--amber)}
-#porta button{width:100%;margin-top:10px;font-family:var(--disp);font-weight:700;font-size:15px;background:var(--amber);color:var(--ink);border:0;border-radius:12px;padding:14px;transition:opacity .2s}
-#porta button:hover{opacity:.9}
-#porta button:disabled{opacity:.5;cursor:default}
-#porta .erro{font-family:var(--mono);font-size:12px;color:#E5484D;margin-top:10px;min-height:16px}
-#porta .rodape{font-family:var(--mono);font-size:11px;color:#605F69;margin-top:28px}
+.amb-head{background:var(--ink);color:var(--porcelana);border-radius:var(--radius);padding:24px 26px;margin:8px 0 26px}
+.amb-head .kick{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.06em;color:#8C9BFF}
+.amb-head h2{font-family:var(--font-display);font-weight:700;font-size:26px;margin:10px 0 0;letter-spacing:-.02em;color:var(--porcelana)}
+.amb-head .bem{color:#A5A39D;font-size:14px;margin:9px 0 0;max-width:70ch}
+.amb-fm{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.amb-fm > div{background:rgba(245,244,240,.06);border:1px solid rgba(245,244,240,.12);border-radius:12px;padding:15px 17px}
+.amb-fm .r{font-family:var(--font-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--amber);margin-bottom:6px}
+.amb-fm p{margin:0;font-size:14px;color:var(--porcelana);line-height:1.5}
+@media(max-width:700px){.amb-fm{grid-template-columns:1fr}}
+.brand-logo{height:19px;width:auto;display:block}
+.lab-suffix{font-family:var(--font-display);font-weight:400;font-style:italic;font-size:23px;letter-spacing:-.01em;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:3px}
+.logo .mark{width:32px;height:32px;border-radius:9px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:17px;box-shadow:0 4px 12px -3px rgba(198,79,202,.30)}
+.logo .mark svg{width:18px;height:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:15px;border-radius:var(--radius-pill);padding:13px 22px;border:1px solid transparent;transition:transform .2s,box-shadow .2s,background .2s;white-space:nowrap}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 2px 8px rgba(198,79,202,.28)}
+.btn-primary:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.btn-primary:active{transform:translateY(0) scale(.98)}
+.btn-ghost{background:#fff;color:var(--ink);border-color:var(--border-strong)}
+.btn-ghost:hover{border-color:var(--purple);color:var(--purple-deep);background:var(--purple-soft)}
+.btn-lg{padding:16px 30px;font-size:16px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.02em;color:#fff;background:rgba(255,255,255,.12);padding:6px 14px;border-radius:var(--radius-pill);border:1px solid rgba(255,255,255,.16)}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--grad)}
 
-/* ---------- sala ---------- */
-#sala{display:none}
-.topo{background:var(--ink);color:var(--porcelana);padding:26px 0 30px}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-.topo .linha{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.topo .marca{font-family:var(--disp);font-weight:700;font-size:16px}
-.topo .marca i{font-style:normal;color:var(--amber)}
-.topo .sair{font-family:var(--mono);font-size:12px;color:#8A8994;background:none;border:0;padding:4px}
-.topo .sair:hover{color:var(--porcelana)}
-.topo .kick{font-family:var(--mono);font-size:12px;color:var(--cobalto-claro);margin:22px 0 6px}
-.topo h1{font-family:var(--disp);font-weight:700;font-size:clamp(26px,4vw,38px);line-height:1.08;margin:0;letter-spacing:-.022em}
-.topo h1 i{font-style:normal;color:var(--amber)}
-.topo .bem{color:#918F99;font-size:14.5px;max-width:62ch;margin:12px 0 0;line-height:1.55}
+/* ====== GATE ====== */
+.view{display:none}
+.view.active{display:block;animation:fadeup .45s ease}
+@keyframes fadeup{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.gate{min-height:100dvh;display:grid;grid-template-columns:1.05fr .95fr;position:relative;overflow:hidden;background:var(--navy);color:#fff}
+.gate::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--grad);z-index:3}
+.gate .bgpat{position:absolute;pointer-events:none;opacity:.10;filter:brightness(0) invert(1);z-index:0}
+.gate .bgpat.g1{left:-70px;bottom:-80px;width:330px}
+.gate .bgpat.g2{right:38%;top:-60px;width:210px}
+.gate-left{padding:54px 56px;display:flex;flex-direction:column;justify-content:space-between;position:relative;z-index:1}
+.gate-hero h1{font-size:clamp(34px,4.4vw,52px);color:#fff;margin:22px 0 16px}
+.gate-hero p{font-size:18px;color:#c9ccda;max-width:480px}
+.gate-feat{display:flex;flex-direction:column;gap:14px;margin-top:34px}
+.gate-feat .f{display:flex;gap:13px;align-items:flex-start}
+.gate-feat .fi{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff}
+.gate-feat .fi svg{width:19px;height:19px}
+.gate-feat .ft b{font-size:15px;display:block;color:#fff}
+.gate-feat .ft span{font-size:13.5px;color:#b9bcd8}
+.gate-foot{font-size:13px;color:rgba(255,255,255,.55);margin-top:30px}
+/* right / form */
+.gate-right{position:relative;background:transparent;display:flex;align-items:center;justify-content:center;padding:48px 40px;overflow:hidden}
+.mesh{position:absolute;inset:-15%;z-index:0;filter:blur(50px);opacity:.7;pointer-events:none}
+.mesh b{position:absolute;border-radius:50%;animation:float 14s ease-in-out infinite}
+.mesh .b1{width:340px;height:340px;left:-6%;top:6%;background:radial-gradient(circle at 30% 30%,rgba(65,95,245,.75),transparent 62%)}
+.mesh .b2{width:300px;height:300px;right:-4%;top:24%;background:radial-gradient(circle at 50% 50%,rgba(198,79,202,.6),transparent 64%);animation-delay:-5s}
+.mesh .b3{width:320px;height:320px;left:24%;bottom:-12%;background:radial-gradient(circle at 60% 40%,rgba(245,100,66,.5),transparent 62%);animation-delay:-9s}
+@keyframes float{0%,100%{transform:translate(0,0)}33%{transform:translate(22px,-26px)}66%{transform:translate(-18px,16px)}}
+.card-form{position:relative;z-index:1;background:#fff;border-radius:22px;box-shadow:0 40px 90px -30px rgba(0,0,0,.55);padding:34px 32px;width:100%;max-width:420px}
+.card-form h3{font-size:23px;margin-bottom:5px}
+.card-form .sub{font-size:14px;color:var(--muted);margin-bottom:22px}
+.field{margin-bottom:15px}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:6px}
+.field input,.field select{width:100%;font-family:inherit;font-size:15px;color:var(--ink);background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:12px 14px;transition:border-color .15s,box-shadow .15s;-webkit-appearance:none;appearance:none}
+.field input:focus,.field select:focus{outline:none;border-color:var(--purple);box-shadow:0 0 0 3px rgba(65,95,245,.18)}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%236b7180' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px}
+.field .err{font-size:12px;color:var(--danger,#E5484D);margin-top:5px;display:none}
+.field.invalid input,.field.invalid select{border-color:var(--danger,#E5484D)}
+.field.invalid .err{display:block}
+.card-form .btn{width:100%;margin-top:8px}
+.card-form .legal{font-size:11.5px;color:var(--muted);text-align:center;margin-top:14px;line-height:1.5}
+.peek{display:block;width:100%;text-align:center;margin-top:12px;font-size:13px;font-weight:600;color:var(--purple-deep);background:none;border:none;padding:4px}
+.peek:hover{text-decoration:underline}
 
-.abas{border-bottom:1px solid var(--linha);background:var(--porcelana);position:sticky;top:0;z-index:5}
-.abas .wrap{display:flex;gap:4px}
-.abas button{font-family:var(--mono);font-size:12.5px;color:var(--grafite);background:none;border:0;border-bottom:2px solid transparent;padding:14px 12px;margin-bottom:-1px}
-.abas button.on{color:var(--ink);border-bottom-color:var(--amber)}
-.abas button:hover{color:var(--ink)}
+/* ====== APP ====== */
+header.nav{position:sticky;top:0;z-index:50;background:var(--navy)}
+header.nav::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:3px;background:var(--grad)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-r{display:flex;align-items:center;gap:16px}
+.search{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);border-radius:var(--radius-pill);padding:9px 16px;width:280px;max-width:38vw}
+.search svg{width:16px;height:16px;color:rgba(255,255,255,.6);flex-shrink:0}
+.search input{border:none;background:none;outline:none;font-family:inherit;font-size:14px;width:100%;color:#fff}
+.search input::placeholder{color:rgba(255,255,255,.55)}
+.avatar{width:38px;height:38px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-body);font-weight:700;font-size:15px;cursor:pointer;transition:filter .15s,transform .15s}
+.avatar:hover{filter:brightness(1.06);transform:translateY(-1px)}
+/* ===== menu de perfil (dropdown do avatar) ===== */
+.pm-overlay{position:fixed;inset:0;z-index:60;display:none}
+.pm-overlay.on{display:block}
+.profile-menu{position:fixed;z-index:61;width:272px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-lg);padding:8px;display:none;animation:pmIn .14s ease}
+.profile-menu.on{display:block}
+@keyframes pmIn{from{opacity:0;transform:translateY(-6px) scale(.97)}to{opacity:1;transform:none}}
+.pm-head{display:flex;align-items:center;gap:12px;padding:12px 12px 10px}
+.pm-av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-body);font-weight:700;font-size:17px;color:#fff;background:var(--grad);flex:none}
+.pm-id{min-width:0}
+.pm-id b{display:block;font-size:14px;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pm-id span{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pm-role{display:inline-block;margin-top:5px;font-size:11px;font-weight:700;letter-spacing:.01em;padding:2px 9px;border-radius:var(--radius-pill);background:var(--purple-soft);color:var(--purple-deep)}
+.pm-role.cli{background:#E9F4E1;color:#4c7d2c}
+.pm-sep{height:1px;background:var(--border);margin:6px 4px}
+.pm-item{display:flex;align-items:center;gap:11px;width:100%;padding:11px 12px;border:0;background:none;border-radius:var(--radius-sm);font-family:inherit;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left}
+.pm-item:hover{background:var(--purple-soft)}
+.pm-item.danger{color:#dc2626}
+.pm-item.danger:hover{background:#FFEAE5}
+.pm-item svg{width:18px;height:18px;flex:none;stroke-width:2}
 
-main{padding:34px 0 90px}
-.grupo{margin-bottom:38px}
-.grupo>h2{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--cobalto);margin:0 0 4px}
-.grupo>p.sub{font-size:13.5px;color:var(--grafite);margin:0 0 16px}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+/* announcements */
+.ann{position:relative;overflow:hidden;border-radius:var(--radius);margin:26px 0 8px;background:var(--navy);min-height:150px}
+.ann::before{content:'';position:absolute;right:-36px;top:-46px;width:230px;height:230px;background:url('assets/grafismos/underscore-45.svg') no-repeat center/contain;opacity:.10;filter:brightness(0) invert(1);pointer-events:none}
+.ann::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--grad);z-index:2;pointer-events:none}
+.ann-track{display:flex;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.ann-slide{min-width:100%;padding:30px 34px;display:flex;align-items:center;gap:22px;color:#fff;position:relative;background-size:cover;background-position:center}
+.ann-slide.has-img::before{content:'';position:absolute;inset:0;background:linear-gradient(100deg,rgba(17,21,54,1) 0%,rgba(17,21,54,.78) 38%,rgba(17,21,54,.15) 68%);z-index:0}
+.ann-slide.has-img>*{position:relative;z-index:1}
+.ann-slide .big{font-size:34px}
+.ann-slide h3{color:#fff;font-size:22px;margin-bottom:4px}
+.ann-slide p{color:#c9ccda;font-size:14.5px;max-width:560px}
+.ann-slide .btn{margin-left:auto;flex-shrink:0;background:#fff;color:var(--ink)}
+.ann-dots{position:absolute;bottom:14px;left:34px;display:flex;gap:7px}
+.ann-dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer;transition:.2s}
+.ann-dots i.on{background:#fff;width:20px;border-radius:4px}
 
-.card{background:var(--branco);border:1px solid var(--linha);border-radius:10px;padding:18px 19px;display:flex;flex-direction:column;gap:9px;transition:border-color .18s,transform .18s}
-.card.viva:hover{border-color:var(--ink);transform:translateY(-2px)}
-.card .cima{display:flex;align-items:center;gap:8px}
-.card .tipo{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--cobalto);background:#E9EBFE;padding:3px 7px;border-radius:4px}
-.card .data{font-family:var(--mono);font-size:11px;color:var(--grafite);margin-left:auto}
-.card h3{font-family:var(--disp);font-weight:700;font-size:18px;line-height:1.22;margin:0;letter-spacing:-.012em}
-.card p{font-size:13.5px;color:var(--grafite);margin:0;line-height:1.55;flex:1}
-.card .abrir{align-self:flex-start;font-family:var(--mono);font-size:12px;font-weight:500;background:var(--ink);color:var(--porcelana);border:0;border-radius:6px;padding:9px 14px;text-decoration:none;display:inline-block;margin-top:2px}
-.card .abrir:hover{background:var(--cobalto)}
-.card.espera{background:transparent;border-style:dashed}
-.card.espera h3{color:var(--grafite)}
-.card .selo{font-family:var(--mono);font-size:11px;color:var(--grafite);margin-top:2px}
-.card .selo b{color:var(--ink);font-weight:500}
+/* banner slot */
+.banner{display:flex;align-items:center;gap:18px;background:linear-gradient(120deg,var(--purple-soft),var(--pink-soft));border:1px solid rgba(65,95,245,.22);border-radius:18px;padding:20px 24px;margin:14px 0 30px}
+.banner .bi{width:46px;height:46px;border-radius:13px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--shadow-sm)}
+.banner h4{font-size:17px}
+.banner p{font-size:13.5px;color:var(--ink-2)}
+.banner .btn{margin-left:auto;flex-shrink:0}
+.banner .slot-tag{position:absolute;font-size:10px}
 
-.vazio{border:1px dashed var(--linha);border-radius:10px;padding:34px 22px;text-align:center;color:var(--grafite);font-size:14px}
-.vazio b{display:block;font-family:var(--disp);font-size:17px;color:var(--ink);margin-bottom:6px}
+/* filters */
+.lib-head{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:6px}
+.lib-head h2{font-size:clamp(24px,3vw,32px);display:flex;align-items:center;gap:11px}
+.lib-head h2::before{content:'';width:10px;height:22px;border-radius:5px;background:var(--grad);flex:none}
+.foryou{font-size:13.5px;color:var(--purple-deep);font-weight:600;background:var(--purple-soft);padding:5px 12px;border-radius:var(--radius-pill);border:1px solid rgba(65,95,245,.22);display:inline-flex;gap:6px;align-items:center;margin-top:6px}
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0 26px}
+.chipf{padding:8px 16px;border-radius:var(--radius-pill);border:1px solid var(--border-strong);background:#fff;font-size:13.5px;font-weight:600;color:var(--ink-2);transition:.15s}
+.chipf:hover{border-color:var(--purple);color:var(--purple-deep)}
+.chipf.on{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 2px 8px rgba(198,79,202,.28)}
 
-.trilha .item{background:var(--branco);border:1px solid var(--linha);border-radius:10px;padding:16px 18px;margin-bottom:10px;display:flex;gap:16px;align-items:flex-start}
-.trilha .sem{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--porcelana);background:var(--ink);border-radius:5px;padding:5px 8px;white-space:nowrap}
-.trilha h3{font-family:var(--disp);font-size:16px;margin:0 0 3px}
-.trilha .fonte{font-family:var(--mono);font-size:11.5px;color:var(--cobalto);margin-bottom:5px}
-.trilha p{font-size:13.5px;color:var(--grafite);margin:0}
-.trilha .corpo{flex:1;min-width:0}
-.trilha a.ir{font-family:var(--mono);font-size:12px;margin-left:auto;white-space:nowrap;text-decoration:none;border:1px solid var(--linha);border-radius:6px;padding:7px 11px}
-.trilha a.ir:hover{border-color:var(--ink)}
-/* vídeo: thumbnail do YouTube, que abre no player oficial em aba nova */
-.trilha .thumb{position:relative;width:150px;flex:none;border-radius:7px;overflow:hidden;display:block;background:var(--ink);aspect-ratio:16/9}
-.trilha .thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.trilha .thumb .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-.trilha .thumb .play i{width:0;height:0;border-left:15px solid var(--porcelana);border-top:10px solid transparent;border-bottom:10px solid transparent;filter:drop-shadow(0 1px 3px rgba(0,0,0,.6));margin-left:3px}
-.trilha .thumb:hover .play i{border-left-color:var(--amber)}
-@media (max-width:600px){.trilha .item{flex-wrap:wrap}.trilha .thumb{width:100%}}
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tcard{background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);cursor:pointer;display:flex;flex-direction:column;transition:transform .22s,box-shadow .22s;opacity:0;transform:translateY(12px);animation:cardin .5s ease forwards}
+@keyframes cardin{to{opacity:1;transform:none}}
+.tcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.tcard .cap{aspect-ratio:16/10;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.tcard .cap .play{width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);transition:transform .22s;z-index:1}
+.tcard:hover .cap .play{transform:scale(1.1)}
+.tcard .cap .play svg{width:22px;height:22px;color:var(--purple-deep);margin-left:2px}
+.tcard .cap .dur{position:absolute;bottom:10px;right:10px;background:rgba(11,11,18,.78);color:#fff;font-size:11.5px;font-weight:600;padding:3px 8px;border-radius:7px;z-index:1}
+.tcard .cap .new{position:absolute;top:10px;right:10px;left:auto;display:inline-flex;align-items:center;gap:5px;background:#fff;color:var(--purple-deep);font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:4px 9px 4px 8px;border-radius:7px;z-index:2;box-shadow:var(--shadow-sm)}
+.tcard .cap .new::before{content:'';width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--pink));box-shadow:0 0 0 3px rgba(65,95,245,.20)}
+.tcard .body{padding:16px 17px 18px;flex:1;display:flex;flex-direction:column;gap:9px}
+.tcard h3{font-size:17px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tcard .res{font-size:13px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tcard .foot{display:flex;align-items:center;gap:8px;margin-top:auto;flex-wrap:wrap}
+.tcard .tools{display:flex;gap:5px;margin-left:auto}
+.toolchip{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 8px;border-radius:7px;background:var(--surface);border:1px solid var(--border);color:var(--ink-2)}
+.toolchip .d{width:7px;height:7px;border-radius:50%}
+.lvl{font-size:11px;font-weight:700;padding:3px 9px;border-radius:var(--radius-pill);background:var(--surface);color:var(--muted);border:1px solid var(--border)}
+.empty{text-align:center;padding:70px 20px;color:var(--muted)}
+.empty .ei{font-size:40px;margin-bottom:10px}
 
-footer{border-top:1px solid var(--linha);padding:24px 0 60px;font-family:var(--mono);font-size:11.5px;color:var(--grafite)}
-footer b{color:var(--ink);font-weight:500}
-footer .cur{color:var(--amber)}
+/* ---- thumbnail polish (mata o "gradiente vazio") ---- */
+.tcard .cap::after{content:'';position:absolute;inset:0;background:radial-gradient(130% 90% at 50% -20%,rgba(255,255,255,.42),transparent 58%);pointer-events:none;z-index:0}
+.cap-motif{position:absolute;inset:0;z-index:0;background-image:radial-gradient(rgba(255,255,255,.55) 1px,transparent 1.4px);background-size:15px 15px;opacity:.22;-webkit-mask-image:linear-gradient(150deg,#000,transparent 72%);mask-image:linear-gradient(150deg,#000,transparent 72%)}
+.cap-glyph{position:absolute;left:-14px;bottom:-22px;z-index:0;color:rgba(255,255,255,.26);transform:rotate(-8deg);transition:transform .35s ease}
+.cap-glyph svg{width:118px;height:118px;display:block}
+.tcard:hover .cap-glyph{transform:rotate(-8deg) scale(1.06) translateY(-2px)}
+.cap-tool{position:absolute;top:10px;left:10px;z-index:2;display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#fff;background:rgba(11,11,18,.32);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);border:1px solid rgba(255,255,255,.22);padding:4px 9px;border-radius:7px}
+.cap-tool .d{width:7px;height:7px;border-radius:50%;box-shadow:0 0 0 2px rgba(255,255,255,.25)}
+.tcard .cap .play{z-index:1}
+.tcard .cap .feat{position:absolute;left:10px;bottom:10px;z-index:2;display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--orange),var(--pink));padding:4px 9px;border-radius:7px;box-shadow:var(--shadow-sm)}
+.tcard:active{transform:translateY(-1px) scale(.994)}
+/* barra de visibilidade no rodapé do card (só admin): no ar / fora do ar */
+.tcard .vis-bar{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;border:0;border-top:1px solid var(--border);background:var(--purple-soft);color:var(--purple-deep);font-family:inherit;font-size:12px;font-weight:700;letter-spacing:.01em;padding:9px 12px;cursor:pointer;transition:background .15s,color .15s}
+.tcard .vis-bar:hover{background:#c6d0fa}
+.tcard .vis-bar.off{background:#fdecec;color:#b91c1c}
+.tcard .vis-bar.off:hover{background:#fbdcdc}
+.tcard.is-hidden{opacity:.66}
+.tcard.is-hidden .cap,.tcard.is-hidden .body{filter:grayscale(.25)}
+.chipf:active{transform:scale(.96)}
+.tcard .cap .dur{display:inline-flex;align-items:center;gap:4px;z-index:2}
+.tcard .cap .dur svg{width:11px;height:11px}
 
-@media (max-width:600px){.cards{grid-template-columns:1fr}}
+/* ====== DESTAQUES DA SEMANA (faixa do topo) ====== */
+.dest{margin:6px 0 32px}
+.dest .lib-head{margin-bottom:14px}
+.dest-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.dest .tcard .cap{aspect-ratio:16/9}
+/* card de evento (workshop) */
+.evcard{position:relative;overflow:hidden;border-radius:var(--radius);box-shadow:var(--shadow-sm);border:1px solid rgba(65,95,245,.25);background:linear-gradient(135deg,var(--navy),#2a3170);color:#fff;display:flex;flex-direction:column;cursor:pointer;transition:transform .22s,box-shadow .22s;min-height:230px}
+.evcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.evcard::after{content:'';position:absolute;inset:0;background:radial-gradient(120% 80% at 80% 0,rgba(65,95,245,.40),transparent 60%);pointer-events:none}
+.evcard .ev-body{position:relative;z-index:1;padding:22px;display:flex;flex-direction:column;gap:10px;height:100%}
+.evcard .ev-tag{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:rgba(255,255,255,.14);padding:5px 10px;border-radius:99px;backdrop-filter:blur(4px)}
+.evcard .ev-tag .liveDot{width:7px;height:7px;border-radius:50%;background:#ff4d6d;box-shadow:0 0 0 3px hsl(348 90% 65% / .3);animation:pulseDot 1.6s infinite}
+@keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.4}}
+.evcard h3{font-size:19px;line-height:1.2}
+.evcard p{font-size:13px;color:rgba(255,255,255,.8);line-height:1.45}
+.evcard .ev-cta{margin-top:auto;display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;color:#fff}
+.evcard .ev-cta svg{width:16px;height:16px;transition:transform .2s}
+.evcard:hover .ev-cta svg{transform:translateX(3px)}
+.evcard .ev-emoji{position:absolute;right:18px;top:16px;font-size:30px;opacity:.9;z-index:1}
+.evcard .ev-photo{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center 26%}
+.evcard.has-img{min-height:300px}
+.evcard.has-img h3{text-shadow:0 2px 12px rgba(0,0,0,.55)}
+@media(max-width:860px){.dest-row{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.dest-row{grid-template-columns:1fr}}
+
+/* ====== DETAIL ====== */
+#view-detail{padding:0}
+.det-wrap{max-width:980px;margin:0 auto;padding:24px}
+.back{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--ink-2);margin-bottom:18px;background:#fff;border:1px solid var(--border);border-radius:var(--radius-pill);padding:9px 16px;box-shadow:var(--shadow-sm);transition:color .15s,border-color .15s,transform .15s,box-shadow .15s}
+.back:hover{color:var(--purple-deep);border-color:rgba(65,95,245,.40);transform:translateY(-1px);box-shadow:var(--shadow)}
+.back svg{width:15px;height:15px}
+.det-video{aspect-ratio:16/9;border-radius:18px;background:linear-gradient(135deg,var(--navy),#252C6E);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
+.det-video .ply{width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);cursor:pointer;transition:transform .2s;z-index:1}
+.det-video .ply:hover{transform:scale(1.08)}
+.det-video .ply svg{width:30px;height:30px;color:var(--purple-deep);margin-left:3px}
+.det-video::after{content:'';position:absolute;inset:0;background:radial-gradient(120% 80% at 50% -15%,rgba(255,255,255,.4),transparent 60%);pointer-events:none;z-index:0}
+.det-video .cap-glyph{left:-18px;bottom:-30px}
+.det-video .cap-glyph svg{width:190px;height:190px}
+.det-video .tape{position:absolute;top:16px;left:16px;font-size:12px;font-weight:600;color:rgba(255,255,255,.82);background:rgba(11,11,18,.28);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.18);padding:5px 11px;border-radius:8px;z-index:2}
+.det-video .ply{z-index:2}
+.det-video.ig{aspect-ratio:auto;background:transparent;box-shadow:none;display:block;border-radius:0}
+.det-video.ig iframe{display:block;margin:0 auto;width:100%;max-width:400px;height:680px;border-radius:18px;background:#fff;box-shadow:var(--shadow-lg)}
+.det-video.ig .ig-open{display:block;width:fit-content;margin:10px auto 0;font-size:13px;font-weight:600;color:var(--muted);text-decoration:none}
+.det-video.ig .ig-open:hover{color:var(--purple-deep)}
+.det-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:22px 0 4px}
+.det-wrap h1{font-size:clamp(26px,3.4vw,36px);margin:8px 0 14px}
+.det-result{background:var(--surface-2);border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:var(--radius);padding:16px 20px;font-size:15.5px;color:var(--ink-2);margin-bottom:30px;max-width:75ch}
+.det-result b{color:var(--ink)}
+.sect{margin-bottom:30px}
+.sect-h{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.sect-h .n{width:26px;height:26px;border-radius:8px;background:var(--purple-soft);color:var(--purple-deep);font-size:14px;font-weight:700;font-family:var(--font-body);display:flex;align-items:center;justify-content:center}
+.sect-h h3{font-size:19px}
+.toolrow{display:flex;gap:10px;flex-wrap:wrap}
+.toolbig{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:13px 16px;box-shadow:var(--shadow-sm);text-decoration:none;color:inherit}
+a.toolbig{cursor:pointer;transition:transform .15s,box-shadow .15s}
+a.toolbig:hover{transform:translateY(-1px);box-shadow:var(--shadow-md,0 6px 16px rgba(0,0,0,.08))}
+.toolbig .tdot{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-family:var(--font-body);font-size:14px}
+.toolbig b{font-size:14.5px;display:block}
+.toolbig span{font-size:12px;color:var(--muted)}
+/* prompt block */
+.prompt{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:14px;box-shadow:var(--shadow-sm)}
+.prompt .ph{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--surface);border-bottom:1px solid var(--border)}
+.prompt .ph .pdot{width:8px;height:8px;border-radius:50%}
+.prompt .ph b{font-size:13.5px}
+.prompt .ph .obj{font-size:12.5px;color:var(--muted)}
+.prompt .ph .copy{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--purple-deep);background:#fff;border:1px solid var(--border-strong);border-radius:8px;padding:6px 11px;transition:.15s}
+.prompt .ph .copy:hover{border-color:var(--purple);background:var(--purple-soft)}
+.prompt .ph .copy.done{color:#4c7d2c;border-color:#a9d18a;background:#E9F4E1}
+.prompt .ph .copy svg{width:14px;height:14px}
+.prompt pre{margin:0;padding:16px;font-family:var(--font-body);font-size:13.5px;line-height:1.65;color:var(--ink);white-space:pre-wrap;word-break:break-word;background:#fff;max-height:300px;overflow:auto}
+.steps{counter-reset:s;display:flex;flex-direction:column;gap:11px;max-width:75ch}
+.step{display:grid;grid-template-columns:30px 1fr;gap:13px;align-items:flex-start;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow-sm)}
+.step .sn{counter-increment:s;width:30px;height:30px;border-radius:9px;background:var(--grad);color:#fff;font-family:var(--font-body);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+.step .sn::before{content:counter(s)}
+.step p{font-size:14px;color:var(--ink-2);padding-top:3px}
+
+footer.appf{border-top:1px solid var(--border);margin-top:40px;padding:26px 0;color:var(--muted);font-size:13px}
+
+/* ====== ADMIN ====== */
+.iconbtn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;color:#fff;transition:.15s;flex-shrink:0}
+.iconbtn:hover{border-color:rgba(255,255,255,.4);color:#fff;background:rgba(255,255,255,.2)}
+.iconbtn:active{transform:scale(.94)}
+.iconbtn svg{width:18px;height:18px}
+.adminbadge{font-size:12px;font-weight:700;color:var(--purple-deep);background:var(--purple-soft);border:1px solid rgba(65,95,245,.22);padding:5px 11px;border-radius:var(--radius-pill)}
+.admin-wrap{max-width:1100px;margin:0 auto;padding:24px}
+.admin-title{font-size:clamp(26px,3.4vw,34px);margin:6px 0 6px}
+.admin-sub{font-size:14px;max-width:72ch;margin-bottom:24px}
+.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;align-items:start}
+.admin-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow-sm)}
+.ac-h{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.ac-h .ac-n{width:26px;height:26px;border-radius:8px;background:var(--purple-soft);color:var(--purple-deep);font-weight:700;font-family:var(--font-body);display:flex;align-items:center;justify-content:center;font-size:14px}
+.ac-h h3{font-size:18px}
+.field textarea{width:100%;font-family:inherit;font-size:15px;color:var(--ink);background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:12px 14px;resize:vertical;min-height:78px;line-height:1.5}
+.field textarea:focus{outline:none;border-color:var(--purple);box-shadow:0 0 0 3px rgba(65,95,245,.18)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.toggle{display:flex;align-items:center;gap:10px;margin-bottom:15px;font-size:14px;font-weight:600;color:var(--ink-2);cursor:pointer}
+.toggle input{width:18px;height:18px;accent-color:var(--purple);cursor:pointer}
+.aigen{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--purple-deep);background:var(--purple-soft);border:1px solid rgba(65,95,245,.22);border-radius:var(--radius-pill);padding:9px 15px;margin-bottom:14px;cursor:pointer;transition:.15s}
+.aigen:hover{background:#fff;border-color:var(--purple)}
+.admin-card .btn{width:100%;margin-top:6px}
+.adm-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.adm-row:last-child{border-bottom:none}
+.adm-row .d{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.adm-info{flex:1;display:flex;flex-direction:column;min-width:0}
+.adm-info b{font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.adm-info span{font-size:12.5px;color:var(--muted)}
+.adm-del{font-size:12.5px;font-weight:600;color:var(--pink);background:none;border:1px solid var(--border-strong);border-radius:8px;padding:6px 12px;flex-shrink:0}
+.adm-del:hover{border-color:var(--pink);background:var(--pink-soft)}
+/* tabs */
+.admin-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;border-bottom:1px solid var(--border);padding-bottom:0}
+.atab{position:relative;font-family:var(--font-body);font-weight:700;font-size:15px;color:var(--muted);background:none;border:none;padding:10px 6px;margin-right:10px;border-bottom:2.5px solid transparent;display:inline-flex;align-items:center;gap:7px}
+.atab:hover{color:var(--ink-2)}
+.atab.on{color:var(--purple-deep);border-bottom-color:var(--purple)}
+.atab-n{font-size:11px;font-weight:700;color:#fff;background:var(--purple);border-radius:999px;padding:1px 7px;min-width:18px;text-align:center}
+.apanel{display:none}
+.apanel.on{display:block;animation:fadeup .35s ease}
+/* listas de gestão */
+.tutlist{display:flex;flex-direction:column}
+.adm-ord{display:flex;flex-direction:column;gap:2px;flex-shrink:0}
+.adm-emoji{font-size:22px;flex-shrink:0;width:26px;text-align:center}
+.adm-btns{display:flex;gap:5px;flex-shrink:0}
+.adm-ic{width:30px;height:30px;border-radius:8px;border:1px solid var(--border-strong);background:#fff;color:var(--ink-2);font-size:14px;display:flex;align-items:center;justify-content:center;transition:.15s;line-height:1}
+.adm-ord .adm-ic{width:26px;height:18px;font-size:11px}
+.adm-ic:hover{border-color:var(--purple);color:var(--purple-deep);background:var(--purple-soft)}
+.adm-ic:disabled{opacity:.35;cursor:default;pointer-events:none}
+.adm-ic.on{background:var(--orange);border-color:var(--orange);color:#fff}
+.adm-ic.del:hover{border-color:var(--pink);color:var(--pink);background:var(--pink-soft)}
+.star{color:var(--orange)}
+/* tabela de leads */
+.leadtable{font-size:13.5px;border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden}
+.lt-h,.lt-r{display:grid;grid-template-columns:1.1fr 1.6fr 1.1fr 1.2fr 1.2fr;gap:10px;padding:11px 14px;align-items:center}
+.lt-h{background:var(--surface);font-weight:700;color:var(--ink-2);font-size:12.5px}
+.lt-r{border-top:1px solid var(--border)}
+.lt-r span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:760px){.leadtable{overflow-x:auto}.lt-h,.lt-r{grid-template-columns:120px 180px 120px 120px 140px;min-width:680px}}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;font-size:14px;font-weight:500;padding:12px 20px;border-radius:var(--radius-pill);box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transition:.3s;z-index:200}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media(max-width:900px){
+  .gate{grid-template-columns:1fr}
+  .gate-left{display:none}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .search{width:180px}
+  .admin-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .grid{grid-template-columns:1fr}
+  .ann-slide{flex-direction:column;align-items:flex-start;gap:14px}.ann-slide .btn{margin-left:0}
+  .banner{flex-direction:column;align-items:flex-start}.banner .btn{margin-left:0}
+  .search{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ===== botão School na nav (ponte pro ambiente de cursos) ===== */
+.school-nav{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 18px;border-radius:99px;
+  font-weight:700;font-size:14px;cursor:pointer;border:none;color:#fff;
+  background:var(--grad);
+  box-shadow:0 2px 8px rgba(198,79,202,.28);transition:transform .15s,box-shadow .15s}
+.school-nav:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(198,79,202,.38)}
+.school-nav svg{width:18px;height:18px}
+.school-lock{font-size:12px;opacity:.9}
+
+/* ===== view School (vitrine dentro do Leve) ===== */
+.school-wrap{max-width:980px;margin:0 auto;padding:0 0 60px}
+.school-hero{position:relative;overflow:hidden;border-radius:24px;padding:46px 44px;margin-top:8px;
+  background:linear-gradient(150deg,#12163a,#252C6E);color:#fff}
+.school-hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(40vw 40vw at 90% -20%,rgba(198,79,202,.35),transparent 60%),
+    radial-gradient(36vw 36vw at -10% 120%,rgba(245,100,66,.28),transparent 60%)}
+.school-hero>*{position:relative;z-index:1}
+.school-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
+  background:rgba(255,255,255,.12);padding:6px 13px;border-radius:999px;margin-bottom:18px}
+.school-hero h1{font-size:clamp(28px,4vw,40px);line-height:1.12;margin:0 0 14px;max-width:620px;color:#fff}
+.school-hero p{font-size:17px;color:rgba(255,255,255,.82);max-width:540px;margin:0 0 26px}
+.school-cta{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 26px;border-radius:14px;
+  font-weight:800;font-size:16px;cursor:pointer;border:none}
+.school-cta.go{background:#fff;color:var(--navy)}
+.school-cta.locked{background:var(--grad);color:#fff}
+.school-cta:hover{transform:translateY(-1px)}
+.school-note{font-size:13.5px;color:rgba(255,255,255,.7);margin-top:14px}
+.school-feats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:30px 0}
+.school-feat{background:var(--surface-2,#fff);border:1px solid var(--border,#eee);border-radius:16px;padding:20px}
+.school-feat .fi{font-size:22px;margin-bottom:8px}
+.school-feat b{display:block;font-size:15px;margin-bottom:3px}
+.school-feat span{font-size:13.5px;color:var(--muted,#666)}
+.school-vitrine h2{font-size:22px;margin:30px 0 4px}
+.school-vitrine .sub{font-size:14px;color:var(--muted,#666);margin:0 0 18px}
+.school-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.scard{position:relative;border-radius:18px;overflow:hidden;cursor:pointer;min-height:150px;
+  display:flex;flex-direction:column;justify-content:flex-end;padding:18px;color:#fff}
+.scard .lockpill{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);
+  font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px}
+.scard h3{font-size:16px;margin:0 0 4px;position:relative;z-index:1;color:#fff}
+.scard p{font-size:12.5px;color:rgba(255,255,255,.9);margin:0;position:relative;z-index:1}
+.school-feat b{color:var(--ink,#13111c)}
+@media(max-width:600px){.school-feats{grid-template-columns:1fr}.school-hero{padding:34px 24px}}
+
+/* ===== conteúdo rico (galeria / stories / slides / exemplo) ===== */
+.det-video .capaimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.det-video .capaov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.45));z-index:1}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:75ch}
+.gslot{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--purple-soft);box-shadow:var(--shadow-sm)}
+.gslot .glab{display:block;font-size:11.5px;font-weight:700;color:var(--purple-deep);padding:9px 13px;border-bottom:1px solid var(--border);background:#fff}
+.gslot img{display:block;width:100%;height:160px;object-fit:cover;cursor:zoom-in}
+.gph{height:160px;display:flex;align-items:center;justify-content:center;color:var(--purple-deep);font-size:12.5px;font-weight:600;border:2px dashed var(--border-strong);margin:10px;border-radius:10px;text-align:center;padding:8px}
+.strefwrap{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:14px;background:#fff;max-width:75ch}
+.strefwrap .glab{display:block;font-size:11.5px;font-weight:700;color:var(--purple-deep);padding:9px 13px;border-bottom:1px solid var(--border)}
+.strefimg{display:block;width:100%;max-height:240px;object-fit:cover;object-position:top;cursor:zoom-in}
+.sthint{font-size:13.5px;color:var(--muted);margin:0 0 12px}
+.strow{display:flex;gap:11px;overflow-x:auto;padding:2px 2px 10px;-webkit-overflow-scrolling:touch}
+.stthumb{flex:0 0 auto;width:96px;height:171px;border-radius:12px;overflow:hidden;border:1px solid var(--border);cursor:pointer;position:relative;background:#000;box-shadow:var(--shadow-sm);transition:.16s}
+.stthumb.slide{width:136px;height:170px}
+.stthumb:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.stthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.stthumb .stn{position:absolute;top:6px;left:6px;font-size:10px;font-weight:800;color:#fff;background:rgba(0,0,0,.5);padding:2px 7px;border-radius:6px}
+.stthumb .stplay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:.16s;background:rgba(0,0,0,.25)}
+.stthumb:hover .stplay{opacity:1}
+.stthumb .stplay svg{width:30px;height:30px;color:#fff;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5))}
+.exnota{font-size:13.5px;color:var(--muted);margin:0 0 12px;max-width:75ch}
+/* visualizador stories/slides */
+.sv{position:fixed;inset:0;background:rgba(10,6,20,.93);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:200;padding:18px}
+.sv.on{display:flex}
+.svstage{position:relative;height:min(88vh,780px);aspect-ratio:9/16;background:#000;border-radius:18px;overflow:hidden;box-shadow:0 40px 90px -25px rgba(0,0,0,.8)}
+.svstage img{width:100%;height:100%;object-fit:cover;display:block}
+.svbars{position:absolute;top:12px;left:12px;right:12px;display:flex;gap:5px;z-index:3}
+.svbar{flex:1;height:3px;border-radius:3px;background:rgba(255,255,255,.32);overflow:hidden}
+.svbar.done{background:#fff}
+.svnav{position:absolute;top:0;bottom:0;width:42%;cursor:pointer;z-index:2}
+.svnav.prev{left:0}.svnav.next{right:0}
+.svclose{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:none;background:rgba(0,0,0,.45);color:#fff;font-size:19px;cursor:pointer;z-index:4}
+.svcount{position:absolute;bottom:14px;left:0;right:0;text-align:center;color:rgba(255,255,255,.85);font-size:12px;font-weight:600;z-index:3;pointer-events:none;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+/* lightbox de imagem */
+.imgov{position:fixed;inset:0;background:rgba(10,6,20,.92);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:210;padding:24px;cursor:zoom-out}
+.imgov.on{display:flex}
+.imgov img{max-width:100%;max-height:100%;object-fit:contain;border-radius:10px;box-shadow:0 30px 80px -20px rgba(0,0,0,.8)}
+.imgov .imgclose{position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;border:none;background:rgba(0,0,0,.5);color:#fff;font-size:20px;cursor:pointer;z-index:2}
+/* capa de vídeo clicável (grid) */
+.tcard .cap.vidcap{aspect-ratio:16/9;cursor:pointer}
+.tcard .cap.vidcap>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tcard .cap.vidcap .vidov-scrim{position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(10,6,20,.05),rgba(10,6,20,.42));transition:background .22s}
+.tcard .cap.vidcap:hover .vidov-scrim{background:linear-gradient(180deg,rgba(10,6,20,.02),rgba(10,6,20,.28))}
+.tcard .cap.vidcap .play.yt{width:60px;height:44px;border-radius:12px;background:#ff2f2f;box-shadow:0 8px 22px -6px rgba(255,47,47,.65)}
+.tcard .cap.vidcap .play.yt svg{width:26px;height:26px;color:#fff;margin-left:2px}
+.tcard .cap.vidcap .play.lock{background:rgba(0,0,0,.5)}
+.tcard .cap.vidcap .dur{display:inline-flex;align-items:center;gap:5px;font-weight:700}
+.tcard .body h3.vidttl{cursor:pointer;transition:color .15s;user-select:none;-webkit-user-select:none}
+.tcard .body h3.vidttl:hover{color:var(--purple)}
+/* player fullscreen */
+.vidov{position:fixed;inset:0;background:rgba(10,6,20,.94);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:220;padding:20px}
+.vidov.on{display:flex}
+.vidov-stage{width:min(1040px,100%);max-height:100%;display:flex;flex-direction:column;gap:12px}
+.vidov-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.vidov-top h3{color:#fff;font-size:18px;font-weight:700;margin:0;line-height:1.3}
+.vidov-top .imgclose{position:static;flex:0 0 auto}
+.vidov-frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 30px 90px -24px rgba(0,0,0,.85)}
+.vidov-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.vidov-fallback{color:rgba(255,255,255,.72);font-size:13px;text-decoration:none;text-align:center;align-self:center}
+.vidov-fallback:hover{color:#fff;text-decoration:underline}
+@media(max-width:560px){.vidov{padding:12px}.vidov-top h3{font-size:15px}}
+/* ===== editor: prompts repetíveis + uploads ===== */
+.subh{font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:22px 0 10px;display:flex;align-items:center;gap:8px}
+.subh:first-child{margin-top:4px}
+.promptcard{border:1px solid var(--border);border-radius:var(--radius);padding:13px;margin-bottom:12px;background:var(--surface-2);position:relative}
+.promptcard .pchead{display:flex;gap:8px;margin-bottom:9px}
+.promptcard .pchead .field{flex:1;margin:0}
+.promptcard .pcdel{position:absolute;top:10px;right:10px;border:1px solid var(--border-strong);background:#fff;color:#c0392b;border-radius:8px;width:28px;height:28px;cursor:pointer;font-size:15px;line-height:1}
+.promptcard .pcdel:hover{background:#fdecea;border-color:#e8a99f}
+.addbtn{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--purple-deep);background:var(--purple-soft);border:1px dashed var(--border-strong);border-radius:10px;padding:9px 14px;cursor:pointer;transition:.15s}
+.addbtn:hover{background:#fff;border-color:var(--purple)}
+.uprow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 0 4px}
+.upthumb{width:74px;height:74px;border-radius:11px;object-fit:cover;border:1px solid var(--border);background:var(--surface-2)}
+.upthumb.ph{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:22px}
+.upbtn{font-size:12.5px;font-weight:700;color:var(--purple-deep);background:#fff;border:1px solid var(--border-strong);border-radius:9px;padding:8px 13px;cursor:pointer;transition:.15s}
+.upbtn:hover{background:var(--purple-soft);border-color:var(--purple)}
+.upbtn.busy{opacity:.6;pointer-events:none}
+.uphint{font-size:12px;color:var(--muted)}
+.galrow{display:flex;gap:10px;align-items:center;margin-bottom:10px;border:1px solid var(--border);border-radius:11px;padding:10px;background:var(--surface-2)}
+.galrow .gr-thumb{width:60px;height:60px;border-radius:9px;object-fit:cover;border:1px solid var(--border);flex:0 0 auto;background:#fff}
+.galrow .gr-thumb.ph{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:18px}
+.galrow .field{flex:1;margin:0}
+.galrow .gr-del{border:1px solid var(--border-strong);background:#fff;color:#c0392b;border-radius:8px;width:30px;height:30px;cursor:pointer;flex:0 0 auto}
+.multistrip{display:flex;gap:9px;flex-wrap:wrap;margin:8px 0}
+.multistrip .ms-item{position:relative;width:64px;height:114px;border-radius:9px;overflow:hidden;border:1px solid var(--border);background:#000}
+.multistrip .ms-item.slide{width:96px;height:120px}
+.multistrip .ms-item img{width:100%;height:100%;object-fit:cover;display:block}
+.multistrip .ms-item .ms-x{position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;border:none;background:rgba(0,0,0,.6);color:#fff;font-size:12px;cursor:pointer;line-height:1}
+.muted-help{font-size:12.5px;color:var(--muted);margin:-2px 0 8px}
 </style>
 </head>
 <body>
 
-<!-- porta -->
-<div id="porta">
-  <div class="cx">
-    <div class="marca">batista<i>.</i>growth</div>
-    <div class="kick">&gt; central_da_consultoria</div>
-    <h1>Tudo que a gente produzir fica aqui<i>.</i></h1>
-    <p>Área restrita do cliente. Documentos, análises e painéis do processo, sempre na versão mais recente.</p>
-    <input type="password" id="senha" placeholder="senha de acesso_" autocomplete="current-password">
-    <button id="entrar">Entrar</button>
-    <div class="erro" id="erro"></div>
-    <div class="rodape">Não tem a senha? Fale com o Gardel.</div>
-  </div>
-</div>
-
-<!-- sala -->
-<div id="sala">
-  <div class="topo">
-    <div class="wrap">
-      <div class="linha">
-        <div class="marca">batista<i>.</i>growth</div>
-        <button class="sair" id="sair">sair_</button>
+<!-- ============ GATE ============ -->
+<div class="view active" id="view-gate">
+  <div class="gate">
+    <img class="bgpat g1" src="assets/grafismos/chevrons-fluxo.svg" alt="" aria-hidden="true">
+    <img class="bgpat g2" src="assets/grafismos/grade-pontos.svg" alt="" aria-hidden="true">
+    <div class="gate-left">
+      <div class="logo"><img src="assets/logo/lockup-linha-branco-transparente.png" alt="batista.growth" class="brand-logo"><span class="lab-suffix">Leve</span></div>
+      <div class="gate-hero">
+        <span class="eyebrow"><span class="dot"></span>O acervo de quem executa</span>
+        <h1>Já está tudo <span class="grad-text">pronto</span>. Você copia, adapta e aplica.</h1>
+        <p>Vídeos curtos com o passo a passo e o que você precisa copiar pra usar hoje: growth, comercial e IA aplicada, do jeito que eu uso.</p>
+        <div class="gate-feat">
+          <div class="f"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg></span><span class="ft"><b>Vídeo + passo a passo</b><span>Veja a tela dividida e reproduza junto.</span></span></div>
+          <div class="f"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></span><span class="ft"><b>Pronto pra copiar e aplicar</b><span>Prompt, script ou modelo: é só usar.</span></span></div>
+          <div class="f"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7h-9M14 17H5M17 3a4 4 0 0 0 0 8 4 4 0 0 0 0-8zM7 13a4 4 0 0 0 0 8 4 4 0 0 0 0-8z"/></svg></span><span class="ft"><b>Filtrado pro seu momento</b><span>Só o que cabe no seu momento.</span></span></div>
+        </div>
       </div>
-      <div class="kick">&gt; consultoria_comercial</div>
-      <h1 id="nomeCliente">—</h1>
-      <p class="bem" id="bemVindo"></p>
+      <div class="gate-foot">batista.growth Leve · gardelbatista.com.br/levebatista · @batista.growth</div>
+    </div>
+
+    <div class="gate-right">
+      <div class="mesh"><b class="b1"></b><b class="b2"></b><b class="b3"></b></div>
+      <form class="card-form" id="signupForm" novalidate data-mode="signup">
+        <h3 id="authTitle">Criar acesso ao Leve</h3>
+        <p class="sub" id="authSub">Crie seu acesso gratuito e libere o acervo completo.</p>
+        <div class="field" id="f-nome">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" autocomplete="name" placeholder="Seu nome">
+          <span class="err">Conta pra gente seu nome.</span>
+        </div>
+        <div class="field" id="f-email">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" autocomplete="email" inputmode="email" placeholder="voce@email.com">
+          <span class="err">Digite um e-mail válido.</span>
+        </div>
+        <div class="field" id="f-pass">
+          <label for="pass">Senha</label>
+          <input type="password" id="pass" autocomplete="current-password" placeholder="Mínimo 6 caracteres">
+          <span class="err">A senha precisa ter ao menos 6 caracteres.</span>
+        </div>
+        <div class="field" id="f-tel">
+          <label for="tel">WhatsApp</label>
+          <input type="tel" id="tel" autocomplete="tel" inputmode="tel" placeholder="(00) 00000-0000">
+          <span class="err">Digite seu WhatsApp.</span>
+        </div>
+        <div class="field" id="f-prof">
+          <label for="prof">Sua profissão</label>
+          <select id="prof">
+            <option value="">Selecione…</option>
+            <option>Médico(a)</option>
+            <option>Nutricionista</option>
+            <option>Psicólogo(a)</option>
+            <option>Educador físico / Personal</option>
+            <option>Fisioterapeuta</option>
+            <option>Clínica / Gestor(a)</option>
+            <option>Outro</option>
+          </select>
+          <span class="err">Escolha sua profissão.</span>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" id="authSubmit">Acessar o acervo →</button>
+        <p class="legal" style="text-align:center;margin:2px 0 0">
+          <span id="authSwitchText">Já tem conta?</span>
+          <a href="#" id="authSwitch" onclick="toggleAuthMode(event)" style="color:var(--purple-deep);font-weight:600">Entrar</a>
+        </p>
+        <button type="button" class="peek" onclick="previewLab()">👀 Só quero ver o acervo por dentro →</button>
+        <p class="legal">Ao entrar você concorda em receber conteúdos do batista.growth. Seus dados ficam seguros.</p>
+      </form>
     </div>
   </div>
-
-  <div class="abas"><div class="wrap" id="abas"></div></div>
-
-  <main class="wrap" id="conteudo"></main>
-
-  <footer><div class="wrap">
-    <b>batista.growth</b> <span class="cur">_</span><br>
-    Crescimento não é feeling. É método, clareza e decisão.
-  </div></footer>
 </div>
+
+<!-- ============ LIBRARY ============ -->
+<div class="view" id="view-app">
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <div class="logo"><img src="assets/logo/lockup-linha-branco-transparente.png" alt="batista.growth" class="brand-logo"><span class="lab-suffix">Leve</span></div>
+      <div class="nav-r">
+        <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg><input type="search" id="searchInput" placeholder="Buscar tutorial, IA, tema…"></div>
+        <button class="school-nav" id="schoolNav" onclick="openSchool()" title="Cursos do batista.growth School">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.5 2.5 6 2.5s6-1.5 6-2.5v-5"/></svg>
+          School <span class="school-lock" id="schoolLock">🔒</span>
+        </button>
+        <button class="iconbtn" id="adminBtn" onclick="openAdmin()" title="Configurações (admin)" aria-label="Configurações"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.2.61.79 1.03 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+        <div class="avatar" id="navAvatar" onclick="toggleProfileMenu(event)" title="Seu perfil">G</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <!-- announcements carousel -->
+    <div class="ann">
+      <div class="ann-track" id="annTrack"></div>
+      <div class="ann-dots" id="annDots"></div>
+    </div>
+
+    <!-- banner gerenciável pelo admin (Configurações) -->
+    <div id="bannerSlot"></div>
+
+    <!-- vídeos da semana (leve_videos · expiram em 7 dias) -->
+    <section id="labVideos" style="display:none;margin:8px 0 26px">
+      <div class="lib-head" style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <div>
+          <h2>Vídeos da <span class="grad-text">semana</span></h2>
+          <span class="foryou" style="display:inline-flex">⏳ Some em 7 dias · pega enquanto está no ar</span>
+        </div>
+        <button class="btn" id="labVidAddBtn" onclick="openVidForm()" style="display:none">+ Adicionar vídeo</button>
+      </div>
+      <div id="labVidForm" style="display:none;margin:10px 0 4px"></div>
+      <div id="labVidGrid" class="grid"></div>
+    </section>
+
+    <div id="libTop"></div>
+    <div class="lib-head">
+      <div>
+        <h2>Acervo de <span class="grad-text">tutoriais</span></h2>
+        <span class="foryou" id="foryou" style="display:none"></span>
+      </div>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div class="grid" id="grid"></div>
+
+    <footer class="appf">batista.growth Leve · batista.growth · método, clareza e decisão</footer>
+  </div>
+</div>
+
+<!-- ============ SCHOOL (vitrine / ponte) ============ -->
+<div class="view" id="view-school">
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <div class="logo" onclick="backFromSchool()" style="cursor:pointer"><img src="assets/logo/lockup-linha-branco-transparente.png" alt="batista.growth" class="brand-logo"><span class="lab-suffix">Leve</span></div>
+      <div class="nav-r"><div class="avatar" id="navAvatar4" onclick="toggleProfileMenu(event)" title="Seu perfil">G</div></div>
+    </div>
+  </header>
+  <div class="wrap school-wrap">
+    <button class="back" onclick="backFromSchool()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Voltar ao acervo</button>
+    <div id="schoolBody"></div>
+  </div>
+</div>
+
+<!-- ============ DETAIL ============ -->
+<div class="view" id="view-detail">
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <div class="logo" onclick="backToLib()" style="cursor:pointer"><img src="assets/logo/lockup-linha-branco-transparente.png" alt="batista.growth" class="brand-logo"><span class="lab-suffix">Leve</span></div>
+      <div class="nav-r"><div class="avatar" id="navAvatar2" onclick="toggleProfileMenu(event)" title="Seu perfil">G</div></div>
+    </div>
+  </header>
+  <div class="det-wrap" id="detContent"></div>
+  <footer class="appf"><div class="wrap">batista.growth Leve</div></footer>
+</div>
+
+<!-- ============ ADMIN / CONFIGURAÇÕES ============ -->
+<div class="view" id="view-admin">
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <div class="logo" onclick="backToLib()" style="cursor:pointer"><img src="assets/logo/lockup-linha-branco-transparente.png" alt="batista.growth" class="brand-logo"><span class="lab-suffix">Leve</span></div>
+      <div class="nav-r"><span class="adminbadge">⚙ Admin</span><div class="avatar" id="navAvatar3" onclick="toggleProfileMenu(event)" title="Seu perfil">G</div></div>
+    </div>
+  </header>
+  <div class="wrap admin-wrap">
+    <button class="back" onclick="backToLib()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Voltar ao acervo</button>
+    <h1 class="admin-title">Configurações</h1>
+    <p class="muted admin-sub">Painel do administrador: gerencie o acervo, os avisos, o banner e veja os leads. <b>Nesta prévia salva no seu navegador;</b> em produção grava no Supabase.</p>
+
+    <div class="admin-tabs">
+      <button class="atab on" id="tab-tut" onclick="adminTab('tut')">Tutoriais</button>
+      <button class="atab" id="tab-ann" onclick="adminTab('ann')">Avisos</button>
+      <button class="atab" id="tab-ban" onclick="adminTab('ban')">Banner</button>
+      <button class="atab" id="tab-lead" onclick="adminTab('lead')">Leads <span class="atab-n" id="leadCount">0</span></button>
+    </div>
+
+    <!-- TAB: TUTORIAIS -->
+    <div class="apanel on" id="panel-tut">
+      <div class="admin-grid">
+        <section class="admin-card">
+          <div class="ac-h"><h3 id="t-formtitle">Publicar tutorial</h3></div>
+          <input type="hidden" id="t-edit" value="">
+          <div class="field"><label for="t-titulo">Título *</label><input id="t-titulo" placeholder="O que a pessoa vai aprender"></div>
+          <div class="field"><label for="t-result">O que ela consegue (resultado)</label><textarea id="t-result" placeholder="O payoff: o que ela passa a fazer depois."></textarea></div>
+          <div class="row2">
+            <div class="field"><label for="t-profs">Profissões (vírgula)</label><input id="t-profs" placeholder="Todos  ·  ou: Nutricionista, Médico(a)"></div>
+            <div class="field"><label for="t-dur">Duração</label><input id="t-dur" placeholder="5 min"></div>
+          </div>
+          <div class="row2">
+            <div class="field"><label for="t-nivel">Nível</label><select id="t-nivel"><option>Iniciante</option><option>Intermediário</option><option>Avançado</option></select></div>
+            <div class="field"><label for="t-capa">Cor da capa</label><select id="t-capa"><option value="grad-roxo">Roxo</option><option value="grad-rosa">Rosa</option><option value="grad-laranja">Laranja</option><option value="grad-azul">Azul</option></select></div>
+          </div>
+
+          <div class="subh">Capa (imagem, opcional)</div>
+          <p class="muted-help">Se subir uma imagem, ela vira a capa no lugar da cor. Um Reels abaixo manda na tela de detalhe.</p>
+          <div class="uprow">
+            <img id="t-capaimg-thumb" class="upthumb ph" alt="capa" style="display:none">
+            <span id="t-capaimg-ph" class="upthumb ph">🖼</span>
+            <button type="button" class="upbtn" onclick="document.getElementById('t-capaimg-file').click()">Subir capa</button>
+            <button type="button" class="upbtn" id="t-capaimg-clear" onclick="clearUpload('capaImg')" style="display:none">Remover</button>
+            <input type="file" id="t-capaimg-file" accept="image/*" style="display:none" onchange="onUpload(this,'capaImg')">
+            <input type="hidden" id="t-capaImg">
+          </div>
+
+          <div class="field"><label for="t-video">Link do Reels (Instagram) · opcional</label><input id="t-video" placeholder="https://www.instagram.com/reel/XXXX/"></div>
+
+          <div class="subh">Prompts / copiáveis</div>
+          <p class="muted-help">Cada bloco vira um botão “Copiar” no tutorial. Adicione quantos precisar. A ferramenta de cada um já define a cor.</p>
+          <div id="t-prompts"></div>
+          <button type="button" class="addbtn" onclick="addPromptRow()">＋ Adicionar prompt</button>
+
+          <div class="subh">Passo a passo</div>
+          <div class="field"><textarea id="t-passos" placeholder="Um passo por linha&#10;Cole o prompt&#10;Revise o resultado"></textarea></div>
+          <label class="toggle"><input type="checkbox" id="t-sempin" onchange="togglePin()"> Sem o passo de “buscar referência no Pinterest”</label>
+          <div class="field" id="t-pin-field"><label for="t-pin">Passo do Pinterest (opcional)</label><input id="t-pin" placeholder="Vazio = usa o texto padrão de referência"></div>
+
+          <div class="subh">Resultado / galeria (imagens)</div>
+          <div class="field"><label for="t-galtype">Tipo de resultado</label>
+            <select id="t-galtype" onchange="renderGalBox()">
+              <option value="">Nenhuma imagem</option>
+              <option value="simple">Referência + resultado (2 imagens)</option>
+              <option value="gallery">Galeria de pares (rótulo + imagem)</option>
+              <option value="stories">Stories 9:16 (sequência)</option>
+              <option value="slides">Carrossel 4:5 (sequência)</option>
+            </select>
+          </div>
+          <div id="t-galbox"></div>
+
+          <div class="subh">Exemplo real · prompts de imagem (opcional)</div>
+          <p class="muted-help">Os “prompts de imagem” que saem do Prompt 2 (ex.: um por story/slide). Deixe vazio se não tiver.</p>
+          <div class="field"><label for="t-exnota">Nota do exemplo</label><input id="t-exnota" placeholder="Ex.: exemplo real (tema nutrição): os seus virão calibrados…"></div>
+          <div id="t-exemplos"></div>
+          <button type="button" class="addbtn" onclick="addExRow()">＋ Adicionar item de exemplo</button>
+
+          <label class="toggle" style="margin-top:18px"><input type="checkbox" id="t-novo" checked> Marcar como “Novo”</label>
+          <div class="row2">
+            <button class="btn btn-primary" id="t-save" onclick="saveTutorial()">Publicar no acervo →</button>
+            <button class="btn btn-ghost" id="t-cancel" onclick="resetTutForm()" style="display:none">Cancelar edição</button>
+          </div>
+        </section>
+        <section class="admin-card">
+          <div class="ac-h"><h3>Acervo · ordenar, destacar, editar</h3></div>
+          <div id="tutList" class="tutlist"></div>
+          <button class="btn btn-ghost" style="margin-top:14px" onclick="resetSeeds()">↺ Restaurar exemplos originais</button>
+        </section>
+      </div>
+    </div>
+
+    <!-- TAB: AVISOS -->
+    <div class="apanel" id="panel-ann">
+      <div class="admin-grid">
+        <section class="admin-card">
+          <div class="ac-h"><h3 id="a-formtitle">Novo aviso</h3></div>
+          <input type="hidden" id="a-edit" value="">
+          <div class="row2">
+            <div class="field"><label for="a-big">Emoji</label><input id="a-big" maxlength="3" placeholder="🚀"></div>
+            <div class="field"><label for="a-cta">Texto do botão</label><input id="a-cta" placeholder="Ver tutorial"></div>
+          </div>
+          <div class="field"><label for="a-titulo">Título</label><input id="a-titulo" placeholder="Novo: tela dividida com Omni"></div>
+          <div class="field"><label for="a-desc">Descrição</label><textarea id="a-desc"></textarea></div>
+          <div class="row2">
+            <div class="field"><label for="a-slug">Abrir tutorial (slug, opcional)</label><input id="a-slug" placeholder="tela-dividida-omni"></div>
+            <div class="field"><label for="a-link">ou Link externo</label><input id="a-link" placeholder="https://…"></div>
+          </div>
+          <div class="field"><label for="a-img">Imagem de fundo (opcional, substitui o emoji)</label><input id="a-img" placeholder="ann-exemplo/workshop-banner.jpg"></div>
+          <div class="row2">
+            <button class="btn btn-primary" id="a-save" onclick="saveAnn()">Adicionar aviso</button>
+            <button class="btn btn-ghost" id="a-cancel" onclick="resetAnnForm()" style="display:none">Cancelar</button>
+          </div>
+        </section>
+        <section class="admin-card">
+          <div class="ac-h"><h3>Avisos no carrossel</h3></div>
+          <div id="annList" class="tutlist"></div>
+        </section>
+      </div>
+    </div>
+
+    <!-- TAB: BANNER -->
+    <div class="apanel" id="panel-ban">
+      <section class="admin-card" style="max-width:580px">
+        <div class="ac-h"><h3>Banner em destaque</h3></div>
+        <label class="toggle"><input type="checkbox" id="b-on"> Mostrar o banner no acervo</label>
+        <button type="button" class="aigen" onclick="genBanner()">✨ Gerar com IA (ChatGPT)</button>
+        <div class="row2">
+          <div class="field"><label for="b-emoji">Emoji / ícone</label><input id="b-emoji" maxlength="3" placeholder="🎟️"></div>
+          <div class="field"><label for="b-cta">Texto do botão</label><input id="b-cta" placeholder="Quero participar"></div>
+        </div>
+        <div class="field"><label for="b-titulo">Título</label><input id="b-titulo" placeholder="Workshop Consultório Escalável · ao vivo"></div>
+        <div class="field"><label for="b-desc">Descrição</label><textarea id="b-desc" placeholder="Toda quarta, 19h30. Ao vivo e gratuito."></textarea></div>
+        <div class="field"><label for="b-link">Link do botão (opcional)</label><input id="b-link" placeholder="https://…"></div>
+        <div class="field">
+          <label>Imagem do evento (opcional)</label>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <img id="b-img-prev" alt="" style="display:none;width:72px;height:72px;border-radius:12px;object-fit:cover;border:1px solid var(--border)">
+            <button type="button" class="upbtn" onclick="document.getElementById('b-img-file').click()">Subir imagem</button>
+            <button type="button" class="upbtn" id="b-img-clear" onclick="clearBannerImg()" style="display:none">Remover</button>
+            <input type="file" id="b-img-file" accept="image/*" style="display:none" onchange="onBannerImg(this)">
+            <input type="hidden" id="b-img">
+          </div>
+          <span class="muted" style="font-size:12px">Quando há imagem, ela vira o fundo do card de evento (o emoji e a descrição ficam ocultos).</span>
+        </div>
+        <button class="btn btn-primary" onclick="saveBanner()">Salvar banner</button>
+      </section>
+    </div>
+
+    <!-- TAB: LEADS -->
+    <div class="apanel" id="panel-lead">
+      <section class="admin-card">
+        <div class="ac-h"><h3>Leads capturados</h3><button class="btn btn-ghost" style="margin-left:auto;width:auto;padding:9px 16px" onclick="exportLeads()">Baixar CSV</button></div>
+        <div id="leadList"></div>
+      </section>
+    </div>
+  </div>
+  <footer class="appf"><div class="wrap">batista.growth Leve · Configurações</div></footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- menu de perfil (dropdown do avatar) -->
+<div class="pm-overlay" id="pmOverlay" onclick="closeProfileMenu()"></div>
+<div class="profile-menu" id="profileMenu" role="menu" aria-label="Menu do perfil"></div>
+
+<!-- Supabase (auth real + leve_videos) — projeto lp (lp.mydoseapp.com) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+  const SB_URL = "https://vdkxffydbkuhjszmlamd.supabase.co";
+  const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZka3hmZnlkYmt1aGpzem1sYW1kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MjI5OTcsImV4cCI6MjA4NTI5ODk5N30.9TOXl94Vednst5RnkCXfx2sdUbQpNlzuPMGNpv8POP8";
+  const sb = window.supabase.createClient(SB_URL, SB_KEY);
+</script>
 
 <script>
-/* Central da consultoria. Para abrir a área de outro cliente, copiar esta pasta
-   e trocar só o SLUG: o restante (tabelas, RPCs, layout) já é multi-cliente. */
-const SLUG = 'gaud';
+/* =====================================================================
+   batista.growth Leve — estrutura de conteúdo
+   ---------------------------------------------------------------------
+   PARA ADICIONAR UM TUTORIAL: copie um objeto do array TUTORIAIS e
+   preencha. A estrutura é SEMPRE a mesma — o layout se monta sozinho.
 
-const SB  = 'https://vdkxffydbkuhjszmlamd.supabase.co';
-const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZka3hmZnlkYmt1aGpzem1sYW1kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MjI5OTcsImV4cCI6MjA4NTI5ODk5N30.9TOXl94Vednst5RnkCXfx2sdUbQpNlzuPMGNpv8POP8';
-const CHAVE_SESSAO = 'batista-central-' + SLUG;
+   {
+     slug:        'identificador-unico',
+     titulo:      'O que a pessoa vai aprender',
+     resultado:   'O que ela CONSEGUE fazer depois (o payoff).',
+     profissoes:  ['Nutricionista', ...],   // p/ o filtro. 'Todos' = aparece p/ todos
+     nivel:       'Iniciante' | 'Intermediário' | 'Avançado',
+     duracao:     '4 min',
+     novo:        true,                      // (opcional) selo "Novo"
+     capa:        'grad-roxo'|'grad-rosa'|'grad-laranja'|'grad-azul',
+     video:       'link do Reels do Instagram' | '', // cole o permalink (instagram.com/reel/XXXX) → vira iframe; vazio = capa desenhada
+     ferramentas: [{nome:'ChatGPT', tipo:'IA de texto', cor:'#10A37F'}],
+     prompts:     [{ferramenta:'ChatGPT', cor:'#10A37F', objetivo:'gerar o plano', texto:`PROMPT EXATO AQUI`}],
+     passos:      ['Passo 1…', 'Passo 2…']
+   }
+   ===================================================================== */
 
-const $ = id => document.getElementById(id);
-let SENHA = sessionStorage.getItem(CHAVE_SESSAO) || localStorage.getItem(CHAVE_SESSAO) || '';
-let AREA = null, aba = 'entregaveis';
+const C = {chatgpt:'#10A37F', claude:'#D97757', omni:'#4285F4', higgs:'#7C3AED', gemini:'#1A73E8', mid:'#000000'};
+const TOOLURL = {'Lovable':'https://lovable.dev', 'ChatGPT':'https://chatgpt.com', 'Claude':'https://claude.ai', 'Claude Code':'https://claude.ai', 'Claude Design':'https://claude.ai', 'Canva':'https://www.canva.com', 'Google':'https://gemini.google.com', 'Nano Banana':'https://gemini.google.com', 'Gemini':'https://gemini.google.com', 'Omni (Google)':'https://gemini.google.com', 'Higgsfield':'https://higgsfield.ai'};
 
-function rpc(fn, body){
-  return fetch(SB + '/rest/v1/rpc/' + fn, {
-    method:'POST',
-    headers:{'Content-Type':'application/json', apikey:KEY, Authorization:'Bearer ' + KEY},
-    body: JSON.stringify(body)
-  }).then(r => r.ok ? r.json() : null);
+const TUTORIAIS = [
+  {
+    slug:'plano-alimentar-2min', titulo:'Plano alimentar personalizado em 2 minutos',
+    resultado:'Gerar a base de um plano alimentar individualizado a partir dos dados do paciente — e revisar em vez de digitar do zero.',
+    profissoes:['Nutricionista','Médico(a)'], nivel:'Iniciante', duracao:'4 min', novo:true, capa:'grad-roxo', video:'',
+    ferramentas:[{nome:'ChatGPT',tipo:'IA de texto',cor:C.chatgpt}],
+    prompts:[{ferramenta:'ChatGPT',cor:C.chatgpt,objetivo:'gerar a base do plano',texto:`Você é um(a) nutricionista clínico(a). Monte um plano alimentar de 1 dia para:
+- Paciente: [sexo, idade, peso, altura]
+- Objetivo: [emagrecimento / hipertrofia / manutenção]
+- Restrições: [alergias, intolerâncias, preferências]
+- Rotina: [horários de refeição e treino]
+
+Entregue em 5 refeições, com porções em medidas caseiras e gramas, e uma linha de substituição para cada item. Não inclua suplementos. Tom: claro e prático.`}],
+    passos:['Reúna os dados do paciente (anamnese rápida).','Cole o prompt no ChatGPT preenchendo os [campos].','Revise as porções e troque o que não fizer sentido clínico.','Exporte e personalize no seu modelo de marca.']
+  },
+  {
+    slug:'tela-dividida-omni', titulo:'Vídeo de captação em tela dividida com Omni',
+    resultado:'Gravar um Reels com você de um lado e uma tela/animação gerada por IA do outro — aquele formato que prende e parece estúdio.',
+    profissoes:['Todos'], nivel:'Intermediário', duracao:'7 min', novo:true, capa:'grad-rosa', video:'',
+    ferramentas:[{nome:'Omni (Google)',tipo:'IA de vídeo',cor:C.omni},{nome:'Higgsfield',tipo:'render / motor',cor:C.higgs}],
+    prompts:[
+      {ferramenta:'Omni (Google)',cor:C.omni,objetivo:'gerar a tela de fundo reativa',texto:`Crie um vídeo vertical 9:16, 10s, de uma interface de app de saúde sendo usada: cards de hábitos sendo marcados como concluídos, um anel de progresso enchendo, tons de roxo (#8B5CF6) e branco, luz suave, movimento fluido e limpo. Sem texto na tela. Estética premium, tipo produto de tecnologia.`},
+      {ferramenta:'Higgsfield',cor:C.higgs,objetivo:'montar a tela dividida',texto:`Monte um vídeo 9:16 em tela dividida horizontal: METADE DE CIMA = vídeo da pessoa falando (preserve áudio e enquadramento). METADE DE BAIXO = o vídeo gerado da interface. Sincronize os cortes da parte de baixo com as pausas da fala.`}
+    ],
+    passos:['Grave-se falando 20–30s, enquadrado na metade de cima.','Gere a tela de fundo no Omni com o prompt acima.','Junte as duas no Higgsfield em tela dividida.','Adicione legendas e exporte 9:16 para o Reels.']
+  },
+  {
+    slug:'calculadora-planos', titulo:'Calculadora de planos de acompanhamento',
+    resultado:'Definir preço e formato de um plano de acompanhamento recorrente que faz sentido pro seu custo e pra sua agenda.',
+    profissoes:['Todos'], nivel:'Intermediário', duracao:'6 min', capa:'grad-laranja', video:'',
+    ferramentas:[{nome:'Claude',tipo:'IA de texto',cor:C.claude}],
+    prompts:[{ferramenta:'Claude',cor:C.claude,objetivo:'modelar o plano e o preço',texto:`Aja como um consultor de precificação para profissionais de saúde. Com base em:
+- Minha profissão: [ex: nutricionista]
+- Quanto quero faturar por mês: [valor]
+- Horas que tenho disponíveis por semana: [nº]
+- Valor da minha consulta avulsa hoje: [valor]
+
+Monte 3 formatos de plano de acompanhamento mensal (básico, intermediário, premium) com: o que cada um entrega, preço sugerido, quantos pacientes preciso e quanto isso ocupa da minha agenda. Mostre a conta.`}],
+    passos:['Levante seus números (meta, horas, ticket atual).','Rode o prompt no Claude.','Ajuste os entregáveis ao que você realmente faz.','Use os 3 níveis como sua tabela de venda.']
+  },
+  {
+    slug:'roteiro-reels-vende', titulo:'Roteiro de Reels que vende seu acompanhamento',
+    resultado:'Sair do branco: ter um roteiro de 30s com gancho, dor e chamada — pronto pra gravar hoje.',
+    profissoes:['Todos'], nivel:'Iniciante', duracao:'5 min', capa:'grad-azul', video:'',
+    ferramentas:[{nome:'Claude',tipo:'IA de texto',cor:C.claude}],
+    prompts:[{ferramenta:'Claude',cor:C.claude,objetivo:'escrever o roteiro',texto:`Você é copywriter de Reels para profissionais de saúde. Escreva um roteiro de 30 segundos sobre [tema], para [profissão], falando com [avatar do paciente].
+Estrutura: (1) Gancho de 3s que para o scroll, (2) a dor que esse paciente sente, (3) a virada / o que poucos sabem, (4) chamada pra ação suave pro meu acompanhamento.
+Tom: humano, direto, sem jargão. Entregue só a fala, marcando [corte] onde muda a cena.`}],
+    passos:['Defina tema + avatar do paciente.','Rode o prompt.','Grave em 1 take seguindo as marcações de [corte].','Poste com legenda puxando pro direct.']
+  },
+  {
+    slug:'imagem-email-mkt', titulo:'Imagem profissional para o e-mail marketing',
+    resultado:'Criar a imagem de capa de um e-mail com a sua cara de marca, sem depender de banco de imagens.',
+    profissoes:['Todos','Clínica / Gestor(a)'], nivel:'Iniciante', duracao:'4 min', capa:'grad-roxo', video:'',
+    ferramentas:[{nome:'Higgsfield',tipo:'IA de imagem',cor:C.higgs}],
+    prompts:[{ferramenta:'Higgsfield',cor:C.higgs,objetivo:'gerar a capa do e-mail',texto:`Imagem horizontal (1200x600) para topo de e-mail. Tema: [assunto do e-mail]. Estilo: clean, profissional, área da saúde, luz natural, paleta roxo (#8B5CF6) / branco / coral suave. Espaço negativo à esquerda para texto. Sem letras na imagem. Fotografia editorial premium.`}],
+    passos:['Defina o assunto do e-mail.','Gere 3 variações no Higgsfield.','Escolha a com mais espaço pro texto.','Suba na ferramenta de e-mail e escreva por cima.']
+  },
+  {
+    slug:'funil-acp-script', titulo:'Funil ACP explicado + script de venda',
+    resultado:'Entender o funil de Aquisição → Conversão → Permanência e ter um script pra conduzir a conversa de venda.',
+    profissoes:['Todos','Clínica / Gestor(a)'], nivel:'Avançado', duracao:'9 min', capa:'grad-laranja', video:'',
+    ferramentas:[{nome:'ChatGPT',tipo:'IA de texto',cor:C.chatgpt}],
+    prompts:[{ferramenta:'ChatGPT',cor:C.chatgpt,objetivo:'gerar o script de venda',texto:`Você é diretor de Growth de uma clínica. Monte um roteiro de conversa de venda (consulta de avaliação → fechamento de acompanhamento) usando o funil ACP.
+Contexto: profissão [x], ticket do plano [valor], objeção mais comum [ex: preço].
+Entregue: 5 perguntas de diagnóstico, como apresentar o plano ligando à dor, e 3 formas de contornar a objeção sem dar desconto.`}],
+    passos:['Mapeie sua objeção mais comum.','Rode o prompt.','Treine o script antes da próxima avaliação.','Anote o que funcionou e refine.']
+  }
+];
+
+/* ícone-fantasma do thumbnail conforme o tipo da IA principal */
+const ICON = {
+  film:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2.4"/><path d="M7 4v16M17 4v16M2 9h5M2 15h5M17 9h5M17 15h5"/></svg>`,
+  image:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2.4"/><circle cx="8.5" cy="8.5" r="1.8"/><path d="M21 15l-5-5L4 21"/></svg>`,
+  spark:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l1.9 4.8L19 9.7l-5.1 1.9L12 16l-1.9-4.4L5 9.7l5.1-1.9z"/><path d="M19 13l.9 2.4L22 16l-2.1.8L19 19l-.9-2.2L16 16l2.1-.6z"/></svg>`
+};
+function glyphFor(t){
+  const tp=(t.ferramentas[0]&&t.ferramentas[0].tipo||'').toLowerCase();
+  if(tp.includes('víd')||tp.includes('vid')||tp.includes('render')||tp.includes('motor')) return ICON.film;
+  if(tp.includes('imagem')) return ICON.image;
+  return ICON.spark;
 }
 
-/* ---------- entrada ---------- */
-function entrar(){
-  const s = $('senha').value.trim();
-  if(!s) return;
-  $('entrar').disabled = true; $('erro').textContent = '';
-  rpc('batista_cliente_area', {p_slug:SLUG, p_senha:s}).then(area => {
-    $('entrar').disabled = false;
-    if(!area){ $('erro').textContent = 'senha incorreta_'; $('senha').select(); return; }
-    SENHA = s;
-    localStorage.setItem(CHAVE_SESSAO, s);
-    abre(area);
-    rpc('batista_cliente_log', {p_slug:SLUG, p_senha:s, p_evento:'entrou', p_ref:null});
-  });
-}
-$('entrar').addEventListener('click', entrar);
-$('senha').addEventListener('keydown', e => { if(e.key === 'Enter') entrar(); });
-$('sair').addEventListener('click', () => {
-  localStorage.removeItem(CHAVE_SESSAO);
-  location.reload();
-});
-
-/* ---------- render ---------- */
-const ROTULO_TIPO = {documento:'documento', painel:'painel', roteiro:'roteiro', planilha:'planilha', video:'vídeo', link:'link'};
-const esc = t => (t == null ? '' : String(t)).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-
-function dataBR(d){
-  if(!d) return '';
-  const [a,m,dia] = d.split('-');
-  return dia + '/' + m + '/' + a.slice(2);
+/* Instagram: cola o permalink do Reels/post → vira iframe de embed */
+function igEmbed(url){
+  if(!url) return '';
+  if(/\/embed/i.test(url)) return url;
+  const m=url.match(/instagram\.com\/(reel|reels|p|tv)\/([^/?#]+)/i);
+  if(m){ const tipo=m[1].toLowerCase()==='reels'?'reel':m[1].toLowerCase(); return `https://www.instagram.com/${tipo}/${m[2]}/embed`; }
+  return url; // fallback: já é um src de embed (ex.: YouTube)
 }
 
-/* aceita youtu.be/ID, youtube.com/watch?v=ID, /embed/ID e /shorts/ID */
-function idYoutube(url){
-  if(!url) return null;
-  const m = String(url).match(/(?:youtu\.be\/|v=|\/embed\/|\/shorts\/)([A-Za-z0-9_-]{11})/);
-  return m ? m[1] : null;
+const CAPAS = {
+  'grad-roxo':'linear-gradient(135deg,#415FF5,#C64FCA)',
+  'grad-rosa':'linear-gradient(135deg,#C64FCA,#F56442)',
+  'grad-laranja':'linear-gradient(135deg,#F56442,#E5484D)',
+  'grad-azul':'linear-gradient(135deg,#191E47,#415FF5)'
+};
+
+/* ---- estado ---- */
+let LEAD = null, activeFilter='Todos', searchQ='';
+
+/* ---- profissões p/ filtro ---- */
+const PROFS = ['Todos','Médico(a)','Nutricionista','Psicólogo(a)','Educador físico / Personal','Fisioterapeuta','Clínica / Gestor(a)'];
+
+
+/* ===== AMBIENTE =====
+   O mesmo app serve o acervo do Gardel e a área de cada cliente. Quem manda é a
+   pasta: /levebatista/ => 'gardel' (público) · /gaud/ => 'gaud' (cliente).
+   Cliente novo = criar o ambiente no admin e copiar esta pasta com o novo nome. */
+const AMBIENTE = (function(){
+  const p = location.pathname.split('/').filter(Boolean);
+  const dir = p.length ? p[p.length-1].replace(/\.html$/,'') : '';
+  return (!dir || dir === 'levebatista' || dir === 'index') ? 'gardel' : dir;
+})();
+let AMB = null;   // { nome, tipo, schoolOn, foco, meta, bemVindo }
+
+/* ===== ESTADO (fonte: Supabase lp · tabelas leve_items / leve_announcements / leve_banner) =====
+   Tudo que o admin edita grava no banco e aparece pra todo lead, de qualquer lugar.
+   TUTORIAIS/ANN/BANNER de exemplo já foram semeados no banco (servem de "restaurar exemplos"). */
+const DEFAULT_BANNER = {on:false, titulo:'', desc:'', cta:'', link:''};
+let ITEMS  = [];                  // acervo (leve_items) — cada item carrega _id (uuid), slug e _sort
+let ANN    = [];                  // avisos (leve_announcements) — cada um carrega _id e _sort
+let BANNER = {...DEFAULT_BANNER};
+let LEADS  = [];                  // cadastros reais (profiles) — só o admin lê
+function corFor(n){ n=(n||'').toLowerCase(); if(n.includes('gpt')||n.includes('chatg'))return C.chatgpt; if(n.includes('claude'))return C.claude; if(n.includes('omni'))return C.omni; if(n.includes('gemini'))return C.gemini; if(n.includes('mid'))return C.mid; return C.higgs; }
+// remove campos internos antes de gravar no jsonb `data`
+function cleanData(o){ const c={...o}; delete c._id; delete c._sort; return c; }
+// relê a versão atual do item no banco antes de qualquer regravação — uma aba/dispositivo
+// desatualizado não pode sobrescrever campos (ex.: video) gravados por outro lugar
+async function freshData(slug){
+  try{
+    const { data } = await sb.from('leve_items').select('data').eq('slug',slug).maybeSingle();
+    return (data && data.data) || null;
+  }catch(e){ return null; }
+}
+// carrega o conteúdo público do Supabase (todos veem; o admin também edita)
+async function dbLoadContent(){
+  try{
+    try{ const {data:amb} = await sb.rpc('leve_ambiente',{p_slug:AMBIENTE}); AMB = amb || null; }catch(e){ AMB = null; }
+    const [ri, ra, rb] = await Promise.all([
+      sb.from('leve_items').select('*').eq('ambiente',AMBIENTE).order('sort_order',{ascending:true}),
+      sb.from('leve_announcements').select('*').eq('ambiente',AMBIENTE).order('sort_order',{ascending:true}),
+      sb.from('leve_banner').select('data').eq('id',1).maybeSingle()
+    ]);
+    ITEMS  = (ri.data||[]).map(r=>({ ...r.data, slug:r.slug, _id:r.id, _sort:r.sort_order }));
+    try{ renderAmbiente(); }catch(e){}
+    ANN    = (ra.data||[]).map(r=>({ ...r.data, _id:r.id, _sort:r.sort_order }));
+    BANNER = (rb.data && rb.data.data) ? rb.data.data : {...DEFAULT_BANNER};
+  }catch(e){ /* mantém o que já estiver carregado */ }
 }
 
-/* registra que o cliente abriu o material (serve de sinal para a consultoria) */
-function ligaCliques(){
-  document.querySelectorAll('[data-abriu]').forEach(a => a.addEventListener('click', () => {
-    rpc('batista_cliente_log', {p_slug:SLUG, p_senha:SENHA, p_evento:'abriu', p_ref:a.dataset.abriu});
-  }));
-}
-
-function abre(area){
-  AREA = area;
-  $('porta').style.display = 'none';
-  $('sala').style.display = 'block';
-  $('nomeCliente').textContent = area.nome;
-  $('bemVindo').textContent = area.bemVindo || '';
-  desenhaAbas();
-  desenha();
-}
-
-function desenhaAbas(){
-  const abas = [['entregaveis', 'Entregáveis']];
-  if(AREA.mostrarTrilha) abas.push(['trilha', 'Trilha de estudo']);
-  $('abas').innerHTML = abas.map(([id, rot]) =>
-    `<button data-aba="${id}" class="${aba === id ? 'on' : ''}">${rot}</button>`).join('');
-  $('abas').querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
-    aba = b.dataset.aba; desenhaAbas(); desenha();
-  }));
-}
-
-function cardEntregavel(e){
-  const viva = e.status === 'entregue' && e.url;
-  return `<div class="card ${viva ? 'viva' : 'espera'}">
-    <div class="cima">
-      <span class="tipo">${esc(ROTULO_TIPO[e.tipo] || e.tipo)}</span>
-      <span class="data">${dataBR(e.data)}</span>
-    </div>
-    <h3>${esc(e.titulo)}</h3>
-    <p>${esc(e.descricao || '')}</p>
-    ${viva
-      ? `<a class="abrir" href="${esc(e.url)}" target="_blank" rel="noopener" data-abriu="${esc(e.id)}">Abrir</a>`
-      : `<div class="selo">${e.status === 'producao' ? '<b>Em produção</b> · sai nesta rodada' : '<b>Previsto</b> · entra depois da imersão'}</div>`}
+/* ===== BANNER (render dirigido pelo estado) ===== */
+function renderBanner(){
+  const s=document.getElementById('bannerSlot'); if(!s)return;
+  if(!BANNER.on || !(BANNER.titulo||BANNER.desc)){ s.innerHTML=''; return; }
+  // na vista padrão o evento já aparece como card na faixa "Destaques da semana" — não duplica o banner cheio
+  if(isDefaultView()){ s.innerHTML=''; return; }
+  const cta = BANNER.cta ? (BANNER.link
+      ? `<a class="btn btn-primary" href="${BANNER.link}" target="_blank" rel="noopener">${escapeHtml(BANNER.cta)}</a>`
+      : `<button class="btn btn-primary" onclick="toast('Banner: conectar a ação')">${escapeHtml(BANNER.cta)}</button>`) : '';
+  s.innerHTML=`<div class="banner">
+    ${BANNER.img
+      ? `<img src="${BANNER.img}" alt="" style="width:60px;height:60px;border-radius:12px;object-fit:cover;flex:0 0 auto">`
+      : `<div class="bi" style="font-size:22px">${escapeHtml(BANNER.emoji||'📣')}</div>`}
+    <div><h4>${escapeHtml(BANNER.titulo)}</h4><p>${escapeHtml(BANNER.desc)}</p></div>
+    ${cta}
   </div>`;
 }
 
-function desenha(){
-  const box = $('conteudo');
-
-  if(aba === 'trilha'){
-    const t = AREA.trilha || [];
-    box.innerHTML = !t.length
-      ? `<div class="vazio"><b>A trilha ainda não foi montada</b>Aqui vão entrar os canais de referência, os cursos indicados e o cronograma de estudo.</div>`
-      : `<div class="grupo trilha">
-           <h2>Trilha de estudo</h2>
-           <p class="sub">Referências escolhidas para este momento do negócio. Não é curso obrigatório: é o que acelera a execução do que está no plano.</p>
-           ${t.map(i => {
-             const yt = idYoutube(i.url);
-             return `<div class="item">
-               ${i.semana ? `<span class="sem">semana ${i.semana}</span>` : ''}
-               ${yt ? `<a class="thumb" href="${esc(i.url)}" target="_blank" rel="noopener" data-abriu="${esc(i.id)}">
-                   <img src="https://i.ytimg.com/vi/${yt}/hqdefault.jpg" alt="" loading="lazy">
-                   <span class="play"><i></i></span>
-                 </a>` : ''}
-               <div class="corpo">
-                 <h3>${esc(i.titulo)}</h3>
-                 ${i.fonte ? `<div class="fonte">${esc(i.fonte)}</div>` : ''}
-                 ${i.porque ? `<p>${esc(i.porque)}</p>` : ''}
-               </div>
-               ${i.url && !yt ? `<a class="ir" href="${esc(i.url)}" target="_blank" rel="noopener" data-abriu="${esc(i.id)}">abrir</a>` : ''}
-               ${yt ? `<a class="ir" href="${esc(i.url)}" target="_blank" rel="noopener" data-abriu="${esc(i.id)}">assistir</a>` : ''}
-             </div>`;
-           }).join('')}
-         </div>`;
-    ligaCliques();
-    return;
-  }
-
-  const todos = AREA.entregaveis || [];
-  const grupos = [
-    ['entregue', 'Disponível agora', 'Material pronto. Abre em aba nova e fica sempre na versão mais recente.'],
-    ['producao', 'Em produção', 'Está sendo feito nesta rodada.'],
-    ['previsto', 'Previsto', 'Entra conforme o processo avança.'],
-  ];
-
-  const html = grupos.map(([st, titulo, sub]) => {
-    const lista = todos.filter(e => e.status === st);
-    if(!lista.length) return '';
-    return `<div class="grupo">
-      <h2>${titulo}</h2><p class="sub">${sub}</p>
-      <div class="cards">${lista.map(cardEntregavel).join('')}</div>
-    </div>`;
-  }).join('');
-
-  box.innerHTML = html || `<div class="vazio"><b>Ainda não tem material publicado</b>Assim que a primeira entrega sair, ela aparece aqui.</div>`;
-  ligaCliques();
+/* ===== DESTAQUES DA SEMANA (faixa do topo: evento + tutoriais em destaque) ===== */
+function renderDestaques(){
+  const slot=document.getElementById('libTop'); if(!slot) return;
+  // só na vista padrão (sem filtro/busca); ao filtrar, os destaques voltam pro grid
+  if(!isDefaultView()){ slot.innerHTML=''; return; }
+  const feats = ITEMS.filter(t=>t.featured && (IS_ADMIN || !t.oculto));
+  const ev = (BANNER && BANNER.on && (BANNER.titulo||BANNER.desc)) ? BANNER : null;
+  if(!feats.length && !ev){ slot.innerHTML=''; return; }
+  const evLink = ev && ev.link ? ev.link.replace(/'/g,"\\'") : '';
+  const evImg = ev && ev.img ? ev.img.replace(/'/g,"\\'") : '';
+  const evPhoto = evImg ? `<div class="ev-photo" style="background-image:linear-gradient(to top,rgba(8,5,20,.95),rgba(8,5,20,.12) 58%,rgba(8,5,20,.5)),url('${evImg}')"></div>` : '';
+  const evCard = ev ? `
+    <div class="evcard${evImg?' has-img':''}" onclick="${evLink?`window.open('${evLink}','_blank','noopener')`:`toast('Evento ao vivo')`}">
+      ${evPhoto}
+      ${evImg?'':`<span class="ev-emoji">${escapeHtml(ev.emoji||'🎟️')}</span>`}
+      <div class="ev-body">
+        <span class="ev-tag"><span class="liveDot"></span> Evento ao vivo</span>
+        ${evImg?'':`<h3>${escapeHtml(ev.titulo||'')}</h3><p>${escapeHtml(ev.desc||'')}</p>`}
+        <span class="ev-cta">${escapeHtml(ev.cta||'Quero participar')} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </div>` : '';
+  const featCards = feats.map((t,i)=>`
+    <article class="tcard ${IS_ADMIN&&t.oculto?'is-hidden':''}" style="animation-delay:${i*45}ms" onclick="openBySlug('${t.slug}')">
+      <div class="cap" style="${t.capaImg?`background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.5)),url('${t.capaImg}');background-size:cover;background-position:center`:`background:${CAPAS[t.capa]||CAPAS['grad-roxo']}`}">
+        ${t.capaImg?'':`<span class="cap-motif"></span><span class="cap-glyph">${glyphFor(t)}</span>`}
+        ${(t.ferramentas||[])[0]?`<span class="cap-tool"><span class="d" style="background:${(t.ferramentas||[])[0].cor}"></span>${(t.ferramentas||[])[0].nome}</span>`:''}
+        <span class="feat">★ Destaque</span>
+        ${t.novo?'<span class="new">Novo</span>':''}
+        <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>${t.duracao}</span>
+      </div>
+      <div class="body">
+        <h3>${t.titulo}</h3>
+        <p class="res">${t.resultado}</p>
+        <div class="foot">
+          <span class="lvl">${t.nivel}</span>
+          <span class="tools">${t.ferramentas.slice(0,2).map(f=>`<span class="toolchip"><span class="d" style="background:${f.cor}"></span>${f.nome}</span>`).join('')}</span>
+        </div>
+      </div>
+      ${IS_ADMIN?`<button class="vis-bar ${t.oculto?'off':''}" onclick="event.stopPropagation();toggleVis('${t.slug}')">${t.oculto?'🚫 Fora do ar · clique para publicar':'👁 No ar · clique para ocultar'}</button>`:''}
+    </article>`).join('');
+  slot.innerHTML=`<section class="dest">
+    <div class="lib-head"><div><h2>Destaques da <span class="grad-text">semana</span></h2></div></div>
+    <div class="dest-row">${evCard}${featCards}</div>
+  </section>`;
 }
 
-/* sessão guardada: entra direto, mas revalida no banco */
-if(SENHA){
-  rpc('batista_cliente_area', {p_slug:SLUG, p_senha:SENHA}).then(area => {
-    if(area){ abre(area); } else { localStorage.removeItem(CHAVE_SESSAO); }
+/* ===== AUTH (Supabase real · projeto lp / lp.mydoseapp.com) ===== */
+const form = document.getElementById('signupForm');
+let AUTH_MODE='signup';          // 'signup' | 'login'
+let IS_ADMIN=false;              // libera o painel de vídeos / gear
+let AUTHED=false;                // logado de verdade? vitrine (preview) deixa ver o grid mas trava o clique
+let IS_CLIENTE=false;            // cliente? libera o pulo pro School (cursos)
+const SCHOOL_URL='/mydoseschool/'; // mesmo domínio (lp.mydoseapp.com), pulo fluido
+function setInvalid(id,bad){document.getElementById(id).classList.toggle('invalid',bad);}
+
+function toggleAuthMode(e){
+  if(e) e.preventDefault();
+  AUTH_MODE = AUTH_MODE==='signup' ? 'login' : 'signup';
+  const s = AUTH_MODE==='signup';
+  form.dataset.mode=AUTH_MODE;
+  document.getElementById('authTitle').textContent   = s ? 'Criar acesso ao Leve' : 'Entrar no Lab';
+  document.getElementById('authSub').textContent     = s ? 'Crie seu acesso gratuito e libere o acervo completo.' : 'Bem-vindo de volta. Acesse o acervo.';
+  document.getElementById('authSubmit').textContent  = s ? 'Acessar o acervo →' : 'Entrar →';
+  document.getElementById('authSwitchText').textContent = s ? 'Já tem conta?' : 'Ainda não tem conta?';
+  document.getElementById('authSwitch').textContent  = s ? 'Entrar' : 'Criar acesso';
+  ['f-nome','f-tel','f-prof'].forEach(id=>{ document.getElementById(id).style.display = s ? '' : 'none'; });
+  document.getElementById('pass').setAttribute('autocomplete', s ? 'new-password' : 'current-password');
+}
+
+form.addEventListener('submit', async e=>{
+  e.preventDefault();
+  const s = AUTH_MODE==='signup';
+  const email=document.getElementById('email').value.trim();
+  const pass=document.getElementById('pass').value;
+  const okEmail=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+  setInvalid('f-email',!okEmail); setInvalid('f-pass',pass.length<6);
+  let nome='',tel='',prof='';
+  if(s){
+    nome=document.getElementById('nome').value.trim();
+    tel=document.getElementById('tel').value.trim();
+    prof=document.getElementById('prof').value;
+    setInvalid('f-nome',!nome); setInvalid('f-tel',tel.length<8); setInvalid('f-prof',!prof);
+    if(!nome||!okEmail||pass.length<6||tel.length<8||!prof) return;
+  } else if(!okEmail||pass.length<6){ return; }
+  const btn=document.getElementById('authSubmit'); const label=btn.textContent; btn.disabled=true; btn.textContent='Aguarde…';
+  try{
+    if(s){
+      // nome/origem viajam no metadata; o trigger handle_new_user grava no profiles (server-side, sem esbarrar na RLS)
+      const { data, error } = await sb.auth.signUp({ email, password:pass, options:{ data:{ full_name:nome, phone:tel, profissao:prof, came_from:'mydose-lab' } } });
+      if(error) throw error;
+      if(window.fbq) fbq('track','Lead',{ content_name:'batista.growth Leve', profissao:prof });
+      if(!data.session){ const { error:e2 } = await sb.auth.signInWithPassword({ email, password:pass }); if(e2) throw e2; }
+    } else {
+      const { error } = await sb.auth.signInWithPassword({ email, password:pass }); if(error) throw error;
+    }
+    await bootSession();
+  }catch(err){ toast(authMsg(err)); }
+  finally{ btn.disabled=false; btn.textContent=label; }
+});
+
+function authMsg(err){
+  const m=((err&&err.message)||'').toLowerCase();
+  if(m.includes('already')&&m.includes('regist')) return 'Esse e-mail já tem conta. Toque em “Entrar”.';
+  if(m.includes('invalid login')) return 'E-mail ou senha incorretos.';
+  if(m.includes('password')) return 'A senha precisa de ao menos 6 caracteres.';
+  return 'Não rolou agora: '+((err&&err.message)||'erro');
+}
+
+async function labLogout(){
+  closeProfileMenu();
+  try{ await sb.auth.signOut(); }catch(_){}
+  location.hash=''; location.reload();
+}
+
+/* ===== MENU DE PERFIL (dropdown do avatar · espelha o ProfileMenu da School) ===== */
+const ICON_PM = {
+  cap:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/></svg>`,
+  gear:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.2.61.79 1.03 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`,
+  out:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>`
+};
+function fillProfileMenu(){
+  const nome=(LEAD&&LEAD.nome)||'Minha conta';
+  const email=(LEAD&&LEAD.email)||'';
+  const ini=(nome||email||'G').trim()[0].toUpperCase();
+  const cliente=IS_CLIENTE||IS_ADMIN;
+  const papel = IS_ADMIN ? 'Administrador' : (IS_CLIENTE ? 'Cliente' : 'Acesso ao Lab');
+  const school = cliente
+    ? `<button class="pm-item" role="menuitem" onclick="closeProfileMenu();goSchool()">${ICON_PM.cap} Entrar no School</button>`
+    : `<button class="pm-item" role="menuitem" onclick="closeProfileMenu();openSchool()">${ICON_PM.cap} Conhecer o School</button>`;
+  const admin = IS_ADMIN
+    ? `<button class="pm-item" role="menuitem" onclick="closeProfileMenu();openAdmin()">${ICON_PM.gear} Configurações</button>` : '';
+  document.getElementById('profileMenu').innerHTML = `
+    <div class="pm-head">
+      <div class="pm-av">${escapeHtml(ini)}</div>
+      <div class="pm-id">
+        <b>${escapeHtml(nome)}</b>
+        ${email?`<span>${escapeHtml(email)}</span>`:''}
+        <span class="pm-role ${IS_CLIENTE&&!IS_ADMIN?'cli':''}">${papel}</span>
+      </div>
+    </div>
+    <div class="pm-sep"></div>
+    ${school}${admin}
+    <div class="pm-sep"></div>
+    <button class="pm-item danger" role="menuitem" onclick="labLogout()">${ICON_PM.out} Sair da conta</button>`;
+}
+function toggleProfileMenu(ev){
+  if(ev){ ev.stopPropagation(); }
+  const menu=document.getElementById('profileMenu');
+  if(menu.classList.contains('on')){ closeProfileMenu(); return; }
+  fillProfileMenu();
+  // ancora sob o avatar clicado
+  const av=ev&&ev.currentTarget;
+  if(av&&av.getBoundingClientRect){
+    const r=av.getBoundingClientRect();
+    menu.style.top = (r.bottom+8)+'px';
+    menu.style.right = Math.max(12, window.innerWidth - r.right)+'px';
+  } else { menu.style.top='60px'; menu.style.right='18px'; }
+  document.getElementById('pmOverlay').classList.add('on');
+  menu.classList.add('on');
+}
+function closeProfileMenu(){
+  document.getElementById('profileMenu').classList.remove('on');
+  document.getElementById('pmOverlay').classList.remove('on');
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeProfileMenu(); });
+
+/* restaura sessão / decide a primeira tela */
+async function bootSession(){
+  const { data:{ session } } = await sb.auth.getSession();
+  if(!session){ return; }   // sem sessão = fica no gate; ninguém vê o acervo sem cadastro
+  const u=session.user;
+  let nome=(u.user_metadata&&u.user_metadata.full_name)||(u.email||'').split('@')[0];
+  let prof=(u.user_metadata&&u.user_metadata.profissao)||'';
+  try{ const { data:p } = await sb.from('leve_profiles').select('full_name,is_cliente').eq('id',u.id).maybeSingle(); if(p&&p.full_name) nome=p.full_name; IS_CLIENTE=!!(p&&p.is_cliente); }catch(_){}
+  try{ const { data:adm } = await sb.rpc('is_batista_admin'); IS_ADMIN=!!adm; }catch(_){ IS_ADMIN=false; }
+  LEAD={ nome, email:u.email, telefone:'', profissao:prof, source:'mydose-lab', ts:new Date().toISOString() };
+  AUTHED=true;
+  enterApp();
+}
+
+/* rede de segurança: se o token foi renovado (ou logou depois), recarrega os vídeos.
+   cobre o caso do usuário logado que via a seção em branco por token velho no 1º load. */
+try{
+  sb.auth.onAuthStateChange((evt)=>{
+    if((evt==='TOKEN_REFRESHED'||evt==='SIGNED_IN') && AUTHED && document.getElementById('labVidGrid')){
+      loadVideos();
+    }
+  });
+}catch(_){}
+
+/* ===== VITRINE (preview): vê o grid, mas clicar pra consumir pede cadastro =====
+   "Só quero ver o acervo" entra sem conta e mostra a prateleira (cria desejo).
+   Qualquer clique pra ABRIR um conteúdo cai no gateForSignup. */
+function previewLab(){
+  LEAD={nome:'Visitante',email:'',telefone:'',profissao:'',source:'preview',ts:new Date().toISOString()};
+  AUTHED=false; IS_ADMIN=false;
+  enterApp();
+}
+/* manda de volta pro gate em modo cadastro (chamado quando o visitante clica pra consumir) */
+function gateForSignup(msg){
+  document.getElementById('view-detail').classList.remove('active');
+  document.getElementById('view-admin').classList.remove('active');
+  document.getElementById('view-app').classList.remove('active');
+  document.getElementById('view-gate').classList.add('active');
+  if(AUTH_MODE!=='signup') toggleAuthMode();
+  toast(msg||'Crie seu acesso gratuito pra ver isso por completo ✨');
+  const el=document.getElementById('nome');
+  if(el){ el.focus({preventScroll:true}); el.scrollIntoView({behavior:'smooth',block:'center'}); }
+  window.scrollTo(0,0);
+}
+
+/* ===== SCHOOL (ponte: vitrine pro não-cliente, pulo fluido pro cliente) ===== */
+const SCHOOL_VITRINE=[
+  {t:'Consultório Escalável', d:'O método pra faturar mais sem abrir mais horário.', c:'linear-gradient(135deg,#415FF5,#C64FCA)'},
+  {t:'IA no Atendimento', d:'Monte seus agentes e ganhe horas toda semana.', c:'linear-gradient(135deg,#191E47,#415FF5)'},
+  {t:'Funil que Enche a Agenda', d:'Capte e converta acompanhamento de verdade.', c:'linear-gradient(135deg,#F56442,#C64FCA)'},
+  {t:'Lives & Mentorias', d:'Encontros ao vivo, gravados e no seu ritmo.', c:'linear-gradient(135deg,#63AC39,#3a8a63)'},
+];
+// gradientes pros cursos reais sem capa (cicla)
+const SCHOOL_GRADS=[
+  'linear-gradient(135deg,#415FF5,#C64FCA)',
+  'linear-gradient(135deg,#191E47,#415FF5)',
+  'linear-gradient(135deg,#F56442,#C64FCA)',
+  'linear-gradient(135deg,#63AC39,#3a8a63)'
+];
+function openSchool(){
+  if(!AUTHED){ gateForSignup('Crie seu acesso gratuito pra conhecer o School ✨'); return; }
+  ['view-app','view-detail','view-admin','view-gate'].forEach(id=>document.getElementById(id).classList.remove('active'));
+  document.getElementById('view-school').classList.add('active');
+  const ini=((LEAD&&LEAD.nome)||'G').trim()[0].toUpperCase();
+  const a=document.getElementById('navAvatar4'); if(a)a.textContent=ini;
+  renderSchool(); window.scrollTo(0,0);
+}
+function backFromSchool(){
+  document.getElementById('view-school').classList.remove('active');
+  document.getElementById('view-app').classList.add('active');
+  window.scrollTo(0,0);
+}
+function goSchool(){ window.location.href = SCHOOL_URL; }    // pulo fluido (mesmo domínio)
+function wantCliente(){ toast('Boa! Em breve o caminho pra virar cliente. Por ora, fale com a gente 💜'); }
+function renderSchool(){
+  const liberado = IS_CLIENTE || IS_ADMIN;
+  document.getElementById('schoolBody').innerHTML = `
+    <div class="school-hero">
+      <span class="school-eyebrow">🎓 batista.growth School ${liberado?'· seu acesso está liberado':'· exclusivo para clientes'}</span>
+      <h1>${liberado?'Seus cursos estão prontos. É só entrar.':'Os cursos completos do Batista, num ambiente só seu.'}</h1>
+      <p>${liberado
+        ? 'Trilhas, lives e certificado no ambiente School. Continue de onde parou.'
+        : 'Aqui no Lab você tem o acervo de prompts e as lives. Os cursos aprofundados ficam no School, liberado pra clientes.'}</p>
+      ${liberado
+        ? `<button class="school-cta go" onclick="goSchool()">Entrar no School →</button>
+           <div class="school-note">Mesma conta, ambiente dedicado aos cursos.</div>`
+        : `<button class="school-cta locked" onclick="wantCliente()">Quero virar cliente</button>
+           <div class="school-note">Já é cliente? Peça pro seu instrutor liberar seu acesso.</div>`}
+    </div>
+    <div class="school-feats">
+      <div class="school-feat"><div class="fi">📚</div><b>Trilhas completas</b><span>Cursos do zero ao avançado, organizados por módulo.</span></div>
+      <div class="school-feat"><div class="fi">🔴</div><b>Lives e mentorias</b><span>Encontros ao vivo, gravados pra rever quando quiser.</span></div>
+      <div class="school-feat"><div class="fi">🏆</div><b>Certificado</b><span>Conclua e leve seu certificado.</span></div>
+    </div>
+    <div class="school-vitrine">
+      <h2>O que tem lá dentro</h2>
+      <p class="sub">${liberado?'Toque pra entrar no curso.':'Espia o que te espera quando virar cliente.'}</p>
+      <div class="school-grid" id="schoolGrid"></div>
+    </div>`;
+  fillSchoolGrid(liberado);
+}
+/* puxa os cursos publicados reais (RPC leve_school_vitrine, só campos de marketing);
+   sem nenhum publicado, mostra a vitrine curada pra não ficar vazia */
+async function fillSchoolGrid(liberado){
+  let cursos=[];
+  try{ const { data } = await sb.rpc('leve_school_vitrine'); cursos=data||[]; }catch(_){ cursos=[]; }
+  const fonte = cursos.length
+    ? cursos.map((c,i)=>({ t:c.title, d:c.description||'', cover:c.cover_url||'', grad:SCHOOL_GRADS[i%SCHOOL_GRADS.length] }))
+    : SCHOOL_VITRINE.map(c=>({ t:c.t, d:c.d, cover:'', grad:c.c }));
+  const grid=document.getElementById('schoolGrid'); if(!grid) return;
+  grid.innerHTML = fonte.map(c=>{
+    const bg = c.cover
+      ? `background:linear-gradient(180deg,rgba(20,10,40,.12),rgba(20,10,40,.55)),url('${c.cover}') center/cover`
+      : `background:${c.grad}`;
+    return `<article class="scard" style="${bg}" onclick="${liberado?'goSchool()':'wantCliente()'}">
+      ${liberado?'':'<span class="lockpill">🔒 cliente</span>'}
+      <h3>${escapeHtml(c.t||'')}</h3><p>${escapeHtml(c.d||'')}</p>
+    </article>`;
+  }).join('');
+}
+
+/* ===== ENTER APP ===== */
+async function enterApp(){
+  await dbLoadContent();           // puxa acervo/avisos/banner do Supabase antes de renderizar
+  document.getElementById('view-gate').classList.remove('active');
+  document.getElementById('view-app').classList.add('active');
+  const ini=(LEAD?.nome||'G').trim()[0].toUpperCase();
+  document.getElementById('navAvatar').textContent=ini;
+  document.getElementById('navAvatar2').textContent=ini;
+  // personaliza: pré-filtra pela profissão do lead
+  if(LEAD?.profissao && PROFS.includes(LEAD.profissao)){
+    activeFilter=LEAD.profissao;
+    const fy=document.getElementById('foryou');
+    fy.style.display='inline-flex';
+    fy.innerHTML='✨ Selecionado para você · '+LEAD.profissao;
+  }
+  const gear=document.getElementById('adminBtn'); if(gear) gear.style.display = IS_ADMIN ? '' : 'none';
+  const lock=document.getElementById('schoolLock'); if(lock) lock.style.display = (IS_CLIENTE||IS_ADMIN) ? 'none' : '';
+  renderFilters(); renderDestaques(); renderGrid(); renderBanner(); renderAnn(); loadVideos(); window.scrollTo(0,0);
+  openFromHash();   // link compartilhado (#slug) abre o conteúdo direto
+}
+
+/* ===== LAB_VIDEOS (vídeos da semana · expiram em 7 dias) ===== */
+function ytId(url){ const m=String(url||'').match(/(?:youtu\.be\/|v=|\/embed\/|\/shorts\/|\/live\/)([A-Za-z0-9_-]{11})/); return m?m[1]:''; }
+function fmtLeft(ms){
+  if(ms<=0) return 'expira já';
+  const d=Math.floor(ms/86400000), h=Math.floor(ms%86400000/3600000), mi=Math.floor(ms%3600000/60000);
+  if(d>0) return `expira em ${d}d ${h}h`;
+  if(h>0) return `expira em ${h}h ${mi}min`;
+  return `expira em ${mi}min`;
+}
+let VIDEOS=[];
+async function fetchVideos(){
+  const { data, error } = await sb.from('leve_videos').select('*').gt('expires_at', new Date().toISOString()).order('created_at',{ascending:false});
+  if(error) throw error; return data||[];
+}
+async function loadVideos(){
+  const sec=document.getElementById('labVideos'); if(!sec) return;
+  try{
+    VIDEOS = await fetchVideos();
+  }catch(e1){
+    // não silencia: pode ser token expirado no 1º load (usuário logado vendo branco).
+    // força refresh da sessão e tenta 1x mais antes de desistir.
+    try{ await sb.auth.getSession(); VIDEOS = await fetchVideos(); }
+    catch(e2){ console.warn('[lab] loadVideos falhou:', e2&&e2.message); VIDEOS=[]; }
+  }
+  const addBtn=document.getElementById('labVidAddBtn'); if(addBtn) addBtn.style.display = IS_ADMIN ? '' : 'none';
+  // usuário só vê a seção quando há vídeo no ar; admin sempre vê (pra poder adicionar)
+  sec.style.display = (VIDEOS.length || IS_ADMIN) ? '' : 'none';
+  renderVideos();
+}
+function renderVideos(){
+  const grid=document.getElementById('labVidGrid'); if(!grid) return;
+  if(!VIDEOS.length){ grid.innerHTML=`<div class="empty" style="grid-column:1/-1"><div class="ei">🎬</div><b>Nenhum vídeo no ar.</b><p class="muted">${IS_ADMIN?'Adicione um vídeo do YouTube · some sozinho em 7 dias.':'Volte em breve.'}</p></div>`; return; }
+  const now=Date.now();
+  grid.innerHTML=VIDEOS.map(v=>{
+    const id=v.youtube_id||ytId(v.youtube_url);
+    const left=fmtLeft(new Date(v.expires_at).getTime()-now);
+    const thumb = id
+      ? `<img src="https://img.youtube.com/vi/${id}/hqdefault.jpg" alt="${escapeHtml(v.title||'Vídeo')}" style="width:100%;height:100%;object-fit:cover;display:block">`
+      : `<span class="cap-glyph">🎬</span>`;
+    // clicar (capa OU título) abre o player grande; não logado → pede cadastro
+    const act = (!AUTHED) ? `gateForSignup('Crie seu acesso gratuito pra assistir ✨')` : `openVid('${id}')`;
+    const cap = (!AUTHED)
+      ? `<div class="cap vidcap" onclick="${act}">
+           ${thumb}<span class="vidov-scrim"></span>
+           <span class="play lock"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+         </div>`
+      : `<div class="cap vidcap" onclick="${act}">
+           ${thumb}<span class="vidov-scrim"></span>
+           <span class="play yt"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>
+           <span class="dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l4.55-2.28A1 1 0 0 1 21 8.62v6.76a1 1 0 0 1-1.45.9L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg> assistir</span>
+         </div>`;
+    return `<article class="tcard">
+      ${cap}
+      <div class="body">
+        <h3 class="vidttl" onclick="${act}">${escapeHtml(v.title||'Vídeo da semana')}</h3>
+        <div class="foot"><span class="lvl">⏳ ${left}</span>${IS_ADMIN?`<button class="adm-ic del" title="Remover" onclick="delVideo('${v.id}')">✕</button>`:''}</div>
+      </div>
+    </article>`;
+  }).join('');
+}
+/* player em tela cheia: capa do card → modal grande (fácil de ver) */
+function openVid(id){
+  if(!id){ toast('Vídeo indisponível'); return; }
+  const v = VIDEOS.find(x=>(x.youtube_id||ytId(x.youtube_url))===id);
+  const ttl = v ? (v.title||'Vídeo da semana') : 'Vídeo da semana';
+  const watch = (v&&v.youtube_url) ? v.youtube_url : `https://www.youtube.com/watch?v=${id}`;
+  document.getElementById('vidovttl').textContent = ttl;
+  // origin ajuda o embed de live/premiere a autorizar; rel=0 tira sugestões
+  document.getElementById('vidovframe').innerHTML =
+    `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1&origin=${encodeURIComponent(location.origin)}" title="${escapeHtml(ttl)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  const fb=document.getElementById('vidovfallback'); if(fb) fb.href=watch;
+  document.getElementById('vidov').classList.add('on');
+  document.body.style.overflow='hidden';
+}
+function closeVid(){
+  const ov=document.getElementById('vidov'); if(!ov) return;
+  ov.classList.remove('on');
+  document.getElementById('vidovframe').innerHTML=''; // corta a reprodução
+  document.body.style.overflow='';
+}
+function openVidForm(){
+  const box=document.getElementById('labVidForm'); if(!box) return;
+  box.style.display='';
+  box.innerHTML=`<div class="banner" style="display:block">
+    <div class="field"><label>Link do YouTube</label><input id="v-url" placeholder="https://youtu.be/..." style="width:100%"></div>
+    <div class="field" style="margin-top:8px"><label>Título (opcional)</label><input id="v-title" placeholder="Vídeo da semana" style="width:100%"></div>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button class="btn btn-primary" onclick="saveVideo()">Publicar (some em 7 dias) →</button>
+      <button class="btn" onclick="document.getElementById('labVidForm').style.display='none'">Cancelar</button>
+    </div>
+  </div>`;
+}
+async function saveVideo(){
+  const url=document.getElementById('v-url').value.trim();
+  const title=document.getElementById('v-title').value.trim();
+  const id=ytId(url);
+  if(!id){ toast('Cole um link válido do YouTube'); return; }
+  let uid=null; try{ const { data:{ user } } = await sb.auth.getUser(); uid=user?user.id:null; }catch(_){}
+  const { error } = await sb.from('leve_videos').insert({ youtube_url:url, youtube_id:id, title:title||null, created_by:uid });
+  if(error){ toast('Não deu pra salvar: '+error.message); return; }
+  document.getElementById('labVidForm').style.display='none';
+  toast('Vídeo publicado ✓ some em 7 dias'); loadVideos();
+}
+async function delVideo(id){
+  if(!confirm('Remover este vídeo agora?')) return;
+  const { error } = await sb.from('leve_videos').delete().eq('id',id);
+  if(error){ toast('Não deu: '+error.message); return; }
+  toast('Vídeo removido'); loadVideos();
+}
+
+/* ===== FILTERS ===== */
+function renderFilters(){
+  const el=document.getElementById('filters');
+  el.innerHTML=PROFS.map(p=>`<button class="chipf ${p===activeFilter?'on':''}" onclick="setFilter('${p.replace(/'/g,"\\'")}')">${p}</button>`).join('');
+}
+function setFilter(p){activeFilter=p;renderFilters();renderDestaques();renderGrid();renderBanner();}
+document.getElementById('searchInput').addEventListener('input',e=>{searchQ=e.target.value.toLowerCase();renderDestaques();renderGrid();renderBanner();});
+
+/* ===== GRID ===== */
+function matches(t){
+  const okF = activeFilter==='Todos' || t.profissoes.includes(activeFilter) || t.profissoes.includes('Todos');
+  const blob = (t.titulo+' '+(t.resultado||'')+' '+(t.ferramentas||[]).map(f=>f.nome).join(' ')).toLowerCase();
+  const okS = !searchQ || blob.includes(searchQ);
+  return okF && okS;
+}
+function isDefaultView(){ return activeFilter==='Todos' && !searchQ; }
+function renderGrid(){
+  // na vista padrão os destaques sobem pra faixa "Destaques da semana"; ao filtrar/buscar, tudo volta pro grid
+  const list=ITEMS.filter(matches).filter(t=> IS_ADMIN || !t.oculto).filter(t=> isDefaultView() ? !t.featured : true);
+  list.sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)); // destaques primeiro (ordem estável)
+  const grid=document.getElementById('grid');
+  if(!list.length){grid.innerHTML=`<div class="empty" style="grid-column:1/-1"><div class="ei">🔍</div><b>Nada por aqui ainda.</b><p class="muted">Tente outra profissão ou busca.</p></div>`;return;}
+  grid.innerHTML=list.map((t,i)=>`
+    <article class="tcard ${IS_ADMIN&&t.oculto?'is-hidden':''}" style="animation-delay:${i*45}ms" onclick="openBySlug('${t.slug}')">
+      <div class="cap" style="${t.capaImg?`background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.5)),url('${t.capaImg}');background-size:cover;background-position:center`:`background:${CAPAS[t.capa]||CAPAS['grad-roxo']}`}">
+        ${t.capaImg?'':`<span class="cap-motif"></span><span class="cap-glyph">${glyphFor(t)}</span>`}
+        ${(t.ferramentas||[])[0]?`<span class="cap-tool"><span class="d" style="background:${(t.ferramentas||[])[0].cor}"></span>${(t.ferramentas||[])[0].nome}</span>`:''}
+        ${t.featured?'<span class="feat">★ Destaque</span>':''}
+        ${t.novo?'<span class="new">Novo</span>':''}
+        <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>${t.duracao}</span>
+      </div>
+      <div class="body">
+        <h3>${t.titulo}</h3>
+        <p class="res">${t.resultado}</p>
+        <div class="foot">
+          <span class="lvl">${t.nivel}</span>
+          <span class="tools">${t.ferramentas.slice(0,2).map(f=>`<span class="toolchip"><span class="d" style="background:${f.cor}"></span>${f.nome}</span>`).join('')}</span>
+        </div>
+      </div>
+      ${IS_ADMIN?`<button class="vis-bar ${t.oculto?'off':''}" onclick="event.stopPropagation();toggleVis('${t.slug}')">${t.oculto?'🚫 Fora do ar · clique para publicar':'👁 No ar · clique para ocultar'}</button>`:''}
+    </article>`).join('');
+}
+
+/* ===== DETAIL ===== */
+function openBySlug(slug){
+  const tl=ITEMS.find(x=>x.slug===slug);
+  if(tl && tl.link){ window.open(tl.link,'_blank','noopener'); return; }   // card-link: abre direto (página pública)
+  if(!AUTHED){ gateForSignup('Crie seu acesso gratuito pra abrir esse conteúdo ✨'); return; }
+  const t=ITEMS.find(x=>x.slug===slug); if(!t)return;
+  document.getElementById('view-app').classList.remove('active');
+  document.getElementById('view-gate').classList.remove('active');
+  const d=document.getElementById('view-detail');
+  d.classList.add('active');
+  document.getElementById('detContent').innerHTML=`
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+      <button class="back" onclick="backToLib()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Voltar ao acervo</button>
+      <button class="back" onclick="copyLink('${t.slug}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Copiar link</button>
+    </div>
+    ${t.video
+      ? `<div class="det-video ig"><iframe src="${igEmbed(t.video)}" loading="lazy" allowtransparency="true" allowfullscreen="true" scrolling="no" frameborder="0"></iframe><a class="ig-open" href="${t.video}" target="_blank" rel="noopener">Vídeo não carregou? Assista no Instagram ↗</a></div>`
+      : t.capaImg
+        ? `<div class="det-video" style="background:${CAPAS[t.capa]||CAPAS['grad-roxo']}"><img class="capaimg" src="${t.capaImg}" alt="${escapeHtml(t.titulo)}"><span class="capaov"></span></div>`
+        : `<div class="det-video" style="background:${CAPAS[t.capa]}"><span class="cap-motif"></span><span class="cap-glyph">${glyphFor(t)}</span><span class="tape">▶ vídeo do tutorial</span><span class="ply" onclick="toast('Player: cole o link do Reels no campo video')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></div>`}
+    <div class="det-meta"><span class="lvl">${t.nivel}</span><span class="lvl">⏱ ${t.duracao}</span>${t.profissoes.map(p=>`<span class="lvl">${p}</span>`).join('')}</div>
+    <h1>${t.titulo}</h1>
+    <div class="det-result"><b>O que você consegue:</b> ${t.resultado}</div>
+
+    ${detailSections(t)}`;
+  CURRENT_SLUG=slug;
+  if(decodeURIComponent(location.hash.slice(1))!==slug) history.pushState(null,'','#'+encodeURIComponent(slug));
+  window.scrollTo(0,0);
+}
+
+/* ===== deep-link por slug (#iap-06): URL identifica o conteúdo aberto ===== */
+let CURRENT_SLUG='';
+function copyLink(slug){
+  const url=location.origin+location.pathname+'#'+encodeURIComponent(slug);
+  (navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject())
+    .then(()=>toast('Link do conteúdo copiado ✨'))
+    .catch(()=>prompt('Copia o link:',url));
+}
+function openFromHash(){
+  const slug=decodeURIComponent(location.hash.slice(1));
+  if(!slug){ if(CURRENT_SLUG){ CURRENT_SLUG=''; backToLib(); } return; }
+  if(slug===CURRENT_SLUG) return;
+  if((typeof ITEMS!=='undefined')&&ITEMS.some(x=>x.slug===slug)) openBySlug(slug);
+}
+window.addEventListener('popstate', openFromHash);
+
+/* slot de imagem da galeria (com placeholder quando ainda não tem) */
+function imgSlotD(label,src,hint){
+  const body = src ? `<img src="${src}" alt="${escapeHtml(label)}" onclick="openImg('${src}')">` : `<div class="gph">${escapeHtml(hint||'a anexar')}</div>`;
+  return `<div class="gslot"><span class="glab">${escapeHtml(label)}</span>${body}</div>`;
+}
+/* bloco de resultado/galeria conforme o tipo de conteúdo */
+function galleryBlock(t){
+  const PLAY=`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
+  const viewerImgs=t.resultStories||t.resultSlides;
+  if(viewerImgs&&viewerImgs.length){
+    const isSlide=!!(t.resultSlides&&t.resultSlides.length);
+    const noun=isSlide?'slides':'stories';
+    const cls=isSlide?'stthumb slide':'stthumb';
+    const thumbs=viewerImgs.map((src,i)=>`<div class="${cls}" onclick="openSV('${t.slug}',${i})"><span class="stn">${i+1}</span><img src="${src}" alt="${noun} ${i+1}"><div class="stplay">${PLAY}</div></div>`).join('');
+    const refBlock=t.refImg?`<div class="strefwrap"><span class="glab">Referência usada (Pinterest)</span><img class="strefimg" src="${t.refImg}" alt="Referência" onclick="openImg('${t.refImg}')"></div>`:'';
+    return {h:t.refImg?'Referência → resultado':'Resultado pronto', body:`${refBlock}<p class="sthint">Resultado pronto: toque em qualquer um pra ver os ${viewerImgs.length} ${noun} em tela cheia.</p><div class="strow">${thumbs}</div>`};
+  }
+  if(t.resultGallery&&t.resultGallery.length){
+    return {h:'Referência → resultado', body:`<div class="gal">${t.resultGallery.map(g=>imgSlotD(g.label,g.src,g.hint)).join('')}</div>`};
+  }
+  const img=t.img||{};
+  if(t.refImg||img.ref||img.res){
+    const ref=t.refImg||img.ref;
+    const slots = t.semPin
+      ? (ref?imgSlotD('Referência usada',ref):'')+imgSlotD('Resultado gerado',img.res)
+      : imgSlotD('Referência (Pinterest)',ref)+imgSlotD('Resultado gerado',img.res);
+    return {h:ref?'Referência → resultado':'Resultado pronto', body:`<div class="gal">${slots}</div>`};
+  }
+  return null;
+}
+/* monta só as seções que o conteúdo tem (IA/prompt são opcionais) e renumera */
+
+/* área de cliente abre pelo combinado: foco e meta antes do material */
+function renderAmbiente(){
+  const top = document.getElementById('libTop');
+  if(!top || !AMB || AMB.tipo !== 'cliente'){ return; }
+  top.innerHTML = `<div class="amb-head">
+      <div class="kick">&gt; consultoria_comercial</div>
+      <h2>${escapeHtml(AMB.nome||'')}</h2>
+      ${AMB.bemVindo ? `<p class="bem">${escapeHtml(AMB.bemVindo)}</p>` : ''}
+      ${(AMB.foco||AMB.meta) ? `<div class="amb-fm">
+        ${AMB.foco ? `<div><div class="r">o foco agora</div><p>${escapeHtml(AMB.foco)}</p></div>` : ''}
+        ${AMB.meta ? `<div><div class="r">a meta</div><p>${escapeHtml(AMB.meta)}</p></div>` : ''}
+      </div>` : ''}
+    </div>`;
+  const hs = document.querySelectorAll('.lib-head h2'); const h = hs[hs.length-1];
+  if(h) h.innerHTML = 'Materiais da <span class="grad-text">consultoria</span>';
+  const fl = document.getElementById('filters');
+  if(fl) fl.style.display = 'none';
+  const sn = document.getElementById('schoolNav');
+  if(sn && !AMB.schoolOn) sn.style.display = 'none';
+}
+
+function detailSections(t){
+  const blocks=[];
+  if(t.ferramentas&&t.ferramentas.length){
+    blocks.push({h:'Qual IA / ferramenta usar', body:`<div class="toolrow">${t.ferramentas.map(f=>{const url=TOOLURL[f.nome];const tag=url?'a':'div';const attrs=url?` href="${url}" target="_blank" rel="noopener"`:'';return `<${tag} class="toolbig"${attrs}><span class="tdot" style="background:${f.cor}">${(f.nome||'?')[0]}</span><span><b>${f.nome}${url?' ↗':''}</b><span>${f.tipo}</span></span></${tag}>`;}).join('')}</div>`});
+  }
+  const gal=galleryBlock(t);
+  if(gal) blocks.push(gal);
+  if(t.prompts&&t.prompts.length){
+    blocks.push({h:t.prompts.length>1?'Os prompts exatos':'O prompt exato', body:t.prompts.map((p,i)=>`<div class="prompt"><div class="ph"><span class="pdot" style="background:${p.cor}"></span><b>${p.ferramenta}</b><span class="obj">· para ${p.objetivo}</span><button class="copy" onclick="copyP(this,${i})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg> Copiar</button></div><pre id="prompt-${i}">${escapeHtml(p.texto)}</pre></div>`).join('')});
+  }
+  if(t.passos&&t.passos.length){
+    const allPassos=t.semPin?t.passos:[(t.pin||'Busca referências de design no Pinterest, na linha da sua marca (pra não sair genérico).'),...t.passos];
+    blocks.push({h:'Passo a passo', body:`<div class="steps">${allPassos.map(s=>`<div class="step"><span class="sn"></span><p>${escapeHtml(s)}</p></div>`).join('')}</div>`});
+  }
+  if(t.exemplo&&t.exemplo.itens&&t.exemplo.itens.length){
+    const ex=t.exemplo;
+    blocks.push({h:'Exemplo real · prompts de imagem', body:`<p class="exnota">${escapeHtml(ex.nota||'')}</p>${ex.itens.map((e,i)=>`<div class="prompt"><div class="ph"><span class="pdot" style="background:${C.gemini}"></span><b>${escapeHtml(e.label)}</b><button class="copy" onclick="copyById('ex-${i}',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg> Copiar</button></div><pre id="ex-${i}">${escapeHtml(e.texto)}</pre></div>`).join('')}`});
+  }
+  return blocks.map((b,i)=>`<div class="sect"><div class="sect-h"><span class="n">${i+1}</span><h3>${b.h}</h3></div>${b.body}</div>`).join('');
+}
+function backToLib(){
+  CURRENT_SLUG='';
+  if(location.hash) history.pushState(null,'',location.pathname+location.search);
+  document.getElementById('view-detail').classList.remove('active');
+  document.getElementById('view-admin').classList.remove('active');
+  document.getElementById('view-app').classList.add('active');
+  renderFilters(); renderDestaques(); renderGrid(); renderBanner(); renderAnn();
+  window.scrollTo(0,0);
+}
+
+/* ===== ADMIN ===== */
+function openAdmin(){
+  document.getElementById('view-app').classList.remove('active');
+  document.getElementById('view-detail').classList.remove('active');
+  document.getElementById('view-admin').classList.add('active');
+  const ini=((LEAD&&LEAD.nome)||'G').trim()[0].toUpperCase();
+  const a=document.getElementById('navAvatar3'); if(a)a.textContent=ini;
+  resetTutForm(); resetAnnForm(); fillBannerForm();
+  renderTutList(); renderAnnList(); renderLeads();
+  adminTab('tut'); window.scrollTo(0,0);
+}
+function adminTab(name){
+  ['tut','ann','ban','lead'].forEach(k=>{
+    document.getElementById('tab-'+k).classList.toggle('on',k===name);
+    document.getElementById('panel-'+k).classList.toggle('on',k===name);
   });
 }
+
+/* ---- BANNER ---- */
+function fillBannerForm(){
+  document.getElementById('b-on').checked=!!BANNER.on;
+  document.getElementById('b-emoji').value=BANNER.emoji||'';
+  document.getElementById('b-cta').value=BANNER.cta||'';
+  document.getElementById('b-titulo').value=BANNER.titulo||'';
+  document.getElementById('b-desc').value=BANNER.desc||'';
+  document.getElementById('b-link').value=BANNER.link||'';
+  document.getElementById('b-img').value=BANNER.img||'';
+  fillBannerImgPrev(BANNER.img||'');
+}
+function fillBannerImgPrev(url){
+  const p=document.getElementById('b-img-prev'), c=document.getElementById('b-img-clear');
+  if(url){ p.src=url; p.style.display=''; c.style.display=''; }
+  else { p.removeAttribute('src'); p.style.display='none'; c.style.display='none'; }
+}
+async function onBannerImg(input){
+  const f=input.files&&input.files[0]; if(!f) return;
+  toast('Subindo imagem…');
+  const url=await uploadLabImage(f);
+  if(url){ document.getElementById('b-img').value=url; fillBannerImgPrev(url); toast('Imagem pronta ✓ · clique em Salvar banner'); }
+  input.value='';
+}
+function clearBannerImg(){ document.getElementById('b-img').value=''; fillBannerImgPrev(''); }
+async function saveBanner(){
+  const g=id=>document.getElementById(id).value.trim();
+  BANNER={on:document.getElementById('b-on').checked, emoji:g('b-emoji'), cta:g('b-cta'), titulo:g('b-titulo'), desc:g('b-desc'), link:g('b-link'), img:g('b-img')};
+  const { error } = await sb.from('leve_banner').upsert({ id:1, data:BANNER, updated_at:new Date().toISOString() });
+  if(error){ toast('Não salvou: '+error.message); return; }
+  renderBanner(); renderDestaques(); toast('Banner salvo ✓');
+}
+function genBanner(){ toast('✨ Gerar com IA: aqui pluga o ChatGPT / gerador de imagem'); }
+
+/* ---- TUTORIAIS (add / editar / ordenar / destacar / remover) ---- */
+/* estado do editor pras imagens (texto é lido direto do DOM) */
+let TF={capaImg:'', refImg:'', simpleRef:'', simpleRes:'', galPairs:[], multi:[]};
+function attr(s){return escapeHtml(s).replace(/"/g,'&quot;');}
+
+/* ---- upload pro bucket lab-uploads ---- */
+async function uploadLabImage(file){
+  if(!file) return null;
+  const ext=((file.name||'img').split('.').pop()||'png').toLowerCase().replace(/[^a-z0-9]/g,'')||'png';
+  const path='t/'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7)+'.'+ext;
+  const { error } = await sb.storage.from('lab-uploads').upload(path, file, {cacheControl:'3600', upsert:false, contentType:file.type||undefined});
+  if(error){ toast('Falha no upload: '+error.message); return null; }
+  return sb.storage.from('lab-uploads').getPublicUrl(path).data.publicUrl;
+}
+async function onUpload(input, key){
+  const file=input.files&&input.files[0]; input.value='';
+  if(!file) return;
+  toast('Subindo imagem…');
+  const url=await uploadLabImage(file); if(!url) return;
+  TF[key]=url; refreshUploadUI(key);
+}
+function clearUpload(key){ TF[key]=''; refreshUploadUI(key); }
+function refreshUploadUI(key){
+  if(key==='capaImg'){
+    const img=document.getElementById('t-capaimg-thumb'), ph=document.getElementById('t-capaimg-ph'), clr=document.getElementById('t-capaimg-clear');
+    if(TF.capaImg){ img.src=TF.capaImg; img.style.display=''; ph.style.display='none'; clr.style.display=''; }
+    else { img.removeAttribute('src'); img.style.display='none'; ph.style.display=''; clr.style.display='none'; }
+  } else { renderGalBox(); }
+}
+/* escolhe arquivo(s) sem precisar de <input> fixo no DOM */
+function pickFile(cb, multi){
+  const inp=document.createElement('input'); inp.type='file'; inp.accept='image/*'; if(multi)inp.multiple=true;
+  inp.onchange=async()=>{ const files=[...inp.files]; if(files.length) await cb(files); };
+  inp.click();
+}
+function pickSingle(key){ pickFile(async f=>{ toast('Subindo imagem…'); const u=await uploadLabImage(f[0]); if(u){TF[key]=u;renderGalBox();} }); }
+function pickPair(i){ pickFile(async f=>{ toast('Subindo imagem…'); const u=await uploadLabImage(f[0]); if(u){TF.galPairs[i].src=u;renderGalBox();} }); }
+function pickMulti(){ pickFile(async files=>{ toast('Subindo '+files.length+' imagem(ns)…'); for(const f of files){ const u=await uploadLabImage(f); if(u)TF.multi.push(u);} renderGalBox(); }, true); }
+
+/* ---- prompts repetíveis ---- */
+function addPromptRow(p){
+  p=p||{};
+  const box=document.getElementById('t-prompts');
+  const div=document.createElement('div'); div.className='promptcard';
+  div.innerHTML=`<button type="button" class="pcdel" title="Remover" onclick="this.closest('.promptcard').remove()">×</button>
+    <div class="pchead">
+      <div class="field"><label>Ferramenta</label><input class="pc-ferr" value="${attr(p.ferramenta||'')}" placeholder="ChatGPT, Claude, Lovable…"></div>
+      <div class="field"><label>Objetivo</label><input class="pc-obj" value="${attr(p.objetivo||'')}" placeholder="gerar a base do plano"></div>
+    </div>
+    <div class="field"><label>Prompt (copiável)</label><textarea class="pc-text" placeholder="Cole aqui o prompt que funcionou…">${escapeHtml(p.texto||'')}</textarea></div>`;
+  box.appendChild(div);
+}
+function gatherPrompts(){
+  return [...document.querySelectorAll('#t-prompts .promptcard')].map(c=>{
+    const nome=c.querySelector('.pc-ferr').value.trim();
+    return {ferramenta:nome, cor:corFor(nome), objetivo:c.querySelector('.pc-obj').value.trim()||'usar', texto:c.querySelector('.pc-text').value.trim()};
+  }).filter(p=>p.texto);
+}
+
+/* ---- exemplo (prompts de imagem) repetível ---- */
+function addExRow(e){
+  e=e||{};
+  const box=document.getElementById('t-exemplos');
+  const div=document.createElement('div'); div.className='promptcard';
+  div.innerHTML=`<button type="button" class="pcdel" title="Remover" onclick="this.closest('.promptcard').remove()">×</button>
+    <div class="field"><label>Rótulo</label><input class="ex-label" value="${attr(e.label||'')}" placeholder="Story 01 · fundo inteiro (9:16)"></div>
+    <div class="field"><label>Prompt de imagem</label><textarea class="ex-text" placeholder="Cole o prompt de imagem…">${escapeHtml(e.texto||'')}</textarea></div>`;
+  box.appendChild(div);
+}
+
+/* ---- galeria conforme o tipo ---- */
+function uploaderHTML(key,label){
+  const src=TF[key];
+  const thumb=src?`<img class="upthumb" src="${src}" alt="">`:`<span class="upthumb ph">🖼</span>`;
+  return `<div class="field"><label>${label}</label><div class="uprow">${thumb}
+    <button type="button" class="upbtn" onclick="pickSingle('${key}')">${src?'Trocar':'Subir imagem'}</button>
+    ${src?`<button type="button" class="upbtn" onclick="clearUpload('${key}')">Remover</button>`:''}</div></div>`;
+}
+function renderGalBox(){
+  const t=document.getElementById('t-galtype').value;
+  const box=document.getElementById('t-galbox'); if(!box) return;
+  let html='';
+  if(t==='simple'){
+    html=uploaderHTML('simpleRef','Referência (Pinterest)')+uploaderHTML('simpleRes','Resultado gerado');
+  } else if(t==='gallery'){
+    html=TF.galPairs.map((g,i)=>`<div class="galrow">
+      ${g.src?`<img class="gr-thumb" src="${g.src}" alt="">`:`<span class="gr-thumb ph">🖼</span>`}
+      <div class="field"><input class="gr-label" value="${attr(g.label)}" oninput="TF.galPairs[${i}].label=this.value" placeholder="Rótulo (ex.: Nível 1 · Referência)"></div>
+      <button type="button" class="upbtn" onclick="pickPair(${i})">${g.src?'Trocar':'Imagem'}</button>
+      <button type="button" class="gr-del" title="Remover" onclick="TF.galPairs.splice(${i},1);renderGalBox()">×</button>
+    </div>`).join('')+`<button type="button" class="addbtn" onclick="TF.galPairs.push({label:'',src:''});renderGalBox()">＋ Adicionar par</button>`;
+  } else if(t==='stories'||t==='slides'){
+    const cls=t==='slides'?'ms-item slide':'ms-item';
+    html=uploaderHTML('refImg','Referência usada (Pinterest) · opcional')
+      +`<p class="muted-help">${t==='slides'?'Slides do carrossel (4:5)':'Stories (9:16)'} na ordem. Suba vários de uma vez.</p>`
+      +`<div class="multistrip">${TF.multi.map((src,i)=>`<div class="${cls}"><img src="${src}" alt=""><button type="button" class="ms-x" onclick="TF.multi.splice(${i},1);renderGalBox()">×</button></div>`).join('')}</div>`
+      +`<button type="button" class="addbtn" onclick="pickMulti()">＋ Adicionar imagens</button>`;
+  }
+  box.innerHTML=html;
+}
+function togglePin(){ const off=document.getElementById('t-sempin').checked; document.getElementById('t-pin-field').style.display=off?'none':''; }
+
+function gatherTut(){
+  const g=id=>document.getElementById(id).value.trim();
+  const titulo=g('t-titulo'); if(!titulo){ toast('Dá um título pro tutorial'); return null; }
+  const profsRaw=g('t-profs'); const profissoes=profsRaw?profsRaw.split(',').map(s=>s.trim()).filter(Boolean):['Todos'];
+  const prompts=gatherPrompts();
+  const seen={}; const ferramentas=[];
+  prompts.forEach(p=>{ if(p.ferramenta&&!seen[p.ferramenta]){ seen[p.ferramenta]=1; ferramentas.push({nome:p.ferramenta, tipo:'IA / ferramenta', cor:p.cor}); } });
+  const semPin=document.getElementById('t-sempin').checked;
+  const pin=g('t-pin');
+  // exemplo
+  const exItens=[...document.querySelectorAll('#t-exemplos .promptcard')].map(c=>({label:c.querySelector('.ex-label').value.trim(), texto:c.querySelector('.ex-text').value.trim()})).filter(e=>e.texto);
+  const exNota=g('t-exnota');
+  const exemplo=(exItens.length||exNota)?{nota:exNota, itens:exItens}:undefined;
+  // resultado/galeria — sempre define todos os campos (limpa os que não são do tipo escolhido)
+  const gt=document.getElementById('t-galtype').value;
+  let img, refImg, resultGallery, resultStories, resultSlides;
+  if(gt==='simple'){ img={ref:TF.simpleRef||'', res:TF.simpleRes||''}; }
+  else if(gt==='gallery'){ resultGallery=TF.galPairs.filter(p=>p.src||p.label).map(p=>({label:p.label||'',src:p.src||''})); }
+  else if(gt==='stories'){ resultStories=TF.multi.slice(); refImg=TF.refImg||undefined; }
+  else if(gt==='slides'){ resultSlides=TF.multi.slice(); refImg=TF.refImg||undefined; }
+  return {
+    titulo, resultado:g('t-result')||'',
+    profissoes, nivel:document.getElementById('t-nivel').value, duracao:g('t-dur')||'5 min',
+    novo:document.getElementById('t-novo').checked, capa:document.getElementById('t-capa').value,
+    capaImg: TF.capaImg||undefined, video:g('t-video'),
+    ferramentas, prompts, passos: g('t-passos')?g('t-passos').split('\n').map(s=>s.trim()).filter(Boolean):[],
+    pin: pin||undefined, semPin: semPin||undefined,
+    img, refImg, resultGallery, resultStories, resultSlides, exemplo
+  };
+}
+async function saveTutorial(){
+  const data=gatherTut(); if(!data) return;
+  const editSlug=document.getElementById('t-edit').value;
+  if(editSlug){
+    const cur=(await freshData(editSlug))||ITEMS.find(x=>x.slug===editSlug)||{};
+    const merged=cleanData(Object.assign({}, cur, data));   // preserva featured/slug e descarta campos internos
+    const { error } = await sb.from('leve_items').update({ data:merged, updated_at:new Date().toISOString() }).eq('slug',editSlug);
+    if(error){ toast('Não salvou: '+error.message); return; }
+    toast('Tutorial atualizado ✓');
+  } else {
+    const slug='u-'+Date.now().toString(36);
+    const minSort=ITEMS.reduce((m,x)=>Math.min(m, x._sort??0), 0);
+    const obj=Object.assign({slug, featured:false}, data);
+    const { error } = await sb.from('leve_items').insert({ slug, data:obj, sort_order:minSort-1, ambiente:AMBIENTE });  // entra no topo
+    if(error){ toast('Não publicou: '+error.message); return; }
+    toast('Tutorial publicado ✓ · já está no acervo');
+  }
+  await dbLoadContent(); resetTutForm(); renderTutList(); renderGrid();
+}
+async function editTut(slug){
+  const i=ITEMS.findIndex(x=>x.slug===slug); if(i<0) return;
+  const fresh=await freshData(slug);   // form sempre abre com a versão do banco, não da memória
+  if(fresh) ITEMS[i]=Object.assign({}, fresh, {slug, _id:ITEMS[i]._id, _sort:ITEMS[i]._sort});
+  const t=ITEMS[i];
+  resetTutForm();
+  const s=(id,v)=>document.getElementById(id).value=v||'';
+  s('t-titulo',t.titulo); s('t-result',t.resultado);
+  s('t-profs',(t.profissoes||[]).join(', ')); s('t-dur',t.duracao);
+  document.getElementById('t-nivel').value=t.nivel||'Iniciante';
+  document.getElementById('t-capa').value=t.capa||'grad-roxo';
+  s('t-video',t.video); s('t-passos',(t.passos||[]).join('\n')); s('t-pin',t.pin);
+  document.getElementById('t-sempin').checked=!!t.semPin; togglePin();
+  document.getElementById('t-novo').checked=!!t.novo;
+  // capa
+  TF.capaImg=t.capaImg||''; refreshUploadUI('capaImg');
+  // prompts
+  document.getElementById('t-prompts').innerHTML='';
+  if(t.prompts&&t.prompts.length) t.prompts.forEach(p=>addPromptRow(p)); else addPromptRow();
+  // exemplo
+  document.getElementById('t-exemplos').innerHTML='';
+  if(t.exemplo){ s('t-exnota',t.exemplo.nota); (t.exemplo.itens||[]).forEach(e=>addExRow(e)); }
+  // galeria/resultado
+  TF.refImg=t.refImg||''; TF.simpleRef=''; TF.simpleRes=''; TF.galPairs=[]; TF.multi=[];
+  let gt='';
+  if(t.resultStories&&t.resultStories.length){ gt='stories'; TF.multi=t.resultStories.slice(); }
+  else if(t.resultSlides&&t.resultSlides.length){ gt='slides'; TF.multi=t.resultSlides.slice(); }
+  else if(t.resultGallery&&t.resultGallery.length){ gt='gallery'; TF.galPairs=t.resultGallery.map(g=>({label:g.label||'',src:g.src||''})); }
+  else if(t.img&&(t.img.ref||t.img.res)){ gt='simple'; TF.simpleRef=t.img.ref||''; TF.simpleRes=t.img.res||''; }
+  document.getElementById('t-galtype').value=gt; renderGalBox();
+  document.getElementById('t-edit').value=slug;
+  document.getElementById('t-formtitle').textContent='Editar tutorial';
+  document.getElementById('t-save').textContent='Salvar alterações';
+  document.getElementById('t-cancel').style.display='';
+  adminTab('tut'); document.querySelector('.admin-wrap').scrollIntoView({behavior:'smooth'});
+}
+function resetTutForm(){
+  ['t-titulo','t-result','t-profs','t-dur','t-video','t-passos','t-pin','t-exnota'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('t-nivel').value='Iniciante';
+  document.getElementById('t-capa').value='grad-roxo';
+  document.getElementById('t-novo').checked=true;
+  document.getElementById('t-sempin').checked=false; togglePin();
+  document.getElementById('t-edit').value='';
+  TF={capaImg:'', refImg:'', simpleRef:'', simpleRes:'', galPairs:[], multi:[]};
+  refreshUploadUI('capaImg');
+  document.getElementById('t-prompts').innerHTML=''; addPromptRow();
+  document.getElementById('t-exemplos').innerHTML='';
+  document.getElementById('t-galtype').value=''; renderGalBox();
+  document.getElementById('t-formtitle').textContent='Publicar tutorial';
+  document.getElementById('t-save').textContent='Publicar no acervo →';
+  document.getElementById('t-cancel').style.display='none';
+}
+async function delTut(slug){
+  if(!confirm('Remover este tutorial do acervo?')) return;
+  const { error } = await sb.from('leve_items').delete().eq('slug',slug);
+  if(error){ toast('Não removeu: '+error.message); return; }
+  await dbLoadContent();
+  if(document.getElementById('t-edit').value===slug) resetTutForm();
+  renderTutList(); renderGrid(); toast('Tutorial removido');
+}
+async function toggleFeat(slug){
+  const t=(await freshData(slug))||ITEMS.find(x=>x.slug===slug); if(!t) return;
+  const merged=cleanData(Object.assign({}, t, {featured:!t.featured}));
+  const { error } = await sb.from('leve_items').update({ data:merged }).eq('slug',slug);
+  if(error){ toast('Erro: '+error.message); return; }
+  await dbLoadContent(); renderTutList(); renderGrid(); renderDestaques();
+}
+async function toggleVis(slug){
+  const t=(await freshData(slug))||ITEMS.find(x=>x.slug===slug); if(!t) return;
+  const merged=cleanData(Object.assign({}, t, {oculto:!t.oculto}));
+  const { error } = await sb.from('leve_items').update({ data:merged }).eq('slug',slug);
+  if(error){ toast('Erro: '+error.message); return; }
+  await dbLoadContent(); renderTutList(); renderGrid(); renderDestaques();
+  toast(merged.oculto?'Conteúdo fora do ar 🚫':'Conteúdo no ar ✅');
+}
+async function moveTut(slug,dir){
+  const i=ITEMS.findIndex(x=>x.slug===slug), j=i+dir; if(i<0||j<0||j>=ITEMS.length) return;
+  const A=ITEMS[i], B=ITEMS[j];
+  const r1=await sb.from('leve_items').update({sort_order:B._sort}).eq('id',A._id);
+  const r2=await sb.from('leve_items').update({sort_order:A._sort}).eq('id',B._id);
+  if(r1.error||r2.error){ toast('Erro ao reordenar'); return; }
+  await dbLoadContent(); renderTutList(); renderGrid();
+}
+async function resetSeeds(){
+  if(!confirm('Isso descarta suas mudanças e volta aos exemplos originais. Continuar?')) return;
+  await sb.from('leve_items').delete().neq('id','00000000-0000-0000-0000-000000000000');  // limpa tudo
+  const rows=TUTORIAIS.map((t,i)=>({ slug:t.slug, data:t, sort_order:i }));
+  const { error } = await sb.from('leve_items').insert(rows);
+  if(error){ toast('Erro: '+error.message); return; }
+  await dbLoadContent(); resetTutForm(); renderTutList(); renderGrid(); toast('Exemplos restaurados');
+}
+function renderTutList(){
+  const el=document.getElementById('tutList'); if(!el) return;
+  el.innerHTML=ITEMS.map((t,i)=>`<div class="adm-row">
+    <div class="adm-ord"><button class="adm-ic" title="Subir" onclick="moveTut('${t.slug}',-1)" ${i===0?'disabled':''}>↑</button><button class="adm-ic" title="Descer" onclick="moveTut('${t.slug}',1)" ${i===ITEMS.length-1?'disabled':''}>↓</button></div>
+    <span class="d" style="background:${(t.ferramentas&&t.ferramentas[0]||{}).cor||'#7C3AED'}"></span>
+    <div class="adm-info" style="${t.oculto?'opacity:.5':''}"><b>${t.oculto?'<span style="color:#b91c1c">🚫</span> ':''}${t.featured?'<span class="star">★</span> ':''}${escapeHtml(t.titulo)}</b><span>${t.oculto?'Fora do ar · ':''}${(t.profissoes||[]).join(' · ')} · ${escapeHtml(t.duracao||'')}</span></div>
+    <div class="adm-btns">
+      <button class="adm-ic ${t.oculto?'':'on'}" title="${t.oculto?'Fora do ar · clique pra publicar':'No ar · clique pra tirar do ar'}" onclick="toggleVis('${t.slug}')">${t.oculto?'🚫':'👁'}</button>
+      <button class="adm-ic ${t.featured?'on':''}" title="Destacar" onclick="toggleFeat('${t.slug}')">★</button>
+      <button class="adm-ic" title="Editar" onclick="editTut('${t.slug}')">✎</button>
+      <button class="adm-ic del" title="Remover" onclick="delTut('${t.slug}')">✕</button>
+    </div>
+  </div>`).join('');
+}
+
+/* ---- AVISOS (carrossel) ---- */
+function gatherAnn(){
+  const g=id=>document.getElementById(id).value.trim();
+  const titulo=g('a-titulo'); if(!titulo){ toast('Dá um título pro aviso'); return null; }
+  return {big:g('a-big')||'📣', titulo, desc:g('a-desc'), cta:g('a-cta'), slug:g('a-slug'), link:g('a-link'), img:g('a-img')};
+}
+async function saveAnn(){
+  const data=gatherAnn(); if(!data) return;
+  const editId=document.getElementById('a-edit').value;
+  if(editId){
+    const { error } = await sb.from('leve_announcements').update({ data }).eq('id',editId);
+    if(error){ toast('Não salvou: '+error.message); return; }
+    toast('Aviso atualizado ✓');
+  } else {
+    const maxSort=ANN.reduce((m,x)=>Math.max(m, x._sort??0), -1);
+    const { error } = await sb.from('leve_announcements').insert({ data, sort_order:maxSort+1 });
+    if(error){ toast('Não adicionou: '+error.message); return; }
+    toast('Aviso adicionado ✓');
+  }
+  await dbLoadContent(); renderAnn(); renderAnnList(); resetAnnForm();
+}
+function editAnn(id){
+  const a=ANN.find(x=>x._id===id); if(!a) return; const s=(k,v)=>document.getElementById(k).value=v||'';
+  s('a-big',a.big); s('a-cta',a.cta); s('a-titulo',a.titulo); s('a-desc',a.desc); s('a-slug',a.slug); s('a-link',a.link); s('a-img',a.img);
+  document.getElementById('a-edit').value=id;
+  document.getElementById('a-formtitle').textContent='Editar aviso';
+  document.getElementById('a-save').textContent='Salvar aviso';
+  document.getElementById('a-cancel').style.display='';
+  adminTab('ann'); document.querySelector('.admin-wrap').scrollIntoView({behavior:'smooth'});
+}
+function resetAnnForm(){
+  ['a-big','a-cta','a-titulo','a-desc','a-slug','a-link','a-img'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('a-edit').value='';
+  document.getElementById('a-formtitle').textContent='Novo aviso';
+  document.getElementById('a-save').textContent='Adicionar aviso';
+  document.getElementById('a-cancel').style.display='none';
+}
+async function delAnn(id){
+  const { error } = await sb.from('leve_announcements').delete().eq('id',id);
+  if(error){ toast('Não removeu: '+error.message); return; }
+  await dbLoadContent(); renderAnn(); renderAnnList(); toast('Aviso removido');
+}
+async function moveAnn(id,dir){
+  const i=ANN.findIndex(x=>x._id===id), j=i+dir; if(i<0||j<0||j>=ANN.length) return;
+  const A=ANN[i], B=ANN[j];
+  const r1=await sb.from('leve_announcements').update({sort_order:B._sort}).eq('id',A._id);
+  const r2=await sb.from('leve_announcements').update({sort_order:A._sort}).eq('id',B._id);
+  if(r1.error||r2.error){ toast('Erro ao reordenar'); return; }
+  await dbLoadContent(); renderAnn(); renderAnnList();
+}
+function renderAnnList(){
+  const el=document.getElementById('annList'); if(!el) return;
+  if(!ANN.length){ el.innerHTML='<p class="muted" style="padding:6px 0">Nenhum aviso. Adicione um ao lado.</p>'; return; }
+  el.innerHTML=ANN.map((a,i)=>`<div class="adm-row">
+    <div class="adm-ord"><button class="adm-ic" onclick="moveAnn('${a._id}',-1)" ${i===0?'disabled':''}>↑</button><button class="adm-ic" onclick="moveAnn('${a._id}',1)" ${i===ANN.length-1?'disabled':''}>↓</button></div>
+    <span class="adm-emoji">${escapeHtml(a.big||'📣')}</span>
+    <div class="adm-info"><b>${escapeHtml(a.titulo||'')}</b><span>${escapeHtml(a.desc||'')}</span></div>
+    <div class="adm-btns"><button class="adm-ic" title="Editar" onclick="editAnn('${a._id}')">✎</button><button class="adm-ic del" title="Remover" onclick="delAnn('${a._id}')">✕</button></div>
+  </div>`).join('');
+}
+
+/* ---- LEADS (cadastros reais · tabela profiles; o admin lê todos via RLS) ---- */
+async function renderLeads(){
+  const el=document.getElementById('leadList');
+  try{
+    const { data, error } = await sb.from('leve_profiles')
+      .select('full_name,email,phone,profissao,came_from,is_cliente,created_at')
+      .order('created_at',{ascending:false});
+    if(error) throw error; LEADS=data||[];
+  }catch(_){ LEADS=[]; }
+  const c=document.getElementById('leadCount'); if(c)c.textContent=LEADS.length;
+  if(!el) return;
+  if(!LEADS.length){ el.innerHTML='<p class="muted" style="padding:6px 0">Nenhum cadastro ainda. Quem criar acesso no Lab aparece aqui automaticamente.</p>'; return; }
+  el.innerHTML=`<div class="leadtable"><div class="lt-h"><span>Nome</span><span>E-mail</span><span>WhatsApp</span><span>Profissão</span><span>Quando</span></div>${LEADS.map(l=>`<div class="lt-r"><span>${escapeHtml(l.full_name||'·')}${l.is_cliente?' <span class="adminbadge" style="padding:1px 7px;font-size:11px">cliente</span>':''}</span><span>${escapeHtml(l.email||'')}</span><span>${escapeHtml(l.phone||'')}</span><span>${escapeHtml(l.profissao||l.came_from||'')}</span><span>${l.created_at?new Date(l.created_at).toLocaleString('pt-BR'):''}</span></div>`).join('')}</div>`;
+}
+function exportLeads(){
+  if(!LEADS.length){ toast('Nenhum cadastro pra exportar'); return; }
+  const head=['full_name','email','phone','profissao','came_from','is_cliente','created_at'];
+  const csv=[head.join(',')].concat(LEADS.map(l=>head.map(k=>`"${String(l[k]??'').replace(/"/g,'""')}"`).join(','))).join('\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}); const url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url; a.download='cadastros-mydose-lab.csv'; a.click(); URL.revokeObjectURL(url);
+}
+function copyP(btn,i){ copyById('prompt-'+i, btn); }
+function copyById(id,btn){
+  const el=document.getElementById(id); if(!el) return;
+  navigator.clipboard.writeText(el.textContent).then(()=>{
+    btn.classList.add('done'); btn.innerHTML='✓ Copiado';
+    setTimeout(()=>{btn.classList.remove('done');btn.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg> Copiar`;},1800);
+  });
+}
+function escapeHtml(s){return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+/* ===== visualizador de stories/slides + lightbox ===== */
+let SVST={imgs:[],i:0};
+function openSV(slug,i){
+  const t=ITEMS.find(x=>x.slug===slug); if(!t)return;
+  const imgs=t.resultStories||t.resultSlides; if(!imgs||!imgs.length)return;
+  SVST.imgs=imgs; SVST.i=i||0;
+  document.querySelector('.svstage').style.aspectRatio=(t.resultSlides&&t.resultSlides.length)?'4 / 5':'9 / 16';
+  renderSV(); document.getElementById('sv').classList.add('on'); document.body.style.overflow='hidden';
+}
+function renderSV(){
+  const {imgs,i}=SVST;
+  document.getElementById('svimg').src=imgs[i];
+  document.getElementById('svbars').innerHTML=imgs.map((_,k)=>`<div class="svbar ${k<=i?'done':''}"></div>`).join('');
+  document.getElementById('svcount').textContent=(i+1)+' / '+imgs.length;
+}
+function svGo(d){ SVST.i+=d; if(SVST.i<0){SVST.i=0;return;} if(SVST.i>=SVST.imgs.length){closeSV();return;} renderSV(); }
+function closeSV(){document.getElementById('sv').classList.remove('on');document.body.style.overflow='';}
+function openImg(src){document.getElementById('imgovimg').src=src;document.getElementById('imgov').classList.add('on');document.body.style.overflow='hidden';}
+function closeImg(){document.getElementById('imgov').classList.remove('on');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{
+  const imgOpen=document.getElementById('imgov')&&document.getElementById('imgov').classList.contains('on');
+  const svOpen=document.getElementById('sv')&&document.getElementById('sv').classList.contains('on');
+  const vidOpen=document.getElementById('vidov')&&document.getElementById('vidov').classList.contains('on');
+  if(e.key==='Escape'){ if(vidOpen)closeVid(); else if(imgOpen)closeImg(); else if(svOpen)closeSV(); }
+  else if(svOpen&&e.key==='ArrowRight')svGo(1);
+  else if(svOpen&&e.key==='ArrowLeft')svGo(-1);
+});
+
+/* ===== CARROSSEL DE AVISOS (dirigido pelo estado ANN) ===== */
+let annIdx=0, annTimer=null;
+function renderAnn(){
+  const track=document.getElementById('annTrack'), dots=document.getElementById('annDots'), wrap=document.querySelector('.ann');
+  if(!track) return;
+  if(!ANN.length){ track.innerHTML=''; dots.innerHTML=''; if(wrap) wrap.style.display='none'; return; }
+  if(wrap) wrap.style.display='';
+  track.innerHTML=ANN.map(a=>{
+    const act = a.slug?`openBySlug('${a.slug}')` : (a.link?`window.open('${a.link}','_blank')` : `toast('Aviso')`);
+    const style = a.img?` style="background-image:url('${a.img}')"`:'';
+    return `<div class="ann-slide${a.img?' has-img':''}"${style}>${a.img?'':`<div class="big">${escapeHtml(a.big||'📣')}</div>`}<div><h3>${escapeHtml(a.titulo||'')}</h3><p>${escapeHtml(a.desc||'')}</p></div>${a.cta?`<button class="btn" onclick="${act}">${escapeHtml(a.cta)}</button>`:''}</div>`;
+  }).join('');
+  dots.innerHTML=ANN.map((_,i)=>`<i class="${i===0?'on':''}" onclick="goAnn(${i})"></i>`).join('');
+  annIdx=0; track.style.transform='translateX(0)';
+  clearInterval(annTimer); if(ANN.length>1) annTimer=setInterval(()=>goAnn((annIdx+1)%ANN.length),5500);
+}
+function goAnn(i){annIdx=i;const tr=document.getElementById('annTrack');if(tr)tr.style.transform=`translateX(-${i*100}%)`;const dd=document.getElementById('annDots');if(dd)[...dd.children].forEach((d,k)=>d.classList.toggle('on',k===i));}
+
+/* ===== TOAST ===== */
+let tT; function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('show'),2600);}
+
+/* ===== BOOT: restaura sessão Supabase; sem sessão fica no gate (ou #acervo = preview) ===== */
+bootSession();
 </script>
+
+<!-- visualizador de stories/slides em tela cheia -->
+<div class="sv" id="sv" onclick="if(event.target===this)closeSV()">
+  <div class="svstage">
+    <div class="svbars" id="svbars"></div>
+    <button class="svclose" onclick="closeSV()">×</button>
+    <img id="svimg" src="" alt="story">
+    <div class="svnav prev" onclick="svGo(-1)"></div>
+    <div class="svnav next" onclick="svGo(1)"></div>
+    <div class="svcount" id="svcount"></div>
+  </div>
+</div>
+<!-- lightbox de imagem -->
+<div class="imgov" id="imgov" onclick="closeImg()">
+  <button class="imgclose" onclick="closeImg()">×</button>
+  <img id="imgovimg" src="" alt="imagem">
+</div>
+<!-- player de vídeo em tela cheia -->
+<div class="vidov" id="vidov" onclick="if(event.target===this)closeVid()">
+  <div class="vidov-stage" onclick="event.stopPropagation()">
+    <div class="vidov-top">
+      <h3 id="vidovttl">Vídeo da semana</h3>
+      <button class="imgclose" onclick="closeVid()">×</button>
+    </div>
+    <div class="vidov-frame" id="vidovframe"></div>
+    <a class="vidov-fallback" id="vidovfallback" href="#" target="_blank" rel="noopener">Vídeo não carregou? Assista no YouTube ↗</a>
+  </div>
+</div>
+
 </body>
 </html>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Foco e prioridades · Gaud</title>
+<style>
+@font-face{font-family:'SpaceG';src:url('../assets/fonts/space-grotesk-v22-latin-700.ttf');font-weight:700;font-display:swap}
+@font-face{font-family:'Inter';src:url('../assets/fonts/inter-v20-latin-regular.ttf');font-weight:400;font-display:swap}
+@font-face{font-family:'Inter';src:url('../assets/fonts/inter-v20-latin-500.ttf');font-weight:500;font-display:swap}
+@font-face{font-family:'Inter';src:url('../assets/fonts/inter-v20-latin-700.ttf');font-weight:700;font-display:swap}
+@font-face{font-family:'Plex';src:url('../assets/fonts/ibm-plex-mono-v20-latin-regular.ttf');font-weight:400;font-display:swap}
+@font-face{font-family:'Plex';src:url('../assets/fonts/ibm-plex-mono-v20-latin-600.ttf');font-weight:600;font-display:swap}
+:root{--porcelana:#F5F4F0;--branco:#FFF;--ink:#0E0E12;--grafite:#565660;--cobalto:#2743F5;--amber:#F0A500;--linha:#E2E0DA;
+--disp:'SpaceG',system-ui,sans-serif;--corpo:'Inter',system-ui,sans-serif;--mono:'Plex',ui-monospace,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--porcelana);color:var(--ink);font-family:var(--corpo);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 24px}
+header{padding:52px 0 30px;border-bottom:1px solid var(--linha)}
+.kick{font-family:var(--mono);font-size:12px;color:var(--cobalto);letter-spacing:.06em}
+h1{font-family:var(--disp);font-weight:700;font-size:clamp(29px,4.2vw,46px);line-height:1.05;margin:13px 0 0;letter-spacing:-.025em}
+h1 .dot{color:var(--amber)}
+.sub{color:var(--grafite);max-width:70ch;margin:15px 0 0}
+section{padding:38px 0;border-bottom:1px solid #EFEDE8}
+section:last-of-type{border-bottom:0}
+h2{font-family:var(--disp);font-size:23px;margin:0 0 14px;letter-spacing:-.015em}
+p{margin:0 0 12px;max-width:78ch}
+.par{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:6px 0 4px}
+.par > div{border:1px solid var(--linha);background:var(--branco);border-radius:10px;padding:19px 21px}
+.par .r{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--cobalto);margin-bottom:7px}
+.par .v{font-family:var(--disp);font-weight:700;font-size:24px;line-height:1.2;letter-spacing:-.02em}
+.par .o{font-size:13.5px;color:var(--grafite);margin-top:7px}
+.par > div.alvo{background:var(--ink)}
+.par > div.alvo .v{color:var(--porcelana)}
+.par > div.alvo .r{color:var(--amber)}
+.par > div.alvo .o{color:#A5A39D}
+.n{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:11px;margin:8px 0}
+.n > div{border:1px solid var(--linha);background:var(--branco);border-radius:9px;padding:13px 15px}
+.n .v{font-family:var(--disp);font-weight:700;font-size:21px;letter-spacing:-.02em}
+.n .r{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--grafite);margin-top:5px;line-height:1.4}
+.n > div.mal .v{color:#C1121F}
+.item{background:var(--branco);border:1px solid var(--linha);border-left:3px solid var(--amber);border-radius:9px;padding:16px 19px;margin-bottom:11px}
+.item h3{font-family:var(--disp);font-size:16.5px;margin:0 0 6px}
+.item p{font-size:14px;margin:0}
+.pri{display:flex;gap:14px;align-items:flex-start;background:var(--branco);border:1px solid var(--linha);border-radius:9px;padding:16px 19px;margin-bottom:11px}
+.pri .num{font-family:var(--disp);font-weight:700;font-size:20px;color:var(--porcelana);background:var(--ink);width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex:none}
+.pri h3{font-family:var(--disp);font-size:16.5px;margin:0 0 5px}
+.pri p{font-size:14px;margin:0 0 6px}
+.pri .pq{font-family:var(--mono);font-size:11.5px;color:var(--grafite)}
+.pri .pq b{color:var(--ink);font-weight:500}
+table{width:100%;border-collapse:collapse;background:var(--branco);font-size:13.5px;margin-top:6px}
+th{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;text-align:left;padding:10px 12px;border-bottom:2px solid var(--ink)}
+td{padding:10px 12px;border-bottom:1px solid #EFEDE8;vertical-align:top}
+.q{font-family:var(--mono);font-size:10.5px;font-weight:600;text-transform:uppercase;padding:2px 6px;border-radius:3px;white-space:nowrap}
+.q.b{background:#E6E9FE;color:var(--cobalto)}
+.q.g{background:#FBF0D6;color:#7A5400}
+.q.d{background:#E5E3DC;color:var(--ink)}
+.palco{background:var(--ink);color:#C4C2BC;border-radius:10px;padding:20px 22px;margin:18px 0}
+.palco b{color:var(--porcelana)}
+footer{padding:24px 0 60px;font-family:var(--mono);font-size:11.5px;color:var(--grafite);border-top:1px solid var(--linha)}
+footer b{color:var(--ink);font-weight:500}
+.cur{color:var(--amber)}
+@media(max-width:640px){.par{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <div class="kick">&gt; consultoria_comercial // reuniao_01 · 11 de agosto</div>
+  <h1>O foco, a meta e o que trava o caminho<span class="dot">.</span></h1>
+  <p class="sub">O que ficou da primeira sessão: onde a operação está hoje, onde precisa chegar, o que está segurando e em que ordem atacar. Tudo que aparece aqui saiu do que vocês mesmos trouxeram na reunião.</p>
+</div></header>
+
+<div class="wrap">
+
+<section>
+  <h2>O foco e a meta</h2>
+  <div class="par">
+    <div><div class="r">o foco dos próximos 30 dias</div><div class="v">Parar de perder lead antes da conversa</div><div class="o">Cerca de 70% dos leads morrem entre a entrada e o agendamento. Nenhuma verba nova resolve isso: o que resolve é primeira mensagem, tempo de resposta e retomada.</div></div>
+    <div class="alvo"><div class="r">a meta</div><div class="v">R$ 60 mil por mês, rumo a R$ 100 mil</div><div class="o">R$ 60 mil é o que fecha a conta da operação. Os R$ 100 mil no fim do ano dependem de a máquina existir antes de escalar.</div></div>
+  </div>
+  <div class="palco">
+    <p style="margin:0"><b>O caminho mais curto não é mais lead.</b> Com os mesmos 344 leads de julho, dobrar a taxa de agendamento de 9% para 18% entrega mais que qualquer aumento de verba. É por isso que o investimento em mídia fica parado até o funil ficar confiável.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Onde vocês estão hoje</h2>
+  <div class="n">
+    <div><div class="v">R$ 35 mil</div><div class="r">faturamento médio</div></div>
+    <div><div class="v">R$ 47 mil</div><div class="r">julho, por upsell e ticket alto</div></div>
+    <div><div class="v">344</div><div class="r">leads em julho, 100% inbound</div></div>
+    <div class="mal"><div class="v">9%</div><div class="r">agendamento em julho</div></div>
+    <div class="mal"><div class="v">~70%</div><div class="r">perda antes da conversa</div></div>
+    <div><div class="v">17</div><div class="r">vendas em julho</div></div>
+    <div class="mal"><div class="v">1h40</div><div class="r">tempo médio até o 1º contato</div></div>
+    <div class="mal"><div class="v">5.000+</div><div class="r">leads na base sem contato</div></div>
+  </div>
+  <p style="margin-top:14px">Julho merece atenção: foi o melhor faturamento recente <b>e</b> a pior taxa de agendamento desde dezembro. O mês bom não veio de máquina funcionando, veio de upsell e de vendas acima do ticket médio. Lido sem cuidado, um mês assim faz o time repetir o que não foi a causa.</p>
+</section>
+
+<section>
+  <h2>O que está travando</h2>
+  <div class="item"><h3>1. O lead morre antes de virar conversa</h3><p>Não é objeção nem preço: é gente que não responde, não vê a mensagem e não atende ligação. Todo o resto do funil está sendo alimentado por uma fração do que se paga para entrar.</p></div>
+  <div class="item"><h3>2. A primeira mensagem não é tratada como ativo</h3><p>Não se sabe qual mensagem sai primeiro, se vai áudio ou texto, nem com que qualidade. Ou o contato é padronizado, ou é radicalmente personalizado: o meio-termo improvisado não converte e ainda impede aprender.</p></div>
+  <div class="item"><h3>3. Tempo de resposta sem régua confiável</h3><p>Existem casos de 4 e 7 horas dentro do horário comercial, e a medição anterior não se sustentava. O problema é duplo: a demora real e o número que não dá para defender.</p></div>
+  <div class="item"><h3>4. Retomada só quando aperta</h3><p>Sem cadência, sem indicador, sem registro. Junto disso, mais de 5.000 leads na base sem nenhuma comunicação. É o estoque mais barato de oportunidade que a empresa tem, e está parado.</p></div>
+  <div class="item"><h3>5. O formulário pede o que não usa</h3><p>Coleta faturamento e número de funcionários, que quase não são usados, e não coleta o nome da loja, que é o que permitiria achar a empresa por outro caminho quando a pessoa não responde.</p></div>
+  <div class="item"><h3>6. O CRM é pago e não é usado como CRM</h3><p>Os indicadores vivem em planilha preenchida à mão, com conferência e reconferência, e não há documentação de call nos negócios. Sem histórico no card, toda retomada recomeça do zero.</p></div>
+  <div class="item"><h3>7. Zero prospecção ativa e zero enriquecimento</h3><p>Quando o lead não responde, a tentativa acaba. Não se procura o Instagram da loja, o telefone fixo, o decisor. E não existe outbound para compensar um mês fraco de mídia.</p></div>
+</section>
+
+<section>
+  <h2>A ordem de ataque</h2>
+  <p>Critério: o que devolve resultado dentro do mês, com o time que já existe, sem depender de ferramenta nova nem de verba nova.</p>
+  <div class="pri"><div class="num">1</div><div><h3>A primeira mensagem e o tempo até ela</h3><p>Padronizar o primeiro contato (texto, com gancho, nunca áudio) e cravar uma régua de resposta em minutos, não em horas.</p><div class="pq"><b>Por quê:</b> é onde está a maior perda, e mexe na conversão sem gastar um real a mais.</div></div></div>
+  <div class="pri"><div class="num">2</div><div><h3>Retomada diária, com lista priorizada</h3><p>Um bloco fixo por dia, começando pelos quentes: quem agendou e não apareceu, quem sumiu depois da reunião. Cinco por dia já são cem contatos por mês que hoje não acontecem.</p><div class="pq"><b>Por quê:</b> é receita que já foi paga. Maior retorno por esforço da lista.</div></div></div>
+  <div class="pri"><div class="num">3</div><div><h3>Um número de funil confiável, sem planilha</h3><p>Definir por escrito o que conta como lead, contato, agendamento e venda, e tirar a apuração da mão.</p><div class="pq"><b>Por quê:</b> sem isso nenhuma das outras prioridades pode ser avaliada, e devolve horas do time.</div></div></div>
+  <div class="pri"><div class="num">4</div><div><h3>Nome da loja no formulário</h3><p>Entra o nome da autopeça, saem faturamento e número de funcionários enquanto não forem usados.</p><div class="pq"><b>Por quê:</b> custo perto de zero e destrava atacar quem não responde por outro canal.</div></div></div>
+  <div class="pri"><div class="num">5</div><div><h3>Documentação de call em todo negócio</h3><p>Manual primeiro, com formato definido. Automatiza depois, quando a rotina existir.</p><div class="pq"><b>Por quê:</b> é o insumo da retomada boa e da passagem de bastão.</div></div></div>
+</section>
+
+<section>
+  <h2>Próximos passos</h2>
+  <table>
+    <tr><th style="width:12%">Quem</th><th style="width:38%">O quê</th><th>Detalhe</th></tr>
+    <tr><td><span class="q g">Gaud</span></td><td>Enviar acesso à planilha de indicadores</td><td>É a base da primeira análise.</td></tr>
+    <tr><td><span class="q g">Gaud</span></td><td>Criar usuário no CRM para o Gardel</td><td>Para olhar os leads por dentro e definir a régua de tempo de primeiro contato.</td></tr>
+    <tr><td><span class="q b">Batista</span></td><td>Analisar os indicadores e devolver plano de ação</td><td>Primeira devolutiva com a leitura do funil.</td></tr>
+    <tr><td><span class="q g">Gaud</span></td><td>Ajustar os formulários das campanhas</td><td>Incluir o nome da loja, remover o que não é usado.</td></tr>
+    <tr><td><span class="q d">Os dois</span></td><td>Auditar a primeira mensagem</td><td>Qual é o texto, se vai áudio, em quanto tempo sai. Depois, testar variações.</td></tr>
+    <tr><td><span class="q d">Os dois</span></td><td>Estruturar a retomada</td><td>Canais, mensagens, frequência diária e priorização por temperatura.</td></tr>
+    <tr><td><span class="q g">Gaud</span></td><td>Baixar as transcrições e ligar aos negócios</td><td>O e-mail da primeira linha do arquivo casa com o lead. Definir antes o formato da documentação.</td></tr>
+    <tr><td><span class="q d">Os dois</span></td><td>Desenhar a prospecção ativa</td><td>Seleção de quem vale o cerco, abordagem personalizada, múltiplos canais. Não é volume, é escolha.</td></tr>
+  </table>
+</section>
+
+</div>
+
+<footer><div class="wrap">
+  <b>batista.growth</b> <span class="cur">_</span><br>
+  Crescimento não é feeling. É método, clareza e decisão.
+</div></footer>
+</body>
+</html>
