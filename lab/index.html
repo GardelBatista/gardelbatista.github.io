@@ -75,6 +75,9 @@ button{font-family:inherit;cursor:pointer}
 .amb-fm .r{font-family:var(--font-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--amber);margin-bottom:6px}
 .amb-fm p{margin:0;font-size:14px;color:var(--porcelana);line-height:1.5}
 @media(max-width:700px){.amb-fm{grid-template-columns:1fr}}
+.doc-mark{position:absolute;left:14px;top:14px;z-index:1;font-family:var(--font-mono);font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--porcelana);background:rgba(245,244,240,.12);border:1px solid rgba(245,244,240,.22);padding:4px 9px;border-radius:6px}
+.tcard .cap{position:relative}
+.tcard .cap .cap-glyph{opacity:.16}
 .brand-logo{height:19px;width:auto;display:block}
 .lab-suffix{font-family:var(--font-display);font-weight:400;font-style:italic;font-size:23px;letter-spacing:-.01em;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:3px}
 .logo .mark{width:32px;height:32px;border-radius:9px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:17px;box-shadow:0 4px 12px -3px rgba(198,79,202,.30)}
@@ -112,9 +115,9 @@ button{font-family:inherit;cursor:pointer}
 .gate-right{position:relative;background:transparent;display:flex;align-items:center;justify-content:center;padding:48px 40px;overflow:hidden}
 .mesh{position:absolute;inset:-15%;z-index:0;filter:blur(50px);opacity:.7;pointer-events:none}
 .mesh b{position:absolute;border-radius:50%;animation:float 14s ease-in-out infinite}
-.mesh .b1{width:340px;height:340px;left:-6%;top:6%;background:radial-gradient(circle at 30% 30%,rgba(65,95,245,.75),transparent 62%)}
-.mesh .b2{width:300px;height:300px;right:-4%;top:24%;background:radial-gradient(circle at 50% 50%,rgba(198,79,202,.6),transparent 64%);animation-delay:-5s}
-.mesh .b3{width:320px;height:320px;left:24%;bottom:-12%;background:radial-gradient(circle at 60% 40%,rgba(245,100,66,.5),transparent 62%);animation-delay:-9s}
+.mesh .b1{width:340px;height:340px;left:-6%;top:6%;background:radial-gradient(circle at 30% 30%,rgba(39,67,245,.55),transparent 62%)}
+.mesh .b2{width:300px;height:300px;right:-4%;top:24%;background:radial-gradient(circle at 50% 50%,rgba(39,67,245,.28),transparent 64%);animation-delay:-5s}
+.mesh .b3{width:320px;height:320px;left:24%;bottom:-12%;background:radial-gradient(circle at 60% 40%,rgba(240,165,0,.22),transparent 62%);animation-delay:-9s}
 @keyframes float{0%,100%{transform:translate(0,0)}33%{transform:translate(22px,-26px)}66%{transform:translate(-18px,16px)}}
 .card-form{position:relative;z-index:1;background:#fff;border-radius:22px;box-shadow:0 40px 90px -30px rgba(0,0,0,.55);padding:34px 32px;width:100%;max-width:420px}
 .card-form h3{font-size:23px;margin-bottom:5px}
@@ -597,7 +600,7 @@ footer.appf{border-top:1px solid var(--border);margin-top:40px;padding:26px 0;co
           <span id="authSwitchText">Já tem conta?</span>
           <a href="#" id="authSwitch" onclick="toggleAuthMode(event)" style="color:var(--purple-deep);font-weight:600">Entrar</a>
         </p>
-        <button type="button" class="peek" onclick="previewLab()">👀 Só quero ver o acervo por dentro →</button>
+        <button type="button" class="peek" onclick="previewLab()">Só quero ver o acervo por dentro →</button>
         <p class="legal">Ao entrar você concorda em receber conteúdos do batista.growth. Seus dados ficam seguros.</p>
       </form>
     </div>
@@ -636,7 +639,7 @@ footer.appf{border-top:1px solid var(--border);margin-top:40px;padding:26px 0;co
       <div class="lib-head" style="display:flex;align-items:center;justify-content:space-between;gap:12px">
         <div>
           <h2>Vídeos da <span class="grad-text">semana</span></h2>
-          <span class="foryou" style="display:inline-flex">⏳ Some em 7 dias · pega enquanto está no ar</span>
+          <span class="foryou" style="display:inline-flex">Some em 7 dias · pega enquanto está no ar</span>
         </div>
         <button class="btn" id="labVidAddBtn" onclick="openVidForm()" style="display:none">+ Adicionar vídeo</button>
       </div>
@@ -810,7 +813,7 @@ footer.appf{border-top:1px solid var(--border);margin-top:40px;padding:26px 0;co
       <section class="admin-card" style="max-width:580px">
         <div class="ac-h"><h3>Banner em destaque</h3></div>
         <label class="toggle"><input type="checkbox" id="b-on"> Mostrar o banner no acervo</label>
-        <button type="button" class="aigen" onclick="genBanner()">✨ Gerar com IA (ChatGPT)</button>
+        <button type="button" class="aigen" onclick="genBanner()"> Gerar com IA (ChatGPT)</button>
         <div class="row2">
           <div class="field"><label for="b-emoji">Emoji / ícone</label><input id="b-emoji" maxlength="3" placeholder="🎟️"></div>
           <div class="field"><label for="b-cta">Texto do botão</label><input id="b-cta" placeholder="Quero participar"></div>
@@ -977,10 +980,10 @@ function igEmbed(url){
 }
 
 const CAPAS = {
-  'grad-roxo':'linear-gradient(135deg,#415FF5,#C64FCA)',
-  'grad-rosa':'linear-gradient(135deg,#C64FCA,#F56442)',
-  'grad-laranja':'linear-gradient(135deg,#F56442,#E5484D)',
-  'grad-azul':'linear-gradient(135deg,#191E47,#415FF5)'
+  'grad-roxo':'#0E0E12',
+  'grad-rosa':'#14141B',
+  'grad-laranja':'#1A1A22',
+  'grad-azul':'#0E0E12'
 };
 
 /* ---- estado ---- */
@@ -1082,8 +1085,11 @@ function renderDestaques(){
         ${(t.ferramentas||[])[0]?`<span class="cap-tool"><span class="d" style="background:${(t.ferramentas||[])[0].cor}"></span>${(t.ferramentas||[])[0].nome}</span>`:''}
         <span class="feat">★ Destaque</span>
         ${t.novo?'<span class="new">Novo</span>':''}
-        <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>${t.duracao}</span>
+        ${t.link ? `<span class="doc-mark">${escapeHtml(t.categoria||'Material')}</span>`
+                 : `<span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>`}
+        <span class="dur">${t.link
+            ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>${t.duracao} de leitura`
+            : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>${t.duracao}`}</span>
       </div>
       <div class="body">
         <h3>${t.titulo}</h3>
@@ -1260,7 +1266,7 @@ function gateForSignup(msg){
   document.getElementById('view-app').classList.remove('active');
   document.getElementById('view-gate').classList.add('active');
   if(AUTH_MODE!=='signup') toggleAuthMode();
-  toast(msg||'Crie seu acesso gratuito pra ver isso por completo ✨');
+  toast(msg||'Crie seu acesso gratuito pra ver isso por completo ');
   const el=document.getElementById('nome');
   if(el){ el.focus({preventScroll:true}); el.scrollIntoView({behavior:'smooth',block:'center'}); }
   window.scrollTo(0,0);
@@ -1281,7 +1287,7 @@ const SCHOOL_GRADS=[
   'linear-gradient(135deg,#63AC39,#3a8a63)'
 ];
 function openSchool(){
-  if(!AUTHED){ gateForSignup('Crie seu acesso gratuito pra conhecer o School ✨'); return; }
+  if(!AUTHED){ gateForSignup('Crie seu acesso gratuito pra conhecer o School '); return; }
   ['view-app','view-detail','view-admin','view-gate'].forEach(id=>document.getElementById(id).classList.remove('active'));
   document.getElementById('view-school').classList.add('active');
   const ini=((LEAD&&LEAD.nome)||'G').trim()[0].toUpperCase();
@@ -1355,7 +1361,7 @@ async function enterApp(){
     activeFilter=LEAD.profissao;
     const fy=document.getElementById('foryou');
     fy.style.display='inline-flex';
-    fy.innerHTML='✨ Selecionado para você · '+LEAD.profissao;
+    fy.innerHTML=' Selecionado para você · '+LEAD.profissao;
   }
   const gear=document.getElementById('adminBtn'); if(gear) gear.style.display = IS_ADMIN ? '' : 'none';
   const lock=document.getElementById('schoolLock'); if(lock) lock.style.display = (IS_CLIENTE||IS_ADMIN) ? 'none' : '';
@@ -1394,16 +1400,16 @@ async function loadVideos(){
 }
 function renderVideos(){
   const grid=document.getElementById('labVidGrid'); if(!grid) return;
-  if(!VIDEOS.length){ grid.innerHTML=`<div class="empty" style="grid-column:1/-1"><div class="ei">🎬</div><b>Nenhum vídeo no ar.</b><p class="muted">${IS_ADMIN?'Adicione um vídeo do YouTube · some sozinho em 7 dias.':'Volte em breve.'}</p></div>`; return; }
+  if(!VIDEOS.length){ grid.innerHTML=`<div class="empty" style="grid-column:1/-1"><div class="ei"></div><b>Nenhum vídeo no ar.</b><p class="muted">${IS_ADMIN?'Adicione um vídeo do YouTube · some sozinho em 7 dias.':'Volte em breve.'}</p></div>`; return; }
   const now=Date.now();
   grid.innerHTML=VIDEOS.map(v=>{
     const id=v.youtube_id||ytId(v.youtube_url);
     const left=fmtLeft(new Date(v.expires_at).getTime()-now);
     const thumb = id
       ? `<img src="https://img.youtube.com/vi/${id}/hqdefault.jpg" alt="${escapeHtml(v.title||'Vídeo')}" style="width:100%;height:100%;object-fit:cover;display:block">`
-      : `<span class="cap-glyph">🎬</span>`;
+      : `<span class="cap-glyph"></span>`;
     // clicar (capa OU título) abre o player grande; não logado → pede cadastro
-    const act = (!AUTHED) ? `gateForSignup('Crie seu acesso gratuito pra assistir ✨')` : `openVid('${id}')`;
+    const act = (!AUTHED) ? `gateForSignup('Crie seu acesso gratuito pra assistir ')` : `openVid('${id}')`;
     const cap = (!AUTHED)
       ? `<div class="cap vidcap" onclick="${act}">
            ${thumb}<span class="vidov-scrim"></span>
@@ -1494,7 +1500,7 @@ function renderGrid(){
   const list=ITEMS.filter(matches).filter(t=> IS_ADMIN || !t.oculto).filter(t=> isDefaultView() ? !t.featured : true);
   list.sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)); // destaques primeiro (ordem estável)
   const grid=document.getElementById('grid');
-  if(!list.length){grid.innerHTML=`<div class="empty" style="grid-column:1/-1"><div class="ei">🔍</div><b>Nada por aqui ainda.</b><p class="muted">Tente outra profissão ou busca.</p></div>`;return;}
+  if(!list.length){grid.innerHTML=`<div class="empty" style="grid-column:1/-1"><div class="ei"></div><b>Nada por aqui ainda.</b><p class="muted">Tente outra profissão ou busca.</p></div>`;return;}
   grid.innerHTML=list.map((t,i)=>`
     <article class="tcard ${IS_ADMIN&&t.oculto?'is-hidden':''}" style="animation-delay:${i*45}ms" onclick="openBySlug('${t.slug}')">
       <div class="cap" style="${t.capaImg?`background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.5)),url('${t.capaImg}');background-size:cover;background-position:center`:`background:${CAPAS[t.capa]||CAPAS['grad-roxo']}`}">
@@ -1502,8 +1508,11 @@ function renderGrid(){
         ${(t.ferramentas||[])[0]?`<span class="cap-tool"><span class="d" style="background:${(t.ferramentas||[])[0].cor}"></span>${(t.ferramentas||[])[0].nome}</span>`:''}
         ${t.featured?'<span class="feat">★ Destaque</span>':''}
         ${t.novo?'<span class="new">Novo</span>':''}
-        <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>${t.duracao}</span>
+        ${t.link ? `<span class="doc-mark">${escapeHtml(t.categoria||'Material')}</span>`
+                 : `<span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>`}
+        <span class="dur">${t.link
+            ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>${t.duracao} de leitura`
+            : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>${t.duracao}`}</span>
       </div>
       <div class="body">
         <h3>${t.titulo}</h3>
@@ -1520,9 +1529,11 @@ function renderGrid(){
 /* ===== DETAIL ===== */
 function openBySlug(slug){
   const tl=ITEMS.find(x=>x.slug===slug);
-  if(tl && tl.link){ window.open(tl.link,'_blank','noopener'); return; }   // card-link: abre direto (página pública)
-  if(!AUTHED){ gateForSignup('Crie seu acesso gratuito pra abrir esse conteúdo ✨'); return; }
+  // link de fora abre fora; material da consultoria abre aqui dentro, na rota do slug
+  if(tl && tl.link && /^https?:\/\//i.test(tl.link)){ window.open(tl.link,'_blank','noopener'); return; }
+  if(!AUTHED){ gateForSignup('Crie seu acesso gratuito pra abrir esse conteúdo '); return; }
   const t=ITEMS.find(x=>x.slug===slug); if(!t)return;
+  if(t.link && !/^https?:\/\//i.test(t.link)){ abreMaterial(t); return; }
   document.getElementById('view-app').classList.remove('active');
   document.getElementById('view-gate').classList.remove('active');
   const d=document.getElementById('view-detail');
@@ -1552,7 +1563,7 @@ let CURRENT_SLUG='';
 function copyLink(slug){
   const url=location.origin+location.pathname+'#'+encodeURIComponent(slug);
   (navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject())
-    .then(()=>toast('Link do conteúdo copiado ✨'))
+    .then(()=>toast('Link do conteúdo copiado '))
     .catch(()=>prompt('Copia o link:',url));
 }
 function openFromHash(){
@@ -1610,10 +1621,56 @@ function renderAmbiente(){
     </div>`;
   const hs = document.querySelectorAll('.lib-head h2'); const h = hs[hs.length-1];
   if(h) h.innerHTML = 'Materiais da <span class="grad-text">consultoria</span>';
+  document.querySelectorAll('.lab-suffix').forEach(e => { e.textContent = AMB.nome; });
+  const lv = document.getElementById('labVideos'); if(lv) lv.style.display = 'none';
+  const dh = document.querySelector('.dest-head h2, #destaques h2');
+  document.querySelectorAll('h2').forEach(h => { if(h.textContent.trim().startsWith('Destaques da')) h.innerHTML = 'Em <span class="grad-text">destaque</span>'; });
+  document.title = AMB.nome + ' · consultoria';
   const fl = document.getElementById('filters');
   if(fl) fl.style.display = 'none';
   const sn = document.getElementById('schoolNav');
   if(sn && !AMB.schoolOn) sn.style.display = 'none';
+}
+
+/* material (documento) renderizado dentro do app: o HTML entra num shadow root,
+   então o CSS dele não briga com o do Lab e a URL continua sendo a rota do slug */
+function abreMaterial(t){
+  document.getElementById('view-app').classList.remove('active');
+  document.getElementById('view-gate').classList.remove('active');
+  document.getElementById('view-detail').classList.add('active');
+  document.getElementById('detContent').innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+      <button class="back" onclick="backToLib()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Voltar aos materiais</button>
+      <button class="back" onclick="copyLink('${t.slug}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Copiar link</button>
+    </div>
+    <div id="docHost" style="margin-top:16px"></div>`;
+  CURRENT_SLUG=t.slug;
+  if(decodeURIComponent(location.hash.slice(1))!==t.slug) history.pushState(null,'','#'+encodeURIComponent(t.slug));
+  window.scrollTo(0,0);
+  const host=document.getElementById('docHost');
+  const sh=host.attachShadow({mode:'open'});
+  sh.innerHTML='<div style="font:14px system-ui;color:#565660;padding:40px 0">carregando o material…</div>';
+  fetch(t.link).then(r=>r.text()).then(html=>{
+    const dom=new DOMParser().parseFromString(html,'text/html');
+    sh.innerHTML='';
+    const base=document.createElement('style');
+    base.textContent=':host{display:block}';
+    sh.appendChild(base);
+    dom.querySelectorAll('style').forEach(st=>{
+      const c=document.createElement('style');
+      // :root não existe dentro do shadow; body vira o próprio host
+      c.textContent=st.textContent.replace(/:root/g,':host').replace(/(^|\})\s*body\s*\{/g,'$1 :host{');
+      sh.appendChild(c);
+    });
+    const corpo=document.createElement('div');
+    corpo.innerHTML=dom.body ? dom.body.innerHTML : html;
+    corpo.querySelectorAll('script').forEach(x=>x.remove());
+    sh.appendChild(corpo);
+    sh.addEventListener('click',e=>{
+      const a=e.composedPath().find(n=>n.tagName==='A'&&(n.getAttribute('href')||'').startsWith('#'));
+      if(a){ e.preventDefault(); const alvo=sh.getElementById(a.getAttribute('href').slice(1)); if(alvo) alvo.scrollIntoView({behavior:'smooth',block:'start'}); }
+    });
+  }).catch(()=>{ sh.innerHTML='<div style="font:14px system-ui;color:#565660;padding:40px 0">não deu pra abrir o material agora.</div>'; });
 }
 
 function detailSections(t){
@@ -1695,7 +1752,7 @@ async function saveBanner(){
   if(error){ toast('Não salvou: '+error.message); return; }
   renderBanner(); renderDestaques(); toast('Banner salvo ✓');
 }
-function genBanner(){ toast('✨ Gerar com IA: aqui pluga o ChatGPT / gerador de imagem'); }
+function genBanner(){ toast(' Gerar com IA: aqui pluga o ChatGPT / gerador de imagem'); }
 
 /* ---- TUTORIAIS (add / editar / ordenar / destacar / remover) ---- */
 /* estado do editor pras imagens (texto é lido direto do DOM) */
